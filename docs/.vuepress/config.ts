@@ -64,6 +64,14 @@ export default defineUserConfig({
         categoryId: "DIC_kwDOHHPx8c4CP47P"
       }
     },
+    pages: {
+      tags: {
+        subtitle: "",
+        bgImage: {
+          path: "/img/tags/tags.jpeg"
+        }
+      }
+    },
     lastUpdated: true,
     // 首页个人信息配置
     personalInfo: {
