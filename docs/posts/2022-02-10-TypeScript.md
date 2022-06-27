@@ -1,18 +1,18 @@
 ---
 layout: Post
-title: TypeScript 练习题  # 博客标题（必须）
-subtitle: 学习 TS 知识之后做题巩固  # 博客副标题（可选）
-date: 2022-02-31  # 博客日期，会显示在文章头部（可选）
+title: TypeScript 练习题 # 博客标题（必须）
+subtitle: 学习 TS 知识之后做题巩固 # 博客副标题（可选）
+date: 2022-02-31 # 博客日期，会显示在文章头部（可选）
 # author: xxx  # 博客作者（可选，不填的话会使用 `themeConfig.personalInfo.name`）
-useHeaderImage: true  # 是否在博客中显示封面图（可选，默认：false）
-headerImage: /img/posts/post_ts.png  # 博客封面图（必须，即使上一项选了 `text`，图片也需要在首页显示）
-headerMask: rgba(40, 57, 101, .4)  # 封面图遮罩（可选）
-catalog: true  # 是否启用右侧目录：false / true（可选，默认为 false）
-tags:  # 博客标签
+useHeaderImage: true # 是否在博客中显示封面图（可选，默认：false）
+headerImage: https://source.unsplash.com/1600x900/ # 博客封面图（必须，即使上一项选了 `text`，图片也需要在首页显示）
+headerMask: rgba(40, 57, 101, .4) # 封面图遮罩（可选）
+catalog: true # 是否启用右侧目录：false / true（可选，默认为 false）
+tags: # 博客标签
   - TypeScript
 ---
 
-## 🍔前言
+## 🍔 前言
 
 根据以下题目解题中你可以学习了解到并应用的知识点有：
 
@@ -53,11 +53,9 @@ tags:  # 博客标签
 
 - `ReturnType`
 
-------
+---
 
-
-
-**下面工具类型实现以及该题实现的逻辑分析觉得错误，或书写有误，希望大佬帮忙指正😀，有更好的实现方式和不明白的地方欢迎评论区留言。**
+**下面工具类型实现以及该题实现的逻辑分析觉得错误，或书写有误，希望大佬帮忙指正 😀，有更好的实现方式和不明白的地方欢迎评论区留言。**
 
 ## 第一题
 
@@ -72,18 +70,16 @@ type User = {
 function makeCustomer<T extends User>(u: T): T {
   // Error（TS 编译器版本：v4.4.2）
   // Type '{ id: number; kind: string; }' is not assignable to type 'T'.
-  // '{ id: number; kind: string; }' is assignable to the constraint of type 'T', 
+  // '{ id: number; kind: string; }' is assignable to the constraint of type 'T',
   // but 'T' could be instantiated with a different subtype of constraint 'User'.
   return {
     id: u.id,
-    kind: 'customer'
-  }
+    kind: "customer",
+  };
 }
 ```
 
 上面代码出现错误原因：泛型 `T` 只是约束于`User`类型，并不是局限于 `User`类型，所以返回结果 应该还需要接收其他类型变量。
-
-
 
 **解决办法**：
 
@@ -98,7 +94,7 @@ function makeCustomer<T extends User>(u: T): T {
   return {
     ...u,
     id: u.id,
-    kind: 'customer',
+    kind: "customer",
   };
 }
 ```
@@ -113,7 +109,7 @@ function makeCustomer<T extends User>(u: T): User {
   // but 'T' could be instantiated with a different subtype of constraint 'User'.
   return {
     id: u.id,
-    kind: 'customer',
+    kind: "customer",
   };
 }
 function makeCustomer<T extends User>(u: T): ReturnMake<T, User> {
@@ -123,16 +119,15 @@ function makeCustomer<T extends User>(u: T): ReturnMake<T, User> {
   // but 'T' could be instantiated with a different subtype of constraint 'User'.
   return {
     id: u.id,
-    kind: 'customer',
+    kind: "customer",
   };
 }
-
 
 type ReturnMake<T extends User, U> = {
   [K in keyof U as K extends keyof T ? K : never]: U[K];
 };
 
-makeCustomer({ id: 18584132, kind: '888', price: 99 });
+makeCustomer({ id: 18584132, kind: "888", price: 99 });
 ```
 
 1、`ReturnMake`工具类型，接收 `T`，`U` 两个泛型， `T` 约束于 `User`，
@@ -141,11 +136,7 @@ makeCustomer({ id: 18584132, kind: '888', price: 99 });
 
 ## 第二题
 
-
-
 本道题我们希望参数 a 和 b 的类型都是一致的，即 a 和 b 同时为 number 或 string 类型。当它们的类型不一致的值，TS 类型检查器能自动提示对应的错误信息。
-
-
 
 ```typescript
 条件function f(a: string | number, b: string | number) {
@@ -163,20 +154,20 @@ makeCustomer({ id: 18584132, kind: '888', price: 99 });
 function f(a: string, b: string): string;
 function f(a: number, b: number): number;
 function f(a: string | number, b: string | number) {
-  if (typeof a === 'string' || typeof b === 'string') {
-    return a + ':' + b;
+  if (typeof a === "string" || typeof b === "string") {
+    return a + ":" + b;
   } else {
-    return a + b; 
+    return a + b;
   }
 }
 
 f(2, 3); // Ok
-f(1, 'a'); // Error
-f('a', 2); // Error
-f('a', 'b'); // Ok
+f(1, "a"); // Error
+f("a", 2); // Error
+f("a", "b"); // Ok
 ```
 
-使用函数重载当调用函数时，会依次匹配定义` f `函数类型，内部，使用 typeof 判断 a 和 b 的类型对应逻辑。
+使用函数重载当调用函数时，会依次匹配定义`f`函数类型，内部，使用 typeof 判断 a 和 b 的类型对应逻辑。
 
 ## 第三题
 
@@ -184,18 +175,18 @@ f('a', 'b'); // Ok
 
 ```typescript
 type Foo = {
-	a: number;
-	b?: string;
-	c: boolean;
-}
+  a: number;
+  b?: string;
+  c: boolean;
+};
 
 // 测试用例
-type SomeOptional = SetOptional<Foo, 'a' | 'b'>;
+type SomeOptional = SetOptional<Foo, "a" | "b">;
 
 // type SomeOptional = {
 // 	a?: number; // 该属性已变成可选的
 // 	b?: string; // 保持不变
-// 	c: boolean; 
+// 	c: boolean;
 // }
 ```
 
@@ -220,17 +211,13 @@ type SetOptionalOmit<T, K extends keyof T> = Pick<T, K> & Partial<Omit<T, K>>;
  * 2.Pick<T, K> => Pick<Foo, 'a' | 'b'> => { a: number, b?: string } =>
  * 3.Partial<{ a: number, b?: string }> 所有变成可选 => { a?: number, b?: string }
  * 4.最后我们得到：{ c: boolean } & { a?: number, b?: string }
- * 5.合并得到之后: { a?: number, b?: string , c: boolean} 
+ * 5.合并得到之后: { a?: number, b?: string , c: boolean}
  */
 ```
 
 第二种`SetOptionalOmit`的意思 和第一种差不多理解为上面的步骤是：`2 -> 1 -> 3 -> 4 -> 5`。
 
-
-
 在实现`SetOptional`工具类型之后，感兴趣还可以实现一个 `SetRequired`工具类型，把给指定的 keys 对应属性变成必填。
-
-
 
 实现`SetRequired`工具方法：
 
@@ -259,7 +246,7 @@ type TodoPreview = Pick<Todo, "title" | "completed">;
 
 const todo: TodoPreview = {
   title: "Clean room",
-  completed: false
+  completed: false,
 };
 ```
 
@@ -267,10 +254,10 @@ const todo: TodoPreview = {
 
 ```typescript
 interface Example {
-	a: string;
-	b: string | number;
-	c: () => void;
-	d: {};
+  a: string;
+  b: string | number;
+  c: () => void;
+  d: {};
 }
 
 // 测试用例：
@@ -292,9 +279,7 @@ type ConditionalPick<V, T> = {
 
 返回 `never `在 TypeScript 编译器中，会默认认为这是个用不存在的类型，也相当于没有这个 `K `会被过滤，对应值则是 `V[K]` 获取。
 
-
-
-像TypeScript 内部工具实现工具方法 `Extract、Exclude` 也是通过返回`never`来排除。
+像 TypeScript 内部工具实现工具方法 `Extract、Exclude` 也是通过返回`never`来排除。
 
 ```typescript
 type Extract<T, U> = T extends U ? T : never;
@@ -310,21 +295,21 @@ type Exclude<T, U> = T extends U ? never : T;
 type Fn = (a: number, b: string) => number
 type AppendArgument<F, A> = // 你的实现代码
 
-type FinalFn = AppendArgument<Fn, boolean> 
+type FinalFn = AppendArgument<Fn, boolean>
 // (x: boolean, a: number, b: string) => number
 ```
 
 1. 使用 `Parameters`+ `ReturnType`工具类型实现：
 
 ```typescript
-type Fn = (a: number, b: string) => number
+type Fn = (a: number, b: string) => number;
 
 type AppendArgument<F extends (...args: any) => any, T> = (
   x: T,
   ...args: Parameters<F>
 ) => ReturnType<F>;
 
-type FinalFn = AppendArgument<Fn, string>; 
+type FinalFn = AppendArgument<Fn, string>;
 // type FinalFn = (x: string, a: number, b: string) => number
 ```
 
@@ -333,8 +318,6 @@ type FinalFn = AppendArgument<Fn, string>;
 1、泛型` F` 为需要增加参数`x` 的函数类型，`F` 约束于函数类型，泛型`T`为`x`参数指定的类型，返回一个新函数类型，
 
 2、`x`参数类型为 `T`，`...args`剩余参数类型使用`Parameters`工具类型拿到`F`泛型的数组类型参数类型，`ReturnType`工具类型拿到`F`函数类型的返回类型。
-
-
 
 1. 使用`infer`方式
 
@@ -345,7 +328,7 @@ type AppendArgument<F extends (...args: any) => any, T> = F extends (
   ? (x: T, ...args: P) => Return
   : never;
 
-type FinalFn = AppendArgument<Fn, boolean>; 
+type FinalFn = AppendArgument<Fn, boolean>;
 // type FinalFn = (x: boolean, a: number, b: string) => number
 ```
 
@@ -360,16 +343,20 @@ type NaiveFlat<T extends any[]> = // 你的实现代码
 
 // 测试用例：
 type NaiveResult = NaiveFlat<[['a'], [['b', 'c']], ['d']]>
-  
+
 // NaiveResult的结果： "a" | "b" | "c" | "d"
 ```
 
 使用递归写法：
 
 ```typescript
-type NaiveFlat<T extends any[]> = T extends (infer P)[] ? P extends any[] ? NaiveFlat<P> : P : never;
+type NaiveFlat<T extends any[]> = T extends (infer P)[]
+  ? P extends any[]
+    ? NaiveFlat<P>
+    : P
+  : never;
 
-type NaiveResult = NaiveFlat<[['a'], [['b', 'c']], ['d']]>;
+type NaiveResult = NaiveFlat<[["a"], [["b", "c"]], ["d"]]>;
 // type NaiveResult = "a" | "b" | "c" | "d"
 ```
 
@@ -378,8 +365,6 @@ type NaiveResult = NaiveFlat<[['a'], [['b', 'c']], ['d']]>;
 1、首先需要在约束条件中使用`infer`关键字推导出 `T` 传入的数组类型，并用 `P` 保存数组类型。
 
 2、三元嵌套判断`P`类型是否约束于类型`any[]`如果还是是数组继续递归遍历调用`NaiveFlat<P>`并传入`P`，放 `P`类型不满足 `any[]`，返回最后的扁平完成`P`类型所以得到最终联合类型`"a" | "b" | "c" | "d"` 。
-
-
 
 个人步骤流程理解：
 
@@ -395,8 +380,6 @@ type NaiveResult = NaiveFlat<[['a'], [['b', 'c']], ['d']]>;
 
 5、最后走`'d'`,最终得到 => 'a' | 'b' | 'c' | 'd'。
 
-
-
 另外如果是固定二维数组的话，可以试试这样：
 
 ```typescript
@@ -407,7 +390,7 @@ const testArr = [['a'], ['b', 'c'], ['d']];
 const testArrType = typeof testArr; // string[][]
 type NaiveResult = NaiveFlat<[['a'], ['b', 'c'], ['d']]>;
 // type NaiveResult = "a" | "b" | "c" | "d"
-[number] 
+[number]
  取数组的中值作为 key, number 是数组下标
  ["a"] | ["b", "c"] | ["d"]
 ```
@@ -419,13 +402,14 @@ type NaiveResult = NaiveFlat<[['a'], ['b', 'c'], ['d']]>;
 使用类型别名定义一个`EmptyObject`类型，使得该类型只允许空对象赋值：
 
 ```typescript
-type EmptyObject = {} 
+type EmptyObject = {};
 
 // 测试用例
 const shouldPass: EmptyObject = {}; // 可以正常赋值
-const shouldFail: EmptyObject = { // 将出现编译错误
-  prop: "TS"
-}
+const shouldFail: EmptyObject = {
+  // 将出现编译错误
+  prop: "TS",
+};
 ```
 
 `EmptyObject`工具类型实现:
@@ -437,33 +421,34 @@ type EmptyObject = {
 
 // 测试用例
 const shouldPass: EmptyObject = {}; // 可以正常赋值
-const shouldFail: EmptyObject = { // 将出现编译错误
-  prop: "TS"
-}
+const shouldFail: EmptyObject = {
+  // 将出现编译错误
+  prop: "TS",
+};
 ```
 
 `EmptyObject`类型中`[K in keyof any]` 等同于`[K in string | number | symbol]`，将所有对象属性对应类型设置为`never`。
 
 注意的是对象的索引类型是`string | number | symbol`。
 
-
-
 在通过 `EmptyObject`类型的测试用例检测后， 我们来更改以下 `takeSomeTypeOnly`函数的类型定义 让它的参数只允许严格`SomeType`类型的值。具体的使用示例如下所示：
 
 ```typescript
-type SomeType =  {
-  prop: string
-}
+type SomeType = {
+  prop: string;
+};
 
 // 更改以下函数的类型定义，让它的参数只允许严格SomeType类型的值
-function takeSomeTypeOnly(x: SomeType) { return x }
+function takeSomeTypeOnly(x: SomeType) {
+  return x;
+}
 
 // 测试用例：
-const x = { prop: 'a' };
-takeSomeTypeOnly(x) // 可以正常调用
+const x = { prop: "a" };
+takeSomeTypeOnly(x); // 可以正常调用
 
-const y = { prop: 'a', addditionalProp: 'x' };
-takeSomeTypeOnly(y) // 将出现编译错误
+const y = { prop: "a", addditionalProp: "x" };
+takeSomeTypeOnly(y); // 将出现编译错误
 ```
 
 具体实现：
@@ -477,9 +462,9 @@ function takeSomeTypeOnly<T extends SomeType>(x: Exclusive<SomeType, T>) {
   return x;
 }
 
-takeSomeTypeOnly({ prop: 'a' }); // OK
+takeSomeTypeOnly({ prop: "a" }); // OK
 
-takeSomeTypeOnly({ prop: 'a', addditionalProp: 'x' }) // 将出现编译错误
+takeSomeTypeOnly({ prop: "a", addditionalProp: "x" }); // 将出现编译错误
 ```
 
 遍历`SomeType`类型，只留下`SomeType`类型与传入的参数类型`T`中共有的属性，共有的属性类型拿的是`SomeType`对应的属性类型。不共有的设置为`never`排除，也就是将`prop`之外的其他属性气去除。
@@ -500,8 +485,8 @@ const b: NonEmptyArray<string> = ['Hello TS'] // 非空数据，正常使用
 ```typescript
 type NonEmptyArray<T> = [T, ...T[]];
 
-const a: NonEmptyArray<string> = [] // Error
-const b: NonEmptyArray<string> = ['Hello TS'] // OK
+const a: NonEmptyArray<string> = []; // Error
+const b: NonEmptyArray<string> = ["Hello TS"]; // OK
 ```
 
 `[T, ...T[]]`确保第一项一定是`T`，`[...T[]]`，为剩余数组类型。
@@ -527,27 +512,19 @@ type JoinStrArray<
   Arr extends string[],
   Separator extends string
 > = Arr extends [infer A, ...infer B]
-  ? `${A extends string ? A : ''}${B extends [string, ...string[]]
+  ? `${A extends string ? A : ""}${B extends [string, ...string[]]
       ? `${Separator}${JoinStrArray<B, Separator>}`
-      : ''}`
-  : '';
+      : ""}`
+  : "";
 ```
 
 `JoinStrArray`工具方法，`Arr`泛型必须约束于`string[]`类型，`Separator`为分隔符，也必须约束于`string`类型；
 
-
-
 1、首先`Arr`约束于后面`[infer A, ...infer B]`并通过`infer`关键字推导拿到第一个索引`A`的类型，以及剩余（rest）数组的类型为`B`；
-
-
 
 2、如果满足约束，则连接字符，连接字符使用模板变量，先判断`A`（也就是第一个索引）是否约束于`string`类型，满足就取第一个`A`否则直接返回空字符串；
 
-
-
 3、后面连接的`B`（...rest）判断是否满足于`[string, ...string[]]`，意思就是是不是还有多个索引。如果有，用分割符号，加上递归再调用`JoinStrArray`工具类型方法，`Arr`泛型就再为 B ，分隔符泛型`Separator`不变。减治思想，拿出数组的每一项，直至数组为空。
-
-
 
 最开始的话，如果`Arr`不满足约束，那么直接返回为空字符串。
 
@@ -557,9 +534,8 @@ type JoinStrArray<
 
 ```typescript
 type Trim<V extends string> = // 你的实现代码
-
-// 测试用例
-Trim<' semlinker '>
+  // 测试用例
+  Trim<" semlinker ">;
 //=> 'semlinker'
 ```
 
@@ -572,17 +548,15 @@ type TrimRight<V extends string> = V extends `${infer R} ` ? TrimRight<R> : V;
 type Trim<V extends string> = TrimLeft<TrimRight<V>>;
 
 // 测试用例
-type Result = Trim<' semlinker '>
+type Result = Trim<" semlinker ">;
 //=> 'semlinker'
 ```
 
-利用ts模板字符串，配合`infer`去除空格。
+利用 ts 模板字符串，配合`infer`去除空格。
 
 需要定义两个工具类型方法，`Trim`分解成`TrimLeft `和 `TrimRight`，一个是去除左边空格的，另一个去除右边。
 
-去除空格主要通过`extends`配合`infer`在模板字符串中使用，并且，如果去除左边空格，需要在左边添加一个**空格（**`` ${infer R}``**），**之后就是映射类型可以递归。
-
-
+去除空格主要通过`extends`配合`infer`在模板字符串中使用，并且，如果去除左边空格，需要在左边添加一个**空格（**` ${infer R}`**），**之后就是映射类型可以递归。
 
 ## 第十一题
 
@@ -600,7 +574,7 @@ type E2 = IsEqual<[1], []>; // false
 `IsEqual`工具类型实现：
 
 ```typescript
-type IsEqual<A, B> = [A] extends [B] ? [B] extends [A] ? true : false : false
+type IsEqual<A, B> = [A] extends [B] ? ([B] extends [A] ? true : false) : false;
 ```
 
 这里需要考虑`never`类型和联合类型，所以用到元组进行处理比较。
@@ -626,12 +600,12 @@ type H2 = Head<[3, 2]> // 3
 type Head1<T extends Array<any>> = T extends [infer H, ...T[]] ? H : never;
 
 // 测试用例
-type H0 = Head<[]> // never
-type H1 = Head<[1]> // 1
-type H2 = Head<[3, 2]> // 3
-type H3 = Head<["a", "b", "c"]> // "a"
-type H4 = Head<[undefined, "b", "c"]> // undefined
-type H5 = Head<[null, "b", "c"]> // null
+type H0 = Head<[]>; // never
+type H1 = Head<[1]>; // 1
+type H2 = Head<[3, 2]>; // 3
+type H3 = Head<["a", "b", "c"]>; // "a"
+type H4 = Head<[undefined, "b", "c"]>; // undefined
+type H5 = Head<[null, "b", "c"]>; // null
 ```
 
 通过`infer`关键字推导取出数组第一项的类型，`H`保存该类型，如果泛型`T`满足约束，返回推导的第一项类型`H`，否则`never`，`...T[]`取出剩余数组。
@@ -694,8 +668,8 @@ type Arr1 = Unshift<[1, 2, 3], 0>; // [0, 1, 2, 3]
 type Shift<T extends any[]> = // 你的实现代码
 
 // 测试用例
-type S0 = Shift<[1, 2, 3]> 
-type S1 = Shift<[string,number,boolean]> 
+type S0 = Shift<[1, 2, 3]>
+type S1 = Shift<[string,number,boolean]>
 ```
 
 `Shift`工具类型实现：
@@ -710,8 +684,6 @@ type S2 = Shift<[never]>; // []
 ```
 
 `...infer B`去除第一项之后的集合，使用变量`B`保存该类型。如果满足约束，返回剩余参数类型，也就是`B`。
-
-
 
 ## 第十六题
 
@@ -731,8 +703,8 @@ type Arr1 = Push<[1, 2, 3], 4> // [1, 2, 3, 4]
 type Push<T extends any[], V> = [...T, V]; // 你的实现代码
 
 // 测试用例
-type Arr0 = Push<[], 1> // [1]
-type Arr1 = Push<[1, 2, 3], 4> // [1, 2, 3, 4]
+type Arr0 = Push<[], 1>; // [1]
+type Arr1 = Push<[1, 2, 3], 4>; // [1, 2, 3, 4]
 ```
 
 `Push`工具类型的实现与**第十四题**`Unshift`实现类似。
@@ -755,9 +727,9 @@ type I2 = Includes<[2, 3, 3, 1], 1> // true
 type Includes<T extends any[], U> = U extends T[number] ? true : false;
 
 // 测试用例
-type I0 = Includes<[], 1> // false
-type I1 = Includes<[2, 2, 3, 1], 2> // true 
-type I2 = Includes<[2, 3, 3, 1], 1> // true
+type I0 = Includes<[], 1>; // false
+type I1 = Includes<[2, 2, 3, 1], 2>; // true
+type I2 = Includes<[2, 3, 3, 1], 1>; // true
 ```
 
 这里`T[number]`可以理解返回`T`数组元素的类型，比如传入的泛型`T`为`[2, 2, 3, 1]`，那么`T[number]`被解析为：`2 | 2 | 3 | 1`。
@@ -784,34 +756,34 @@ export type UnionToIntersection<Union> = (
   : never;
 
 // 测试用例
-type U0 = UnionToIntersection<string | number> // never
-type U1 = UnionToIntersection<{ name: string } | { age: number }> // { name: string; } & { age: number; }
+type U0 = UnionToIntersection<string | number>; // never
+type U1 = UnionToIntersection<{ name: string } | { age: number }>; // { name: string; } & { age: number; }
 ```
 
-1、`extends unknown`始终为true，默认进入到分发情况
+1、`extends unknown`始终为 true，默认进入到分发情况
 
 2、会声明一个以`Union`为入参类型的函数类型`A`，即`(distributedUnion: Union) => void`，该函数约束于以`mergedIntersection`类型为入参的函数类型`B`，即`(mergedIntersection: infer Intersection) => void`。
 
 3、如果函数`A`能继承函数`B`则 返回`infer Intersection`声明的`Intersection`，否则返回`never`，再利用**函数参数类型逆变**，从而实现得到的结果从联合类型到交叉类型的转变。
 
-
-
-这里是也设计到一个知识点：**分布式条件类型，**条件类型的特性：分布式条件类型。在结合联合类型使用时（**只针对****extends****左边的联合类型**），分布式条件类型会被自动分发成联合类型。例如，`T extends U ? X : Y`，`T`的类型为`A | B | C`，会被解析为`(A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y)`。
+这里是也设计到一个知识点：**分布式条件类型，**条件类型的特性：分布式条件类型。在结合联合类型使用时（**只针对\*\***extends\***\*左边的联合类型**），分布式条件类型会被自动分发成联合类型。例如，`T extends U ? X : Y`，`T`的类型为`A | B | C`，会被解析为`(A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y)`。
 
 都知道`infer`声明都是只能出现在`extends`子语句中。但是，在协变的位置上，同一类型变量的多个候选类型会被推断为联合类型：
 
 ```typescript
-type Foo<T> = T extends { a: infer U, b: infer U } ? U : never;
-type T10 = Foo<{ a: string, b: string }>;  // string
-type T11 = Foo<{ a: string, b: number }>;  // string | number
+type Foo<T> = T extends { a: infer U; b: infer U } ? U : never;
+type T10 = Foo<{ a: string; b: string }>; // string
+type T11 = Foo<{ a: string; b: number }>; // string | number
 ```
 
 在逆变的位置上，同一个类型多个候选类型会被推断为交叉类型：
 
 ```typescript
-type Bar<T> = T extends { a: (x: infer U) => void, b: (x: infer U) => void } ? U : never;
-type T20 = Bar<{ a: (x: string) => void, b: (x: string) => void }>;  // string
-type T21 = Bar<{ a: (x: string) => void, b: (x: number) => void }>;  // string & number
+type Bar<T> = T extends { a: (x: infer U) => void; b: (x: infer U) => void }
+  ? U
+  : never;
+type T20 = Bar<{ a: (x: string) => void; b: (x: string) => void }>; // string
+type T21 = Bar<{ a: (x: string) => void; b: (x: number) => void }>; // string & number
 ```
 
 相关链接：
@@ -858,8 +830,6 @@ type PersonOptionalKeys = OptionalKeys<Person>; // "from" | "speak"
 
 3、`{ ... }[keyof T]`取键值，因为`id,age,name`的属性类型都为`never`，取值的时候会被忽略掉，因为`never`是一个用不存在的类型，因此就只剩下`from、speak`属性的值了就是 `"from" | "speak"`组成联合类型返回。
 
-
-
 ## 第二十题
 
 实现一个`Curry`工具类型，用来实现函数类型的柯里化处理。具体的使用示例如下所示：
@@ -867,8 +837,8 @@ type PersonOptionalKeys = OptionalKeys<Person>; // "from" | "speak"
 ```typescript
 type Curry<
   F extends (...args: any[]) => any,
-  P extends any[] = Parameters<F>, 
-  R = ReturnType<F> 
+  P extends any[] = Parameters<F>,
+  R = ReturnType<F>
 > = // 你的实现代码
 
 type F0 = Curry<() => Date>; // () => Date
@@ -901,11 +871,9 @@ type F2 = Curry<(a: number, b: string) => Date>; //  (arg_0: number) => (b: stri
 
 `R`通过`ReturnType`获取`F`函数类型返回值；
 
-
-
 逻辑分析：
 
-1、需要先拿到args数组的第一项和剩余参数集合，`[infer A, ...infer B]`；
+1、需要先拿到 args 数组的第一项和剩余参数集合，`[infer A, ...infer B]`；
 
 2、使用 extends 判断`P`是否满足于`[infer A, ...infer B]`，不满足直接返回`() => R`,说明没有参数；
 
@@ -922,7 +890,7 @@ type F2 = Curry<(a: number, b: string) => Date>; //  (arg_0: number) => (b: stri
 实现一个`Merge`工具类型，用于把两个类型合并成一个新的类型。第二种类型（SecondType）的`Keys`将会覆盖第一种类型（FirstType）的`Keys`。具体的使用示例如下所示：
 
 ```typescript
-type Foo = { 
+type Foo = {
    a: number;
    b: string;
 };
@@ -940,24 +908,24 @@ const ab: Merge<Foo, Bar> = { a: 1, b: 2 };
 
 ```typescript
 interface Foo {
-  b: number
+  b: number;
 }
 
 interface Bar {
   a: number;
-  b: string
+  b: string;
 }
 
 type Merge<FirstType, SecondType> = {
   [K in keyof (FirstType & SecondType)]: K extends keyof SecondType
-  ? SecondType[K]
-  : K extends keyof FirstType
-  ? FirstType[K]
-  : never;
+    ? SecondType[K]
+    : K extends keyof FirstType
+    ? FirstType[K]
+    : never;
 };
 
 // 测试用例
-type Obj = Merge<Foo, Bar> // { a: number ; b: string }
+type Obj = Merge<Foo, Bar>; // { a: number ; b: string }
 ```
 
 注意的是：合并属性，后一个类型会覆盖前一个类型。
@@ -972,15 +940,14 @@ type Obj = Merge<Foo, Bar> // { a: number ; b: string }
 
 4、否则为`never`。
 
-
-
 其他解法：
 
 结合`Omit`内置工具类型
 
 ```typescript
-type Merge <FirstType, SecondType> = Omit<FirstType, keyof SecondType> & SecondType;
-type Obj = Merge<Foo, Bar> // { a: number ; b: string }
+type Merge<FirstType, SecondType> = Omit<FirstType, keyof SecondType> &
+  SecondType;
+type Obj = Merge<Foo, Bar>; // { a: number ; b: string }
 const ab: Obj = { a: 1, b: "1" };
 ```
 
@@ -1021,17 +988,15 @@ type RequireAtLeastOne<
   ? ObjectType & { [K in KeysType]-?: ObjectType[K] }
   : never;
 
-
-
 // 表示当前类型至少包含 'text' 或 'json' 键
-const responder: RequireAtLeastOne<Responder, 'text' | 'json'> = {
-    json: () => '{"message": "ok"}',
-    secure: true
+const responder: RequireAtLeastOne<Responder, "text" | "json"> = {
+  json: () => '{"message": "ok"}',
+  secure: true,
 };
 
 // @ts-expect-error 因为没有'text'和'json'中的任何一个，报错
-const responder2: RequireAtLeastOne<Responder, 'text' | 'json'> = {
-    secure: true
+const responder2: RequireAtLeastOne<Responder, "text" | "json"> = {
+  secure: true,
 };
 ```
 
@@ -1104,11 +1069,11 @@ type Mutable<T, Keys extends keyof T = keyof T> = {
   -readonly [K in Keys]: T[K];
 } & Omit<T, Keys>;
 
-const mutableFoo: Mutable<Foo, 'a'> = { a: 1, b: '2', c: true };
+const mutableFoo: Mutable<Foo, "a"> = { a: 1, b: "2", c: true };
 
 // 测试用例
 mutableFoo.a = 3; // OK
-mutableFoo.b = '6'; // Cannot assign to 'b' because it is a read-only property.
+mutableFoo.b = "6"; // Cannot assign to 'b' because it is a read-only property.
 ```
 
 1、遍历`Keys`，`-readonly`删除只读符号；
@@ -1130,7 +1095,11 @@ type I2 = IsUnion<string | unknown>; // false
 `IsUnion`工具类型实现方法：
 
 ```typescript
-type IsUnion<T, U = T> = T extends any ? ([U] extends [T] ? false : true) : never; // 你的实现代码
+type IsUnion<T, U = T> = T extends any
+  ? [U] extends [T]
+    ? false
+    : true
+  : never; // 你的实现代码
 
 // 测试用例
 type I0 = IsUnion<string | number>; // true
@@ -1144,15 +1113,13 @@ type I2 = IsUnion<string | unknown>; // false
 
 3、因此如果是联合类型的话`[U] extends [T]`一定为否。
 
-
-
 比如传入`string | nuber`类型会
 
 ```typescript
 // 首先会被分发得到
-type IsUnion<string | number, U = string | number> = 
+type IsUnion<string | number, U = string | number> =
 string extends ? any ? ([string | number]) extends [string] ? false : true) : never
-| number extends ? ([string | number]) extends [string] ? false :true) : never 
+| number extends ? ([string | number]) extends [string] ? false :true) : never
 // => true | true => true
 
 
@@ -1177,12 +1144,12 @@ type I2 = IsNever<null> // false
 type IsNever<T> = [T] extends [never] ? true : false;
 
 // 测试用例
-type II0 = IsNever<never> // true
-type II1 = IsNever<never | string> // false
-type II2 = IsNever<null> // false
-type II3 = IsNever<{}> // false
-type II4 = IsNever<[]> // false
-type II5 = IsNever<[] | never> // false
+type II0 = IsNever<never>; // true
+type II1 = IsNever<never | string>; // false
+type II2 = IsNever<null>; // false
+type II3 = IsNever<{}>; // false
+type II4 = IsNever<[]>; // false
+type II5 = IsNever<[] | never>; // false
 ```
 
 1、`[T]`和`[never]`为元组，作为包装类型，联合类型不会被分发；
@@ -1206,15 +1173,14 @@ type R1 = Reverse<[1, 2, 3]> // [3, 2, 1]
 `Reverse`工具类型实现：
 
 ```typescript
-type Reverse<T extends Array<any>> = 
-  T extends [infer First, ...infer Rest]
+type Reverse<T extends Array<any>> = T extends [infer First, ...infer Rest]
   ? [...Reverse<Rest>, First]
   : [];
 
 // 测试用例
-type R0 = Reverse<[]> // []
-type R1 = Reverse<[1, 2, 3]> // [3, 2, 1]
-type R2 = Reverse<[1, 2, 3, 4, 5]> //  [5, 4, 3, 2, 1]
+type R0 = Reverse<[]>; // []
+type R1 = Reverse<[1, 2, 3]>; // [3, 2, 1]
+type R2 = Reverse<[1, 2, 3, 4, 5]>; //  [5, 4, 3, 2, 1]
 ```
 
 采用递归方式，每次递归都把第一项`First`放在最后，并把递归结果展开。
@@ -1227,7 +1193,7 @@ type R2 = Reverse<[1, 2, 3, 4, 5]> //  [5, 4, 3, 2, 1]
 type Item = 'semlinker,lolo,kakuqo';
 
 type Split<
-	S extends string, 
+	S extends string,
 	Delimiter extends string,
 > = // 你的实现代码
 
@@ -1237,7 +1203,7 @@ type ElementType = Split<Item, ','>; // ["semlinker", "lolo", "kakuqo"]
 `Split`工具类型实现：
 
 ```typescript
-type Item = 'semlinker,lolo,kakuqo';
+type Item = "semlinker,lolo,kakuqo";
 
 export type Split<
   S extends string,
@@ -1249,14 +1215,14 @@ export type Split<
   : [S];
 
 // 测试用例
-type ElementType = Split<Item, ','>; // ["semlinker", "lolo", "kakuqo"]
-type ElementType2 = Split<'a|b|c||d', '|'>; // ["a", "b", "c", "", "d"]
-type ElementType3 = Split<'abcdef', ''>; // ["a", "b", "c", "d", "e", "f"]
+type ElementType = Split<Item, ",">; // ["semlinker", "lolo", "kakuqo"]
+type ElementType2 = Split<"a|b|c||d", "|">; // ["a", "b", "c", "", "d"]
+type ElementType3 = Split<"abcdef", "">; // ["a", "b", "c", "d", "e", "f"]
 ```
 
-1、``${infer Head}${Delimiter}${infer Tail}``映射类型在模板变量中使用，将一个字符串做拆解;
+1、`${infer Head}${Delimiter}${infer Tail}`映射类型在模板变量中使用，将一个字符串做拆解;
 
-2、第一步会变成``${infer "semlinker"}${,}${infer "lolo,kakuqo"}``，减治思想，再递归依次取第二位，直至递归到`Delimiter`符号的最后一项，`S extends Delimiter`处理`Delimiter`为空格的情况。
+2、第一步会变成`${infer "semlinker"}${,}${infer "lolo,kakuqo"}`，减治思想，再递归依次取第二位，直至递归到`Delimiter`符号的最后一项，`S extends Delimiter`处理`Delimiter`为空格的情况。
 
 ## 第二十九题
 
@@ -1282,7 +1248,7 @@ type IndexSignature<T> = T extends `${infer H}[${infer M}][${infer R}]`
 // 验证数组是否有 ''
 type NonSpace<T extends string[]> = T extends [infer H, ...infer R]
   ? R extends string[]
-    ? H extends ''
+    ? H extends ""
       ? [...NonSpace<R>]
       : [H, ...NonSpace<R>]
     : never
@@ -1294,39 +1260,37 @@ type ToPath<S extends string> = S extends `${infer H}.${infer R}`
   : NonSpace<IndexSignature<S>>;
 
 // 测试用例
-type TT0 = ToPath<'foo.bar.baz'> //=> ['foo', 'bar', 'baz']  
-type TT1 = ToPath<'foo[0].bar[0][1][2][3].car'>; // => ["foo", "0", "bar", "0", "1", "2", "3", "car"]
+type TT0 = ToPath<"foo.bar.baz">; //=> ['foo', 'bar', 'baz']
+type TT1 = ToPath<"foo[0].bar[0][1][2][3].car">; // => ["foo", "0", "bar", "0", "1", "2", "3", "car"]
 ```
 
 1、`IndexSignature`工具类型处理以`.`为拆分，并递归将每一项的子项放入到元组中；
 
-2、`IndexSignature`处理比如完`foo[0][1]`会得到`=>``["foo", "0", "", "1"]`；
+2、`IndexSignature`处理比如完`foo[0][1]`会得到` =>``["foo", "0", "", "1"] `；
 
 3、`NonSpace`处理`IndexSignature`工具类型返回值数组中的空字符串；
 
 4、`ToPath`以分隔符`.`拆分字符串，多项则拼接并递归，否则直接处理并返回。
-
-
 
 ## 第三十题
 
 完善`Chainable`类型的定义，使得 TS 能成功推断出`result`变量的类型。调用`option`方法之后会不断扩展当前对象的类型，使得调用`get`方法后能获取正确的类型。
 
 ```typescript
-declare const config: Chainable
+declare const config: Chainable;
 
 type Chainable = {
-  option(key: string, value: any): any
-  get(): any
-}
+  option(key: string, value: any): any;
+  get(): any;
+};
 
 const result = config
-  .option('age', 7)
-  .option('name', 'lolo')
-  .option('address', { value: 'XiaMen' })
-  .get()
+  .option("age", 7)
+  .option("name", "lolo")
+  .option("address", { value: "XiaMen" })
+  .get();
 
-type ResultType = typeof result  
+type ResultType = typeof result;
 // 期望 ResultType 的类型是：
 // {
 //   age: number
@@ -1358,13 +1322,11 @@ type Chainable<T = {}> = {
   get(): Simplify<T>;
 };
 
-
 const result = config
-  .option('age', 7)
-  .option('address', { name: 'Leslie' })
+  .option("age", 7)
+  .option("address", { name: "Leslie" })
   .get();
-  
-  
+
 type ResultType = typeof result;
 // => {
 //   age: number;
@@ -1395,7 +1357,7 @@ type R2 = Repeat<number, 2>; // [number, number]
 `Repeat`工具类型实现：
 
 ```typescript
-type Repeat<T, C extends number, A extends any[] = []> = A['length'] extends C
+type Repeat<T, C extends number, A extends any[] = []> = A["length"] extends C
   ? A
   : Repeat<T, C, [...A, T]>;
 
@@ -1436,8 +1398,8 @@ type RepeatString<
   T extends string,
   C extends number,
   A extends any[] = [],
-  S extends string = ''
-> = A['length'] extends C ? A : RepeatString<T, C, [...A, T], `${S}${T}`>;
+  S extends string = ""
+> = A["length"] extends C ? A : RepeatString<T, C, [...A, T], `${S}${T}`>;
 
 // 测试用例
 type RS0 = RepeatString<"a", 0>; // ''
@@ -1465,15 +1427,15 @@ type T2 = ToNumber<"20">; // 20
 type ToNumber<
   T extends string,
   S extends any[] = [],
-  L extends number = S['length']
-> = `${L}` extends T ? L : ToNumber<T, [...S, '']>;
+  L extends number = S["length"]
+> = `${L}` extends T ? L : ToNumber<T, [...S, ""]>;
 ```
 
 在 TypeScript 中没有直接的数字运算，但是可以通过数组长度转字符串再匹配需要字符串转换的字符串。
 
 1、`S`类型为累加记录，`L`获取`S`的数组类型长度；
 
-2、判断``${L}``是否满足约束`T`，不满足则，继续添加`''`空字符串，作为长度累加。
+2、判断`${L}`是否满足约束`T`，不满足则，继续添加`''`空字符串，作为长度累加。
 
 ## 第三十四题
 
@@ -1498,14 +1460,14 @@ type SmallerThan<
   N extends number,
   M extends number,
   A extends any[] = []
-> = A['length'] extends M  //=> M = 0 直接返回 false  1 => extends 2 ? false
+> = A["length"] extends M //=> M = 0 直接返回 false  1 => extends 2 ? false
   ? false
-  : A['length'] extends N // => if M = 1，那么 N 应该就是 0， so M > N => 1 extends 1 true 
+  : A["length"] extends N // => if M = 1，那么 N 应该就是 0， so M > N => 1 extends 1 true
   ? true
-  : SmallerThan<N, M, [...A, '']>; // 否则 A length + 1 
+  : SmallerThan<N, M, [...A, ""]>; // 否则 A length + 1
 
 // 测试用例
-type ST1 = SmallerThan<0, 0> // false
+type ST1 = SmallerThan<0, 0>; // false
 type ST2 = SmallerThan2<1, 2>; // true
 ```
 
@@ -1536,14 +1498,14 @@ type A2 = Add<10, 30>; // 40
 `Add`工具类型实现：
 
 ```typescript
-type GenArr<N extends number, S extends any[] = []> = S['length'] extends N
+type GenArr<N extends number, S extends any[] = []> = S["length"] extends N
   ? S
-  : GenArr<N, [...S, '']>;
+  : GenArr<N, [...S, ""]>;
 
 type Add<N extends number, M extends number> = [
   ...GenArr<N>,
   ...GenArr<M>
-]['length'];
+]["length"];
 
 // 测试用例
 type Add1 = Add<1, 2>; // 3
@@ -1579,7 +1541,7 @@ type Filter<T extends any[], F, R extends any[] = []> = T extends [
   : R;
 
 // 测试用例
-type F0 = Filter<[6, 'lolo', 7, 'semlinker', false], number>; // [6, 7]
+type F0 = Filter<[6, "lolo", 7, "semlinker", false], number>; // [6, 7]
 type F1 = Filter<["kakuqo", 2, ["ts"], "lolo"], string>; // ["kakuqo", "lolo"]
 type F2 = Filter<[0, true, any, "abao"], string>; // [any, "abao"]
 type F3 = Filter<[never, number | string, any, "abao"], string>; // [never, any, "abao"]
@@ -1612,9 +1574,9 @@ type Flat<T extends any[]> = T extends [infer First, ...infer Rest]
     : [First, ...Flat<Rest>]
   : [];
 
-//测试用例 
+//测试用例
 type F1 = Flat<[[1, 2, 3, 4, [5]], 6]>; // [1,2,3,4,5,6]
-type F2 = Flat<['a', ['b', 'c'], ['d', ['e', ['f']]]]> // ["a", "b", "c", "d", "e", "f"]
+type F2 = Flat<["a", ["b", "c"], ["d", ["e", ["f"]]]]>; // ["a", "b", "c", "d", "e", "f"]
 ```
 
 1、`[infer First, ...infer Rest]`提取数组第一项
@@ -1659,15 +1621,15 @@ type S1 = StartsWith<"123", "13">; // false
 type S2 = StartsWith<"123", "1234">; // false
 ```
 
-``${U}${infer Rest}``将`U`放在开头，`infer`关键字，会自动推导匹配，如果推导的`Rest`变量类型满足约束则返回`true`否则返回`false`。
-
-
+`${U}${infer Rest}`将`U`放在开头，`infer`关键字，会自动推导匹配，如果推导的`Rest`变量类型满足约束则返回`true`否则返回`false`。
 
 `EndsWith`工具类型实现：
 
 ```typescript
-type EndsWith<T extends string, U extends string> = T extends `${infer Head}${U}` ? true : false;
-
+type EndsWith<
+  T extends string,
+  U extends string
+> = T extends `${infer Head}${U}` ? true : false;
 
 // 测试用例
 type E0 = EndsWith<"123", "23">; // true
@@ -1675,7 +1637,7 @@ type E1 = EndsWith<"123", "13">; // true
 type E2 = EndsWith<"123", "123">; // true
 ```
 
-``${infer Head}${U}``位置调换即可。与去除左边空格右边空格题目类型逻辑。
+`${infer Head}${U}`位置调换即可。与去除左边空格右边空格题目类型逻辑。
 
 ## 第三十九题
 
@@ -1704,9 +1666,9 @@ type I2 = IsAny<any>; // true
 `any`类型是个 ”黑洞“ 会吞噬除了`never`类型之外的大多数类型。
 
 ```typescript
-type A0 = any & 1 // any
-type A1 = any & boolean // any
-type A2 = any & never // never
+type A0 = any & 1; // any
+type A1 = any & boolean; // any
+type A2 = any & never; // never
 ```
 
 因此需要前置`0 extends 交叉结果`防止交叉结果为`never`类型的情况处理。
@@ -1756,21 +1718,21 @@ type Replace<
   S extends string,
   From extends string,
   To extends string
-> = // 你的实现代码 
-  
+> = // 你的实现代码
+
 type R0 = Replace<'', '', ''> // ''
 type R1 = Replace<'foobar', 'bar', 'foo'> // "foofoo"
 type R2 = Replace<'foobarbar', 'bar', 'foo'> // "foofoobar"
 ```
 
-  此外，继续实现`ReplaceAll`工具类型，用于实现替换所有满足条件的子串。具体的使用示例如下所示：
+此外，继续实现`ReplaceAll`工具类型，用于实现替换所有满足条件的子串。具体的使用示例如下所示：
 
 ```typescript
 type ReplaceAll<
   S extends string,
   From extends string,
   To extends string
-> = // 你的实现代码 
+> = // 你的实现代码
 
 type R0 = ReplaceAll<'', '', ''> // ''
 type R1 = ReplaceAll<'barfoo', 'bar', 'foo'> // "foofoo"
@@ -1788,14 +1750,12 @@ type Replace<
 > = S extends `${infer H}${From}${infer R}` ? `${H}${To}${R}` : S;
 
 // 测试用例
-type R0 = Replace<'', '', ''>; // ''
-type R1 = Replace<'foobar', 'bar', 'foo'>; // "foofoo"
-type R2 = Replace<'foobarbar', 'bar', 'foo'>; // "foofoobar"
+type R0 = Replace<"", "", "">; // ''
+type R1 = Replace<"foobar", "bar", "foo">; // "foofoo"
+type R2 = Replace<"foobarbar", "bar", "foo">; // "foofoobar"
 ```
 
 1、利用`extends`，配合`infer`配合字符串模板变量的写法就能提取出指定的子字符串，再将`From`改为`To`返回结果即可。
-
-
 
 `ReplaceAll`工具类型实现：
 
@@ -1809,10 +1769,10 @@ type ReplaceAll<
   : S;
 
 // 测试用例
-type R0 = ReplaceAll<'', '', ''> // ''
-type R1 = ReplaceAll<'barfoo', 'bar', 'foo'> // "foofoo"
-type R2 = ReplaceAll<'foobarbar', 'bar', 'foo'> // "foofoofoo"
-type R3 = ReplaceAll<'foobarfoobar', 'ob', 'b'> // "fobarfobar"
+type R0 = ReplaceAll<"", "", "">; // ''
+type R1 = ReplaceAll<"barfoo", "bar", "foo">; // "foofoo"
+type R2 = ReplaceAll<"foobarbar", "bar", "foo">; // "foofoofoo"
+type R3 = ReplaceAll<"foobarfoobar", "ob", "b">; // "fobarfobar"
 ```
 
 `ReplaceAll`工具类型取出子字符串之后利用递归。
@@ -1838,14 +1798,14 @@ type IndexOf<A extends any[], Item, L extends any[] = []> = A extends [
   ...infer R
 ]
   ? F extends Item
-    ? L['length']
+    ? L["length"]
     : IndexOf<R, Item, [...L, 1]>
   : -1;
 
-  type Arr = [1, 2, 3, 4, 5]
-  type I0 = IndexOf<Arr, 0> // -1
-  type I1 = IndexOf<Arr, 1> // 0
-  type I2 = IndexOf<Arr, 3> // 2
+type Arr = [1, 2, 3, 4, 5];
+type I0 = IndexOf<Arr, 0>; // -1
+type I1 = IndexOf<Arr, 1>; // 0
+type I2 = IndexOf<Arr, 3>; // 2
 ```
 
 构建数组来记录迭代到了哪一项，这样匹配到之后就能返回长度，就是索引值。
@@ -1856,8 +1816,6 @@ type IndexOf<A extends any[], Item, L extends any[] = []> = A extends [
 
 3、如果`A extends [infer F, ...infer R]`数组取完了，没有找到，直接返回`-1`。
 
-
-
 ## 第四十三题
 
 实现一个`Permutation`工具类型，当输入一个联合类型时，返回一个包含该联合类型的全排列类型数组。具体的使用示例如下所示：
@@ -1867,9 +1825,9 @@ type Permutation<T, K=T> = // 你的实现代码
 
 // ["a", "b"] | ["b", "a"]
 type P0 = Permutation<'a' | 'b'>  // ['a', 'b'] | ['b' | 'a']
-// type P1 = ["a", "b", "c"] | ["a", "c", "b"] | ["b", "a", "c"] 
+// type P1 = ["a", "b", "c"] | ["a", "c", "b"] | ["b", "a", "c"]
 // | ["b", "c", "a"] | ["c", "a", "b"] | ["c", "b", "a"]
-type P1 = Permutation<'a' | 'b' | 'c'> 
+type P1 = Permutation<'a' | 'b' | 'c'>
 ```
 
 `Permutation`工具类型实现：
@@ -1881,9 +1839,9 @@ type Permutation<T, K = T> = [T] extends [never]
   ? [K, ...Permutation<Exclude<T, K>>]
   : never;
 
-type P0 = Permutation<'a' | 'b'>; // ['a', 'b'] | ['b' | 'a']
-type P1 = Permutation<'a' | 'b' | 'c'>; 
-// => ["a", "b", "c"] | ["a", "c", "b"] | ["b", "a", "c"] | ["b", "c", "a"] 
+type P0 = Permutation<"a" | "b">; // ['a', 'b'] | ['b' | 'a']
+type P1 = Permutation<"a" | "b" | "c">;
+// => ["a", "b", "c"] | ["a", "c", "b"] | ["b", "a", "c"] | ["b", "c", "a"]
 // |["c", "a", "b"] | ["c", "b", "a"]
 ```
 
@@ -1892,19 +1850,19 @@ type P1 = Permutation<'a' | 'b' | 'c'>;
 ```typescript
 这里简化 Exclude 后的结果
 1、
-['a', ...Permutation<'b' | 'c'>] | ['b', ...Permutation<'a' | 'c'>] | 
+['a', ...Permutation<'b' | 'c'>] | ['b', ...Permutation<'a' | 'c'>] |
 ['c', ...Permutation<'a' | 'b'>]
- 
-2、 
+
+2、
 => ...Permutation<'b' | 'c'> 递归做再次分发后
 => ['b', ...Permutation<'c'>] | ['c', ...Permutation<'b'>]
 => ['b', 'c'] | ['c', 'b']
 
 3、再与 1 结合也就是 （...会将结果展开）
-=> ['a', 'b', 'c']  |  ['a', 'c', 'b']                             
+=> ['a', 'b', 'c']  |  ['a', 'c', 'b']
 
 再反复上面的 1 2 3 步骤得到最终结果
-=> type P1 = ["a", "b", "c"] | ["a", "c", "b"] | ["b", "a", "c"] | ["b", "c", "a"] |["c", "a", "b"] | ["c", "b", "a"]                   
+=> type P1 = ["a", "b", "c"] | ["a", "c", "b"] | ["b", "a", "c"] | ["b", "c", "a"] |["c", "a", "b"] | ["c", "b", "a"]
 ```
 
 ## 第四十四题
@@ -1935,13 +1893,13 @@ type Unpacked<T> = T extends (infer U)[]
   : T;
 
 // 测试用例
-type T00 = Unpacked<string>;  // string
-type T01 = Unpacked<string[]>;  // string
-type T02 = Unpacked<() => string>;  // string
-type T03 = Unpacked<Promise<string>>;  // string
-type T04 = Unpacked<Unpacked<Promise<string>[]>>;  // string
-type T05 = Unpacked<any>;  // any
-type T06 = Unpacked<never>;  // never
+type T00 = Unpacked<string>; // string
+type T01 = Unpacked<string[]>; // string
+type T02 = Unpacked<() => string>; // string
+type T03 = Unpacked<Promise<string>>; // string
+type T04 = Unpacked<Unpacked<Promise<string>[]>>; // string
+type T05 = Unpacked<any>; // any
+type T06 = Unpacked<never>; // never
 ```
 
 1、`(infer U)[]`处理数组类型，并返回数组类型的具体类型；
@@ -2001,7 +1959,7 @@ const z2: string = ex.obj.nested.attr;
 ```typescript
 type JsonifiedObject<T extends object> = {
   [K in keyof T]: T[K] extends { toJSON(): infer Return }
-    ? ReturnType<T[K]['toJSON']>
+    ? ReturnType<T[K]["toJSON"]>
     : T[K] extends (...args: any[]) => any
     ? never
     : T[K] extends object
@@ -2010,21 +1968,20 @@ type JsonifiedObject<T extends object> = {
 };
 
 declare class MyClass {
-  toJSON(): 'MyClass';
+  toJSON(): "MyClass";
 }
 
 type MyObject = {
-  str: 'literalstring';
+  str: "literalstring";
   fn: () => void;
   date: Date;
   customClass: MyClass;
   obj: {
-    prop: 'property';
+    prop: "property";
     clz: MyClass;
     nested: { attr: Date };
   };
 };
-
 
 // 测试用例
 /**
@@ -2044,7 +2001,7 @@ type MyObject = {
  */
 type JsonifiedMyObject = JsonifiedObject<MyObject>;
 declare let ex: JsonifiedMyObject;
-const z1: 'MyClass' = ex.customClass;
+const z1: "MyClass" = ex.customClass;
 const z2: string = ex.obj.nested.attr;
 ```
 
@@ -2087,19 +2044,19 @@ type RequireAllOrNone<T, K extends keyof T> = Omit<T, K> &
   (Required<Pick<T, K>> | Partial<Record<K, never>>);
 
 // 测试用例
-const p1: RequireAllOrNone<Person, 'age' | 'gender'> = {
-  name: "lolo"
+const p1: RequireAllOrNone<Person, "age" | "gender"> = {
+  name: "lolo",
 };
 
-const p2: RequireAllOrNone<Person, 'age' | 'gender'> = {
+const p2: RequireAllOrNone<Person, "age" | "gender"> = {
   name: "lolo",
   age: 7,
-  gender: 1
+  gender: 1,
 };
 
 // Error: 缺少 gender 属性
-const p3: RequireAllOrNone<Person, 'age' | 'gender'> = {
-  name: 'lolo',
+const p3: RequireAllOrNone<Person, "age" | "gender"> = {
+  name: "lolo",
   age: 1,
 };
 ```
@@ -2158,10 +2115,19 @@ const p3: RequireExactlyOne<Person, 'age' | 'gender'> = {
 
 ```typescript
 // // 想要构建成这个样子才可以满足条件
-type Test = { name: string } & ({ age: number, gender?: never } | { age?: never, gender: number })
+type Test = { name: string } & (
+  | { age: number; gender?: never }
+  | { age?: never; gender: number }
+);
 
-type RequireExactlyOne<T, Keys extends keyof T, K extends keyof T = Keys> = Keys extends any
-  ? Omit<T, K> & Required<Pick<T, Keys>> & Partial<Record<Exclude<K, Keys>, never>>
+type RequireExactlyOne<
+  T,
+  Keys extends keyof T,
+  K extends keyof T = Keys
+> = Keys extends any
+  ? Omit<T, K> &
+      Required<Pick<T, Keys>> &
+      Partial<Record<Exclude<K, Keys>, never>>
   : never;
 
 type TTT =
@@ -2203,7 +2169,7 @@ type C3 = ConsistsOnlyOf<'', 'a'> //=> true
 type ConsistsOnlyOf<
   LongString extends string,
   Substring extends string
-> = LongString extends ''
+> = LongString extends ""
   ? true
   : LongString extends `${Substring}${infer B}`
   ? ConsistsOnlyOf<B, Substring>
@@ -2216,4 +2182,4 @@ type ConsistsOnlyOf<
 
 ## 末尾
 
-后续有新的题目会同步更新在这篇文章，对应的TypeScipt工具类型库推荐[type-fest](https://github.com/sindresorhus/type-fest)。
+后续有新的题目会同步更新在这篇文章，对应的 TypeScipt 工具类型库推荐[type-fest](https://github.com/sindresorhus/type-fest)。

@@ -15,7 +15,7 @@ cd docs/.vuepress/dist
 
 git init
 git add -A
-git commit -m 'update: Gungnir theme upgraded version V2'
+git commit -m 'docs: some'
 
 # 3-1. 提交到github和gitee仓库仓库中
 
@@ -33,9 +33,9 @@ git push -f https://github.com/ihoneys/ihoneys.github.io master:gh-pages
 # 提交静态文件到部署的仓库结束
 # 开始提交源码
 
-cd ~/Desktop/blogs/gungnir-blog-v2
+cd ~/Desktop/blogs/ihoneys.github.io
 git add .
-git commit -m 'update: Gungnir theme upgraded version V2'
+git commit -m 'docs: some'
 git push origin master -f
 #提交源码到github结束
 

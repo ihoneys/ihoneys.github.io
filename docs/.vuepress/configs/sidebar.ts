@@ -11,44 +11,24 @@ const sidebar: SidebarConfig = {
         "/Frontend/HTML/HTML",
         "/Frontend/HTML/HTML_meta",
         "/Frontend/HTML/HTML_emmet",
-        "/Frontend/HTML/HTML_render"
-      ]
+        "/Frontend/HTML/HTML_render",
+      ],
     },
     {
       text: "CSS",
       collapsible: true, //是否折叠侧边栏
       children: [
+        "/Frontend/CSS/css0",
         "/Frontend/CSS/css1",
         "/Frontend/CSS/css2",
         "/Frontend/CSS/css3",
-        // "/Frontend/CSS/css4",
         "/Frontend/CSS/css5",
         "/Frontend/CSS/css6",
         "/Frontend/CSS/css7",
         "/Frontend/CSS/css8",
         "/Frontend/CSS/css9",
-        // "/Frontend/CSS/css10",
-        // "/Frontend/CSS/css11",
-        "/Frontend/CSS/css12"
-      ]
-    },
-    {
-      text: "CSS教程",
-      collapsible: true, //是否折叠侧边栏
-      children: [
-        "/Frontend/CSS2/css0",
-        "/Frontend/CSS2/css1",
-        // "/Frontend/CSS2/css3",
-        // "/Frontend/CSS2/css4",
-        // "/Frontend/CSS2/css5",
-        // "/Frontend/CSS2/css6",
-        "/Frontend/CSS2/css7",
-        // "/Frontend/CSS2/css8",
-        "/Frontend/CSS2/css9",
-        "/Frontend/CSS2/css10",
-        "/Frontend/CSS2/css11",
-        "/Frontend/CSS2/css12"
-      ]
+        "/Frontend/CSS/css12",
+      ],
     },
     {
       text: "JavaScript",
@@ -60,12 +40,12 @@ const sidebar: SidebarConfig = {
         "/Frontend/JS/js4",
         "/Frontend/JS/js5",
         "/Frontend/JS/js6",
-        "/Frontend/JS/js7",
         "/Frontend/JS/js8",
         "/Frontend/JS/js9",
         "/Frontend/JS/js10",
-        "/Frontend/JS/Array"
-      ]
+        "/Frontend/JS/Array",
+        "/Frontend/JS/Ajax",
+      ],
     },
     {
       text: "ES6",
@@ -75,8 +55,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/ES6/ES02",
         "/Frontend/ES6/ES03",
         "/Frontend/ES6/ES04",
-        "/Frontend/ES6/ES05"
-      ]
+        "/Frontend/ES6/ES05",
+      ],
     },
     {
       text: "Promise",
@@ -86,13 +66,13 @@ const sidebar: SidebarConfig = {
         "/Frontend/Promise/promise2",
         "/Frontend/Promise/promise3",
         "/Frontend/Promise/promise4",
-        "/Frontend/Promise/async"
-      ]
+        "/Frontend/Promise/async",
+      ],
     },
     {
       text: "Ajax",
       collapsible: true,
-      children: ["/Frontend/Ajax/Ajax"]
+      children: ["/Frontend/Ajax/Ajax"],
     },
     {
       text: "Axios",
@@ -102,18 +82,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/Axios/axios2",
         "/Frontend/Axios/axios3",
         "/Frontend/Axios/axios4",
-        "/Frontend/Axios/axios5"
-      ]
-    },
-    {
-      text: "Class",
-      collapsible: true,
-      children: ["/Frontend/Class/class01"]
-    },
-    {
-      text: "跨越",
-      collapsible: true,
-      children: ["/Frontend/cross_Domain/cross_domain01"]
+        "/Frontend/Axios/axios5",
+      ],
     },
     {
       text: "TypeScript",
@@ -122,8 +92,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/TS/ts1",
         "/Frontend/TS/ts2",
         "/Frontend/TS/ts3",
-        "/Frontend/TS/ts4"
-      ]
+        "/Frontend/TS/ts4",
+      ],
     },
     {
       text: "Webpack 4",
@@ -133,8 +103,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/Webpack/webpack2",
         "/Frontend/Webpack/webpack3",
         "/Frontend/Webpack/webpack4",
-        "/Frontend/Webpack/webpackconfigjs"
-      ]
+        "/Frontend/Webpack/webpackconfigjs",
+      ],
     },
     {
       text: "常用代码片段",
@@ -149,9 +119,9 @@ const sidebar: SidebarConfig = {
         "/Frontend/Piece/example",
         "/Frontend/Piece/namespace",
         "/Frontend/Piece/namespace2",
-        "/Frontend/Piece/html_string"
-      ]
-    }
+        "/Frontend/Piece/html_string",
+      ],
+    },
   ],
   "/Framework/Vue/vue2/": [
     {
@@ -179,16 +149,16 @@ const sidebar: SidebarConfig = {
         "/Framework/Vue/vue2/vuers-2.md",
         "/Framework/Vue/vue2/vuers-3.md",
         "/Framework/Vue/vue2/vuers-4.md",
-        "/Framework/Vue/vue2/fragment.md"
-      ]
-    }
+        "/Framework/Vue/vue2/fragment.md",
+      ],
+    },
   ],
   "/Framework/Vue/vue3/": [
     {
       text: "Vue3",
       collapsible: true,
-      children: ["/Framework/Vue/vue3/vue3-1"]
-    }
+      children: ["/Framework/Vue/vue3/vue3-1"],
+    },
   ],
   "/Framework/React/": [
     {
@@ -212,9 +182,9 @@ const sidebar: SidebarConfig = {
         "/Framework/React/react15",
         "/Framework/React/reactandvue",
         "/Framework/React/react",
-        "/Framework/React/router_doc"
-      ]
-    }
+        "/Framework/React/router_doc",
+      ],
+    },
   ],
   "/Framework/Wechat/": [
     {
@@ -232,64 +202,22 @@ const sidebar: SidebarConfig = {
         "/Framework/Wechat/wechat9",
         "/Framework/Wechat/wechat10",
         "/Framework/Wechat/wechat11",
-        "/Framework/Wechat/wechat12"
-      ]
-    }
+        "/Framework/Wechat/wechat12",
+      ],
+    },
   ],
-  // 后端
-  "/Backend/Node/": ["node1", "node2", "package", "exports"],
-  "/Backend/Mongodb/": [
-    "mongodb1",
-    "mongodb2",
-    "mongodb3",
-    "mongodb4",
-    "mongodb5",
-    "mongodb6"
-  ],
-  "/Backend/Mysql/": ["mysql01", "mysql02", "mysql03", "mysql04"],
-  "/Backend/": ["express", "docker", "api"],
-  // 项目
-  "/Project/": ["shopingapp", "admin", "project", "todolist"],
   // linux系统
   "/Linux/": ["debian", "centos", "screen", "baota", "vim"],
   // 工具
-  "/Tools/": [
-    "git",
-    "yarn",
-    "npm",
-    "npm_modules",
-    "node",
-    "cmd",
-    "nrm",
-    "nvm",
-    "pm2",
-    "serve",
-    "markdown",
-    "svg",
-    "terminal",
-    "Trojan",
-    "vite",
-    "eslint",
-    "vuepress",
-    "upgrade",
-    "typecho",
-    "vscode",
-    "wsl"
-  ],
+  "/Tools/": ["git", "yarn", "markdown", "vite", "eslint", "vscode"],
   // 其他
   "/Other/": [
     "errorSummarize",
     "knowledgePoint",
-    "algorithm",
-    "dict",
-    "token",
-    "verificationCode",
-    "Chrome",
     "URIandURL",
     "browserKernel",
-    "Apache",
     "nginx",
-    "getJira"
+    "getJira",
   ],
 
   // 面试题
@@ -308,8 +236,8 @@ const sidebar: SidebarConfig = {
     "Git",
     "算法",
     "Mobile",
-    "Other"
-  ]
+    "Other",
+  ],
 };
 
 export default sidebar;
