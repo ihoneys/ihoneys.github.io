@@ -5,7 +5,7 @@ subtitle: 学习 TS 知识之后做题巩固 # 博客副标题（可选）
 date: 2022-02-31 # 博客日期，会显示在文章头部（可选）
 # author: xxx  # 博客作者（可选，不填的话会使用 `themeConfig.personalInfo.name`）
 useHeaderImage: true # 是否在博客中显示封面图（可选，默认：false）
-headerImage: https://source.unsplash.com/1600x900/ # 博客封面图（必须，即使上一项选了 `text`，图片也需要在首页显示）
+headerImage: https://source.unsplash.com/1600x900/?scenery,2022-02-31 # 博客封面图（必须，即使上一项选了 `text`，图片也需要在首页显示）
 headerMask: rgba(40, 57, 101, .4) # 封面图遮罩（可选）
 catalog: true # 是否启用右侧目录：false / true（可选，默认为 false）
 tags: # 博客标签

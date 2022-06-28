@@ -185,6 +185,16 @@ const sidebar: SidebarConfig = {
         "/Framework/React/router_doc",
       ],
     },
+    {
+      text: "React 进阶",
+      collapsible: true,
+      children: [
+        "/Framework/React/react16",
+        "/Framework/React/react17",
+        "/Framework/React/react18",
+        "/Framework/React/react19",
+      ],
+    },
   ],
   "/Framework/Wechat/": [
     {
