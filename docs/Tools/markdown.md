@@ -1,11 +1,11 @@
 ---
 title: MarkDown
 date: 2019-05-28
-sidebar: 'auto'
+sidebar: "auto"
 categories:
- - 工具
+  - 工具
 tags:
- - MarkDown
+  - MarkDown
 publish: true
 sticky: 10
 # 打赏
@@ -18,7 +18,7 @@ showSponsor: true
 
 <!-- more -->
 
-[MarkDownlint错误原因](https://www.jianshu.com/p/51523a1c6fe1)
+[MarkDownlint 错误原因](https://www.jianshu.com/p/51523a1c6fe1)
 
 [[toc]]
 
@@ -36,14 +36,11 @@ showSponsor: true
 ```
 
 显示效果：
->
-> *斜体*
-> 或
+
 > _斜体_
-> **粗体**
-> ***加粗斜体***
-> ~~删除线~~
->
+> 或
+> _斜体_ > **粗体** > **_加粗斜体_** > ~~删除线~~
+
 ### 2. 分级标题
 
 第一种
@@ -59,13 +56,9 @@ showSponsor: true
 
 显示效果：
 
+> # 这是一个一级标题
 >
-> 这是一个一级标题
-> ============================
->
-> 这是一个二级标题
-> ----------------------------
->
+> ## 这是一个二级标题
 
 第二种
 
@@ -82,7 +75,6 @@ showSponsor: true
 
 显示效果：
 
->
 > # 一级标题
 >
 > ## 二级标题
@@ -94,7 +86,6 @@ showSponsor: true
 > ##### 五级标题
 >
 > ###### 六级标题
->
 
 ### 3. 有序无序列表
 
@@ -140,9 +131,9 @@ showSponsor: true
 > * XXX
 > * XXX
 >
-> + xxx
-> + xxx
-> + xxx
+> - xxx
+> - xxx
+> - xxx
 >
 > 多级嵌套
 >
@@ -174,11 +165,11 @@ showSponsor: true
 
 显示效果：
 
-| name  | age    |    sex |
-| :---: | :----- | -----: |
-| 居中  | 左对齐 | 右对齐 |
-| tony  | 20     |     男 |
-| lucy  | 18     |     女 |
+| name | age    |    sex |
+| :--: | :----- | -----: |
+| 居中 | 左对齐 | 右对齐 |
+| tony | 20     |     男 |
+| lucy | 18     |     女 |
 
 ### 5. 分割线
 
@@ -194,13 +185,15 @@ ___
 
 显示效果：
 
-***
->---
->___
+---
+
+> ---
+>
+> ---
 
 ### 6. 代码块（三种方法）
 
-一是，利用英文  \` 或 `~~~`  符号；
+一是，利用英文 \` 或 `~~~` 符号；
 
 二是，使用 `<pre></pre>` 元素同样可以形成代码块，[示例如下](#_13-高级技巧)；
 
@@ -216,30 +209,30 @@ a. 行内代码或符号 高亮语法
 
 显示效果：
 
-``abc``  / `123`
+`abc` / `123`
 
 b. 段落式(代码块)语法高亮
 
 代码展示：
 
+````html
 ```html
-    ```html
-      <html>
-        <div>
-          <p>仿佛兮若轻云之蔽月</p>
-        </div>
-      </html>
-    ```
+<html>
+  <div>
+    <p>仿佛兮若轻云之蔽月</p>
+  </div>
+</html>
 ```
+````
 
 显示效果：
 
 > ```html
->   <html>
->     <div>
->       <p>仿佛兮若轻云之蔽月</p>
->     </div>
->   </html>
+> <html>
+>   <div>
+>     <p>仿佛兮若轻云之蔽月</p>
+>   </div>
+> </html>
 > ```
 
 c. `<pre></pre>`标签
@@ -262,51 +255,51 @@ d. 段落式(代码块)语法高亮，重点突出代码块中的行-高亮
 
 代码展示：
 
-```html
-    ```html {3}
-      <html>
-        <div>
-          <p>飘摇兮若回风之流雪</p>
-        </div>
-      </html>
-    ```
+````html
+```html {3}
+<html>
+  <div>
+    <p>飘摇兮若回风之流雪</p>
+  </div>
+</html>
 ```
+````
 
 显示效果：
 
 > ```html {3}
->   <html>
->     <div>
->       <p>飘摇兮若回风之流雪</p>
->     </div>
->   </html>
+> <html>
+>   <div>
+>     <p>飘摇兮若回风之流雪</p>
+>   </div>
+> </html>
 > ```
 
 e. 禁用语法高亮
 
 代码展示：
 
-```html
-    ```ohighlight （或者这里留空）
-      <html>
-        <div>
-          <p></p>
-        </div>
-      </html>
-    ```
+````html
+```ohighlight （或者这里留空）
+<html>
+  <div>
+    <p></p>
+  </div>
+</html>
 ```
+````
 
 显示效果：
 
 > ```html
->     <html>
->         <div>
->             <p></p>
->         </div>
->     </html>
+> <html>
+>   <div>
+>     <p></p>
+>   </div>
+> </html>
 > ```
 >
-f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
+> f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 
     <html>
       <div>
@@ -315,9 +308,7 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
     </html>
 
 - 支持的语言包括但不限于：
-`
-1c, abnf, accesslog, actionscript, ada, apache, applescript, arduino, armasm, asciidoc, aspectj, autohotkey, autoit, avrasm, awk, axapta, bash, basic, bnf, brainfuck, cal, capnproto, ceylon, clean, clojure, clojure-repl, cmake, coffeescript, coq, cos, cpp, crmsh, crystal, cs, csp, css, d, dart, delphi, diff, django, dns, dockerfile, dos, dsconfig, dts, dust, ebnf, elixir, elm, erb, erlang, erlang-repl, excel, fix, flix, fortran, fsharp, gams, gauss, gcode, gherkin, glsl, go, golo, gradle, groovy, haml, handlebars, haskell, haxe, hsp, htmlbars, http, hy, inform7, ini, irpf90, java, javascript,js, json, julia, kotlin, lasso, ldif, leaf, less, lisp, livecodeserver, livescript, llvm, lsl, lua, makefile, markdown, mathematica, matlab, maxima, mel, mercury, mipsasm, mizar, mojolicious, monkey, moonscript, n1ql, nginx, nimrod, nix, nsis, objectivec, ocaml, openscad, oxygene, parser3, perl, pf, php, pony, powershell, processing, profile, prolog, protobuf, puppet, purebasic, python, q, qml, r, rib, roboconf, rsl, ruby, ruleslanguage, rust, scala, scheme, scilab, scss, smali, smalltalk, sml, sqf, sql, stan, stata, step21, stylus, subunit, swift, taggerscript, tap, tcl, tex, thrift, tp, twig, typescript, vala, vbnet, vbscript, vbscript-html, verilog, vhdl, vim, x86asm, xl, xml, xquery, yaml, zephir ···
-`
+  `1c, abnf, accesslog, actionscript, ada, apache, applescript, arduino, armasm, asciidoc, aspectj, autohotkey, autoit, avrasm, awk, axapta, bash, basic, bnf, brainfuck, cal, capnproto, ceylon, clean, clojure, clojure-repl, cmake, coffeescript, coq, cos, cpp, crmsh, crystal, cs, csp, css, d, dart, delphi, diff, django, dns, dockerfile, dos, dsconfig, dts, dust, ebnf, elixir, elm, erb, erlang, erlang-repl, excel, fix, flix, fortran, fsharp, gams, gauss, gcode, gherkin, glsl, go, golo, gradle, groovy, haml, handlebars, haskell, haxe, hsp, htmlbars, http, hy, inform7, ini, irpf90, java, javascript,js, json, julia, kotlin, lasso, ldif, leaf, less, lisp, livecodeserver, livescript, llvm, lsl, lua, makefile, markdown, mathematica, matlab, maxima, mel, mercury, mipsasm, mizar, mojolicious, monkey, moonscript, n1ql, nginx, nimrod, nix, nsis, objectivec, ocaml, openscad, oxygene, parser3, perl, pf, php, pony, powershell, processing, profile, prolog, protobuf, puppet, purebasic, python, q, qml, r, rib, roboconf, rsl, ruby, ruleslanguage, rust, scala, scheme, scilab, scss, smali, smalltalk, sml, sqf, sql, stan, stata, step21, stylus, subunit, swift, taggerscript, tap, tcl, tex, thrift, tp, twig, typescript, vala, vbnet, vbscript, vbscript-html, verilog, vhdl, vim, x86asm, xl, xml, xquery, yaml, zephir ···`
 
 `VuePress`用的是`prism`代码高亮，在 `Prism` 的网站上查看 [合法的语言列表](https://prismjs.com/#languages-list)
 
@@ -350,18 +341,23 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 >
 > 文本内容[^2]
 
-[^1]:注脚1
-[^2]:注脚2
+[^1]: 注脚 1
+[^2]: 注脚 2
 
 ### 9. 背景色
 
 代码展示：
 
 ```html
-<table><tr><td bgcolor=orange>背景色是：orange</td></tr></table>
+<table>
+  <tr>
+    <td bgcolor="orange">背景色是：orange</td>
+  </tr>
+</table>
 ```
 
 显示效果：
+
 <table><tr><td bgcolor=orange>背景色是：orange</td></tr></table>
 
 ### 10. 超链接
@@ -375,13 +371,14 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 代码展示：
 
 显示效果：
+
 - 参考式（暂缺）
 
 ### 11. 引用
 
 代码展示：
 
-```js
+````js
 普通引用
 > 引用文本前使用 [大于号+空格]
 > 折行可以不加，新起一行都要加上
@@ -402,7 +399,7 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 > ```
 > 或者使用 ``` 形成代码块
 > ```
-```
+````
 
 显示效果：
 
@@ -414,32 +411,34 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 - 引用里嵌套引用
 
 > 最外层引用
+>
 > > 多一个 > 嵌套一层引用
+> >
 > > > 可以嵌套很多层
 
 - 引用里嵌套列表
->
-> - 这是引用里嵌套的一个列表
-> - 还可以有子列表
->   * 子列表需要从 - 之后延后四个空格开始
+
+  > - 这是引用里嵌套的一个列表
+  > - 还可以有子列表
+  >   - 子列表需要从 - 之后延后四个空格开始
 
 - 引用里嵌套代码块
 
 >     同样的，在前面加四个空格形成代码块
 >
-> ```md
+> ````md
 > 或者使用 ``` 形成代码块
-> ```
+> ````
 
 ### 12.图片
 
-- 跟链接的方法区别在于前面加了个感叹号 ` ! `
+- 跟链接的方法区别在于前面加了个感叹号 `!`
 
 代码展示：
 
 ```md
 ![图片名称](https://s3.ax1x.com/2020/12/11/rk2KXR.jpg)
-有些可以用html插入
+有些可以用 html 插入
 <img src="https://s3.ax1x.com/2020/12/11/rk2KXR.jpg" alt="图片">
 ```
 
@@ -458,7 +457,7 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 这个链接用 `1` 作为网址变量 [Google][1].
 然后在文档的结尾位变量赋值（网址）
 
- [1]: http://www.google.com/logo.png
+[1]: http://www.google.com/logo.png
 ```
 
 显示效果：
@@ -466,7 +465,7 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 这个链接用 `1` 作为网址变量 [Google][1].
 然后在文档的结尾位变量赋值（网址）
 
- [1]: http://www.google.com/logo.png
+[1]: http://www.google.com/logo.png
 
 ### 13. 高级技巧
 
@@ -476,8 +475,8 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 代码展示：
 
 ```html
-使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑
-使用 <pre style="color:greenyellow">使用元素标签同样可以形成代码块 ··· </pre>
+使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑 使用
+<pre style="color:greenyellow">使用元素标签同样可以形成代码块 ··· </pre>
 <b> `Markdown` 在此处同样适用，如 *加粗倾斜* </b>
 ```
 
@@ -486,13 +485,14 @@ f. 在整个代码片段前加四个以上的 `tab` or `空格` 形成代码块
 使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑
 
 使用 `<pre></pre>`
+
 <pre style="color:greenyellow">使用元素标签同样可以形成代码块 ··· </pre>
 
 元素同样可以形成代码块
 
-<b> `Markdown` 在此处同样适用，如 *加粗倾斜* </b>
+<b> `Markdown` 在此处同样适用，如 _加粗倾斜_ </b>
 
-### 14. toc拓展（文章开头的目录）
+### 14. toc 拓展（文章开头的目录）
 
 [[toc]]
 
