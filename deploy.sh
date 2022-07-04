@@ -14,8 +14,6 @@ cd docs/.vuepress/dist
 # echo 'www.yourwebsite.com' > CNAME
 
 git init
-git config user.email "thefrontliu@163.com"
-git config user.name "ihoneys"
 git add -A
 git commit -m 'docs: some'
 
@@ -36,8 +34,6 @@ git push -f https://github.com/ihoneys/ihoneys.github.io master:gh-pages
 # 开始提交源码
 
 cd ~/Desktop/blogs/ihoneys.github.io
-git config user.email "thefrontliu@163.com"
-git config user.name "ihoneys"
 git add .
 git commit -m 'docs: some'
 git push origin master -f
