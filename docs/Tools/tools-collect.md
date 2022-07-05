@@ -3,7 +3,7 @@
 title: 工具收集~
 # sidebar: false
 date: 2020-05-28
-# catalog: true
+catalog: true
 categories:
   - 工具
 tags:
@@ -67,4 +67,6 @@ tags:
 
 - [brumm.af](https://shadows.brumm.af/)：通过使用这款工具，你可以创造出惊人的 `box-shadow` 阴影效果。你可以添加多个层级的阴影，并且对每个图层进行调整，从而创造出最自然、最拟真的阴影效果。
 
-::: info 找个时间再输出一下~..... :::
+::: info
+**找个时间再输出一下~.....**
+:::
