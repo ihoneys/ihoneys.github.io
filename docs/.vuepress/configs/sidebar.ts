@@ -11,8 +11,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/HTML/HTML",
         "/Frontend/HTML/HTML_meta",
         "/Frontend/HTML/HTML_emmet",
-        "/Frontend/HTML/HTML_render",
-      ],
+        "/Frontend/HTML/HTML_render"
+      ]
     },
     {
       text: "CSS",
@@ -27,8 +27,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/CSS/css7",
         "/Frontend/CSS/css8",
         "/Frontend/CSS/css9",
-        "/Frontend/CSS/css12",
-      ],
+        "/Frontend/CSS/css12"
+      ]
     },
     {
       text: "JavaScript",
@@ -44,8 +44,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/JS/js9",
         "/Frontend/JS/js10",
         "/Frontend/JS/Array",
-        "/Frontend/JS/Ajax",
-      ],
+        "/Frontend/JS/Ajax"
+      ]
     },
     {
       text: "ES6",
@@ -55,8 +55,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/ES6/ES02",
         "/Frontend/ES6/ES03",
         "/Frontend/ES6/ES04",
-        "/Frontend/ES6/ES05",
-      ],
+        "/Frontend/ES6/ES05"
+      ]
     },
     {
       text: "Promise",
@@ -66,13 +66,13 @@ const sidebar: SidebarConfig = {
         "/Frontend/Promise/promise2",
         "/Frontend/Promise/promise3",
         "/Frontend/Promise/promise4",
-        "/Frontend/Promise/async",
-      ],
+        "/Frontend/Promise/async"
+      ]
     },
     {
       text: "Ajax",
       collapsible: true,
-      children: ["/Frontend/Ajax/Ajax"],
+      children: ["/Frontend/Ajax/Ajax"]
     },
     {
       text: "Axios",
@@ -82,8 +82,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/Axios/axios2",
         "/Frontend/Axios/axios3",
         "/Frontend/Axios/axios4",
-        "/Frontend/Axios/axios5",
-      ],
+        "/Frontend/Axios/axios5"
+      ]
     },
     {
       text: "TypeScript",
@@ -92,8 +92,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/TS/ts1",
         "/Frontend/TS/ts2",
         "/Frontend/TS/ts3",
-        "/Frontend/TS/ts4",
-      ],
+        "/Frontend/TS/ts4"
+      ]
     },
     {
       text: "Webpack 4",
@@ -103,8 +103,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/Webpack/webpack2",
         "/Frontend/Webpack/webpack3",
         "/Frontend/Webpack/webpack4",
-        "/Frontend/Webpack/webpackconfigjs",
-      ],
+        "/Frontend/Webpack/webpackconfigjs"
+      ]
     },
     {
       text: "常用代码片段",
@@ -119,13 +119,14 @@ const sidebar: SidebarConfig = {
         "/Frontend/Piece/example",
         "/Frontend/Piece/namespace",
         "/Frontend/Piece/namespace2",
-        "/Frontend/Piece/html_string",
-      ],
-    },
+        "/Frontend/Piece/html_string"
+      ]
+    }
   ],
-  "/Framework/Vue/vue2/": [
+  "/Framework/Vue/": [
     {
       text: "Vue2相关",
+      collapsible: true,
       children: [
         "/Framework/Vue/vue2/vue01.md",
         "/Framework/Vue/vue2/vue02.md",
@@ -151,17 +152,22 @@ const sidebar: SidebarConfig = {
         "/Framework/Vue/vue2/vuers-4.md",
         "/Framework/Vue/vue2/fragment.md",
         "/Framework/Vue/vue2/vue-skill.md",
-        "/Framework/Vue/vue2/vue-perf.md",
+        "/Framework/Vue/vue2/vue-perf.md"
         // "/Framework/Vue/vue2/improvement.md",
-      ],
+      ]
     },
+    {
+      text: "Vue2 与 Vue3 全面对比",
+      collapsible: true,
+      children: ["/Framework/Vue/vue2-compare-3/index.md"]
+    }
   ],
   "/Framework/Vue/vue3/": [
     {
       text: "Vue3",
       collapsible: true,
-      children: ["/Framework/Vue/vue3/vue3-1"],
-    },
+      children: ["/Framework/Vue/vue3/vue3-1"]
+    }
   ],
   "/Framework/React/": [
     {
@@ -185,8 +191,13 @@ const sidebar: SidebarConfig = {
         "/Framework/React/react15",
         "/Framework/React/reactandvue",
         "/Framework/React/react",
-        "/Framework/React/router_doc",
-      ],
+        "/Framework/React/router_doc"
+      ]
+    },
+    {
+      text: "React Hook API",
+      collapsible: true,
+      children: ["/Framework/React/Hook/useMemo"]
     },
     {
       text: "React 进阶",
@@ -195,9 +206,9 @@ const sidebar: SidebarConfig = {
         "/Framework/React/react16",
         "/Framework/React/react17",
         "/Framework/React/react18",
-        "/Framework/React/react19",
-      ],
-    },
+        "/Framework/React/react19"
+      ]
+    }
   ],
   "/Framework/Wechat/": [
     {
@@ -215,9 +226,9 @@ const sidebar: SidebarConfig = {
         "/Framework/Wechat/wechat9",
         "/Framework/Wechat/wechat10",
         "/Framework/Wechat/wechat11",
-        "/Framework/Wechat/wechat12",
-      ],
-    },
+        "/Framework/Wechat/wechat12"
+      ]
+    }
   ],
   // linux系统
   "/Linux/": ["debian", "centos", "screen", "baota", "vim"],
@@ -230,7 +241,7 @@ const sidebar: SidebarConfig = {
     "URIandURL",
     "browserKernel",
     "nginx",
-    "getJira",
+    "getJira"
   ],
 
   // 面试题
@@ -250,8 +261,8 @@ const sidebar: SidebarConfig = {
     "Git",
     "Coding",
     "Mobile",
-    "Other",
-  ],
+    "Other"
+  ]
 };
 
 export default sidebar;
