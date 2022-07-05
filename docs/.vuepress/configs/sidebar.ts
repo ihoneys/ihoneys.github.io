@@ -55,7 +55,18 @@ const sidebar: SidebarConfig = {
         "/Frontend/ES6/ES02",
         "/Frontend/ES6/ES03",
         "/Frontend/ES6/ES04",
-        "/Frontend/ES6/ES05"
+        "/Frontend/ES6/ES05",
+        "/Frontend/ES6/ES06",
+        "/Frontend/ES6/ES07",
+        "/Frontend/ES6/ES08",
+        "/Frontend/ES6/ES09",
+        "/Frontend/ES6/ES10",
+        "/Frontend/ES6/ES11",
+        "/Frontend/ES6/ES12",
+        "/Frontend/ES6/ES13",
+        "/Frontend/ES6/ES14",
+        "/Frontend/ES6/ES15",
+        "/Frontend/ES6/handwriting_promise"
       ]
     },
     {

@@ -1,7 +1,7 @@
 ---
 title: JavaScript
 subtitle: JavaScript 相关面试题 # 博客副标题（可选）
-date: 2022-04-01
+date: 2021-07-02
  
 categories:
  - 面试题
@@ -9,18 +9,6 @@ tags:
  - JavaScript
  - 面试题
 ---
----
-title: JavaScript
-subtitle: JavaScript 相关面试题 # 博客副标题（可选）
-date: 2022-04-01
- 
-categories:
- - 面试题
-tags:
- - JavaScript
- - 面试题
----
-
 ## 1.介绍一下数据类型有哪些，值是如何储存的？
 
 
