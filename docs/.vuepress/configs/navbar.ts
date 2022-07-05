@@ -25,11 +25,6 @@ const navbar = [
       },
       { text: "ES6", link: "/Frontend/ES6/ES01", icon: "co-javascript" },
       {
-        text: "Promise",
-        link: "/Frontend/Promise/promise",
-        icon: "co-javascript"
-      },
-      {
         text: "Axios",
         link: "/Frontend/Axios/axios",
         icon: "md-http-sharp"

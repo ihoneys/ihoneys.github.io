@@ -14,6 +14,7 @@ cd docs/.vuepress/dist
 # echo 'www.yourwebsite.com' > CNAME
 
 git init
+git remote add origin https://github.com/ihoneys/ihoneys.github.io.git
 git add -A
 git commit -m 'docs: some'
 
@@ -26,7 +27,7 @@ git commit -m 'docs: some'
 # B 如果发布到 https://USERNAME.github.io/<REPO>  REPO=github上的项目
 
 # 提交到github
-git push -f https://github.com/ihoneys/ihoneys.github.io master:gh-pages
+git push origin master:gh-pages -f 
 # 提交到gitee
 # git push -f git@gitee.com:{name}/{name}.git master
 

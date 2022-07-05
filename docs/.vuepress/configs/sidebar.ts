@@ -65,19 +65,9 @@ const sidebar: SidebarConfig = {
         "/Frontend/ES6/ES12",
         "/Frontend/ES6/ES13",
         "/Frontend/ES6/ES14",
+        "/Frontend/ES6/ES16",
         "/Frontend/ES6/ES15",
         "/Frontend/ES6/handwriting_promise"
-      ]
-    },
-    {
-      text: "Promise",
-      collapsible: true,
-      children: [
-        "/Frontend/Promise/promise",
-        "/Frontend/Promise/promise2",
-        "/Frontend/Promise/promise3",
-        "/Frontend/Promise/promise4",
-        "/Frontend/Promise/async"
       ]
     },
     {
