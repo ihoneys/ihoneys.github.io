@@ -53,7 +53,7 @@ export default defineUserConfig({
     navbar: navbar, // 头部nav
     sidebar: sidebar, // 子 nav
     hitokoto: "https://v1.hitokoto.cn/?c=i", // 只返回诗词
-    navbarTitle: "Lucas",
+    navbarTitle: "Lucas NoteBook",
     themePlugins: {
       mdPlus: {
         all: true,
@@ -89,8 +89,8 @@ export default defineUserConfig({
       // 可选：社交平台账号，将在首页和移动端侧边栏显示
       sns: {
         github: "ihoneys", // Github
-        linkedin: "", // 领英
-        facebook: "", // Facebook
+        // linkedin: "", // 领英
+        // facebook: "", // Facebook
         twitter: "Leslie_moogg", // 推特
         zhihu: "abcdefg-5-23", // 知乎
         // weibo: "", // 新浪微博

@@ -1,18 +1,27 @@
+---
+title: 设计模式之-单例模式
+date: 2020-09-23
+categories:
+  - 前端基础
+tags:
+  - 设计模式
+---
+
 ### 单例模式
 
 单例模式适用于全局只能有一个实例对象的场景，结构如下：
 
 ```javascript
-function Single() { }
+function Single() {}
 
 Single.getIntance = function () {
-    if (this.instance) {
-        return this.instance
-    }
+  if (this.instance) {
+    return this.instance;
+  }
 
-    this.instance = new Single()
-    return this.instance
-}
+  this.instance = new Single();
+  return this.instance;
+};
 ```
 
 上述代码中 `Singleton`类挂载了一个静态方法`getInstance`，如果要获取实例对象只能通过这个方法拿，这个方法会检测是不是有现存的实例对象，如果有就返回，没有就新建一个
@@ -64,15 +73,15 @@ document.getElementById('loginBtn').onclick = function () {
 ```javascript
 function store() {
   // 加一个instanceof检测
-  if(!(this instanceof store)) {
+  if (!(this instanceof store)) {
     return new store();
   }
-  
+
   // 下面跟前面一样的
-  if(store.instance) {
+  if (store.instance) {
     return store.instance;
   }
-  
+
   store.instance = this;
 }
 ```
@@ -83,16 +92,14 @@ function store() {
 
 `vue-router`其实也用到了单例模式，因为如果一个页面有多个路由对象，可能造成状态的冲突，`vue-router`的单例实现方式又有点不一样，[下列代码来自`vue-router`源码](https://github.com/vuejs/vue-router/blob/dev/src/install.js)：
 
-
-
 ```javascript
 let _Vue;
 
 function install(Vue) {
   if (install.installed && _Vue === Vue) return;
-  install.installed = true
+  install.installed = true;
 
-  _Vue = Vue
+  _Vue = Vue;
 }
 ```
 

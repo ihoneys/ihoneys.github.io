@@ -1,3 +1,12 @@
+---
+title: 设计模式之-发布订阅模式
+date: 2020-09-23
+categories:
+  - 前端基础
+tags:
+  - 设计模式
+---
+
 ### 发布订阅模式
 
 先看下面的需求
@@ -10,14 +19,14 @@
 
 ```js
 function applySuccess() {
-    // 通知消息中心获取最新内容
-    MessageCenter.fetch()
+  // 通知消息中心获取最新内容
+  MessageCenter.fetch();
 
-    // 更新订单信息
-    Order.update()
+  // 更新订单信息
+  Order.update();
 
-    // 通知相关审核
-    Checker.alert()
+  // 通知相关审核
+  Checker.alert();
 }
 ```
 
@@ -56,26 +65,26 @@ function applySuccess() {
 
 ```javascript
 const EventEmit = function () {
-    this.events = {}
-    this.on = function (name, cb) {
-        if (this.events[name]) {
-            this.events[name].push(cb)
-        } else {
-            this.events[name] = [cb]
-        }
+  this.events = {};
+  this.on = function (name, cb) {
+    if (this.events[name]) {
+      this.events[name].push(cb);
+    } else {
+      this.events[name] = [cb];
     }
+  };
 
-    this.trigger = function (name, ...args) {
-        if (this.events[name]) {
-            this.events[name].forEach(eventListener => {
-                eventListener(...args)
-            })
-        }
+  this.trigger = function (name, ...args) {
+    if (this.events[name]) {
+      this.events[name].forEach((eventListener) => {
+        eventListener(...args);
+      });
     }
-}
+  };
+};
 ```
 
-上班写好一个  `EventEmit` ,然后的业务代码可以改成这样 ~
+上班写好一个 `EventEmit` ,然后的业务代码可以改成这样 ~
 
 ```javascript
 let event = new EventEmit();

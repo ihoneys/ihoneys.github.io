@@ -1,3 +1,12 @@
+---
+title: 设计模式之-策略模式
+date: 2020-09-23
+categories:
+  - 前端基础
+tags:
+  - 设计模式
+---
+
 ### 策略模式
 
 > 根据不同的参数命中不同的策略。
@@ -8,18 +17,18 @@
 
 ```javascript
 function calculateBonus(level, salary) {
-    if (level === 'S') {
-        return salary * 2
-    }
-    if (level === 'A') {
-        return salary * 1.2
-    }
-    if (level === 'B') {
-        return salary * 1
-    }
-     if (level === 'C') {
-        return salary * 0
-    }
+  if (level === "S") {
+    return salary * 2;
+  }
+  if (level === "A") {
+    return salary * 1.2;
+  }
+  if (level === "B") {
+    return salary * 1;
+  }
+  if (level === "C") {
+    return salary * 0;
+  }
 }
 ```
 
@@ -36,25 +45,25 @@ function calculateBonus(level, salary) {
 
 ```javascript
 const stratgy = {
-    'S': function (salary) {
-        return salary * 2
-    },
-    'A': function (salary) {
-        return salary * 1.2
-    },
-    'B': function (salary) {
-        return salary * 1
-    },
-    'C': function (salary) {
-        return salary * 0
-    }
-}
+  S: function (salary) {
+    return salary * 2;
+  },
+  A: function (salary) {
+    return salary * 1.2;
+  },
+  B: function (salary) {
+    return salary * 1;
+  },
+  C: function (salary) {
+    return salary * 0;
+  },
+};
 
 const calculateBonus = function (level, salary) {
-    return stratgy[level](salary)
-}
+  return stratgy[level](salary);
+};
 
-calculateBonus('C', 3000)
+calculateBonus("C", 3000);
 ```
 
 相对于疯狂的写 `if-else` 不是好太多？还有些什么例子可以使用呢？表单验证，根据不同下拉框对应选择不同的内容，等等等都可以使用策略模式去设计优化它。
@@ -62,69 +71,70 @@ calculateBonus('C', 3000)
 下面有一个两个对象合并，相当于`axios` 接收的对象参数相互互补，有的则覆盖，没有的取有的，下面看看代码，如何使用策略模式进行合并：
 
 ```javascript
-   const config1 = {
-      url: '11',
-      data: {
-        id: 123,
-      },
-      params: {
-        name: 'config1',
-      },
+const config1 = {
+  url: "11",
+  data: {
+    id: 123,
+  },
+  params: {
+    name: "config1",
+  },
+};
+
+const config2 = {
+  url: "11",
+  headers: "xxx",
+  data: {
+    id: 123444,
+  },
+  params: {
+    name: "config1",
+  },
+};
+
+const strats = Object.create(null);
+
+function defaultStrat(val1: any, val2: any): any {
+  // config2中有的就直接取config2的属性，否则取config1的属性
+  return typeof val2 !== "undefined" ? val2 : val1;
+}
+
+function formVal2Strat(val1: any, val2: any): any {
+  // 优先取val2
+  if (typeof val2 !== "undefined") {
+    return val2;
+  }
+}
+
+const stratKeysFormVal2 = ["url", "params", "data"];
+
+stratKeysFormVal2.forEach((key) => {
+  strats[key] = formVal2Strat;
+});
+
+function mergeConfig(config1?: any, config2?: any): any {
+  const config = Object.create(null);
+
+  for (const key in config2) {
+    // 循环config2 如果config2有优先取2
+    mergeFiled(key);
+  }
+
+  for (const key in config1) {
+    // 循环config1 如果config2没拿到就去config1
+    if (!config2[key]) {
+      mergeFiled(key);
     }
+  }
 
-    const config2 = {
-      url: '11',
-      headers: 'xxx',
-      data: {
-        id: 123444,
-      },
-      params: {
-        name: 'config1',
-      },
-    }
+  function mergeFiled(key: string): void {
+    const strat = strats[key] || defaultStrat;
+    config[key] = strat(config1[key], config2[key]);
+  }
+  return config;
+}
 
-    const strats = Object.create(null)
-
-    function defaultStrat(val1: any, val2: any): any { // config2中有的就直接取config2的属性，否则取config1的属性
-      return typeof val2 !== 'undefined' ? val2 : val1
-    }
-
-    function formVal2Strat(val1: any, val2: any): any {
-      // 优先取val2
-      if (typeof val2 !== 'undefined') {
-        return val2
-      }
-    }
-
-    const stratKeysFormVal2 = ['url', 'params', 'data']
-
-    stratKeysFormVal2.forEach((key) => {
-      strats[key] = formVal2Strat
-    })
-
-    function mergeConfig(config1?: any, config2?: any): any {
-      const config = Object.create(null)
-
-      for (const key in config2) {
-        // 循环config2 如果config2有优先取2
-        mergeFiled(key)
-      }
-
-      for (const key in config1) {
-        // 循环config1 如果config2没拿到就去config1
-        if (!config2[key]) {
-          mergeFiled(key)
-        }
-      }
-
-      function mergeFiled(key: string): void {
-        const strat = strats[key] || defaultStrat
-        config[key] = strat(config1[key], config2[key])
-      }
-      return config
-    }
-
-    console.log(mergeConfig(config1, config2), '合并策略模式')
+console.log(mergeConfig(config1, config2), "合并策略模式");
 ```
 
 #### 什么时候用的策略模式呢？
