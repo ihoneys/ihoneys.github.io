@@ -16,40 +16,39 @@ const navbar = [
       {
         text: "CSS & C3",
         link: "/Frontend/CSS/css1",
-        icon: "fa-css3-alt",
+        icon: "fa-css3-alt"
       },
       {
         text: "JavaScript",
         link: "/Frontend/JS/js2",
-        icon: "co-javascript",
+        icon: "co-javascript"
       },
       { text: "ES6", link: "/Frontend/ES6/ES01", icon: "co-javascript" },
       {
         text: "Promise",
         link: "/Frontend/Promise/promise",
-        icon: "co-javascript",
+        icon: "co-javascript"
       },
-      { text: "Ajax", link: "/Frontend/Ajax/Ajax", icon: "md-http-sharp" },
       {
         text: "Axios",
         link: "/Frontend/Axios/axios",
-        icon: "md-http-sharp",
+        icon: "md-http-sharp"
       },
       {
         text: "TypeScript",
         link: "/Frontend/TS/ts1",
-        icon: "co-typescript",
+        icon: "co-typescript"
       },
       {
         text: "Webpack 4",
         link: "/Frontend/Webpack/webpack1",
-        icon: "co-webpack",
+        icon: "co-webpack"
       },
       { text: "HTTP", link: "/Frontend/http", icon: "md-http-sharp" },
       { text: "正则", link: "/Frontend/regex" },
       { text: "less", link: "/Frontend/less", icon: "co-less" },
-      { text: "常用代码", link: "/Frontend/Piece/js2" },
-    ],
+      { text: "常用代码", link: "/Frontend/Piece/js2" }
+    ]
   },
   {
     text: "前端框架",
@@ -58,8 +57,8 @@ const navbar = [
       { text: "Vue2", link: "/Framework/Vue/vue2/vue01" },
       { text: "Vue3", link: "/Framework/Vue/vue3/vue3-1" },
       { text: "React", link: "/Framework/React/react01" },
-      { text: "Wechat", link: "/Framework/Wechat/wechat" },
-    ],
+      { text: "Wechat", link: "/Framework/Wechat/wechat" }
+    ]
   },
   {
     text: "工具",
@@ -70,8 +69,8 @@ const navbar = [
       { text: "MarkDown", link: "/Tools/markdown" },
       { text: "vite", link: "/Tools/vite" },
       { text: "Eslint", link: "/Tools/eslint" },
-      { text: "VScode等配置文件", link: "/Tools/vscode" },
-    ],
+      { text: "VScode等配置文件", link: "/Tools/vscode" }
+    ]
   },
   {
     text: "其他",
@@ -82,8 +81,8 @@ const navbar = [
       { text: "浏览器和内核", link: "/Other/browserKernel" },
       { text: "URI & URL", link: "/Other/URIandURL" },
       { text: "Nginx 是什么", link: "/Other/nginx" },
-      { text: "Jira 项目总结", link: "/Other/getJira" },
-    ],
+      { text: "Jira 项目总结", link: "/Other/getJira" }
+    ]
   },
   {
     text: "面试题",
@@ -104,13 +103,13 @@ const navbar = [
       { text: "Git", link: "/Interview/Git" },
       { text: "算法", link: "/Interview/Coding" },
       { text: "移动端开发问题", link: "/Interview/Mobile" },
-      { text: "前端其他问题", link: "/Interview/Other" },
-    ],
+      { text: "前端其他问题", link: "/Interview/Other" }
+    ]
   },
   {
     text: "Tags",
     link: "/tags/",
-    icon: "fa-tag",
+    icon: "fa-tag"
   },
   // {
   //   text: '留言',
@@ -120,13 +119,13 @@ const navbar = [
   {
     text: "关于",
     link: "/About/",
-    icon: "co-about-me",
+    icon: "co-about-me"
   },
   {
     text: "Github",
     link: "https://github.com/ihoneys",
-    icon: "co-github",
-  },
+    icon: "co-github"
+  }
 ];
 
 export default navbar;

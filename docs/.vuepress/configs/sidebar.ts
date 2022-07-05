@@ -70,11 +70,6 @@ const sidebar: SidebarConfig = {
       ]
     },
     {
-      text: "Ajax",
-      collapsible: true,
-      children: ["/Frontend/Ajax/Ajax"]
-    },
-    {
       text: "Axios",
       collapsible: true,
       children: [

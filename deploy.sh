@@ -33,7 +33,7 @@ git push -f https://github.com/ihoneys/ihoneys.github.io master:gh-pages
 # 提交静态文件到部署的仓库结束
 # 开始提交源码
 
-cd ~/Desktop/blogs/ihoneys.github.io
+cd ~/Desktop/blogs/gungnir-blog-v2
 git add .
 git commit -m 'docs: some'
 git push origin master -f
