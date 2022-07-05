@@ -23,6 +23,7 @@ const navbar = [
         link: "/Frontend/JS/js2",
         icon: "co-javascript"
       },
+      { text: "设计模式", link: "/Frontend/Design/design01" },
       { text: "ES6", link: "/Frontend/ES6/ES01", icon: "co-javascript" },
       {
         text: "Axios",

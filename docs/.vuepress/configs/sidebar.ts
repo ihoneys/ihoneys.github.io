@@ -71,6 +71,20 @@ const sidebar: SidebarConfig = {
       ]
     },
     {
+      text: "设计模式",
+      collapsible: true,
+      children: [
+        "/Frontend/Design/design01",
+        "/Frontend/Design/design02",
+        "/Frontend/Design/design03",
+        "/Frontend/Design/design04",
+        "/Frontend/Design/design05",
+        "/Frontend/Design/design06",
+        "/Frontend/Design/design07",
+        "/Frontend/Design/design08"
+      ]
+    },
+    {
       text: "Axios",
       collapsible: true,
       children: [
@@ -81,6 +95,7 @@ const sidebar: SidebarConfig = {
         "/Frontend/Axios/axios5"
       ]
     },
+
     {
       text: "TypeScript",
       collapsible: true,
