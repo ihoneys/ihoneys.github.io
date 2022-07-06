@@ -247,11 +247,11 @@ const sidebar: SidebarConfig = {
   "/Tools/": ["git", "yarn", "markdown", "vite", "eslint", "vscode"],
   // 其他
   "/Other/": [
-    "errorSummarize",
     "knowledgePoint",
     "URIandURL",
     "browserKernel",
     "nginx",
+    "mobile-h5-problem",
     "getJira"
   ],
 

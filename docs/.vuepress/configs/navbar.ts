@@ -15,31 +15,31 @@ const navbar = [
       { text: "HTML & H5", link: "/Frontend/HTML/HTML" },
       {
         text: "CSS & C3",
-        link: "/Frontend/CSS/css1",
+        link: "/Frontend/CSS/css1"
       },
       {
         text: "JavaScript",
-        link: "/Frontend/JS/js2",
+        link: "/Frontend/JS/js2"
       },
       { text: "设计模式", link: "/Frontend/Design/design01" },
       { text: "ES6", link: "/Frontend/ES6/ES01" },
       {
         text: "Axios",
-        link: "/Frontend/Axios/axios",
+        link: "/Frontend/Axios/axios"
       },
       {
         text: "TypeScript",
-        link: "/Frontend/TS/ts1",
+        link: "/Frontend/TS/ts1"
       },
       {
         text: "Webpack 4",
-        link: "/Frontend/Webpack/webpack1",
+        link: "/Frontend/Webpack/webpack1"
       },
       { text: "HTTP", link: "/Frontend/http" },
       { text: "正则", link: "/Frontend/regex" },
       { text: "less", link: "/Frontend/less" },
-      { text: "常用代码", link: "/Frontend/Piece/js2" },
-    ],
+      { text: "常用代码", link: "/Frontend/Piece/js2" }
+    ]
   },
   {
     text: "前端框架",
@@ -48,8 +48,8 @@ const navbar = [
       { text: "Vue2", link: "/Framework/Vue/vue2/vue01" },
       { text: "Vue3", link: "/Framework/Vue/vue3/vue3-1" },
       { text: "React", link: "/Framework/React/react01" },
-      { text: "Wechat", link: "/Framework/Wechat/wechat" },
-    ],
+      { text: "Wechat", link: "/Framework/Wechat/wechat" }
+    ]
   },
   {
     text: "工具",
@@ -61,8 +61,8 @@ const navbar = [
       { text: "vite", link: "/Tools/vite" },
       { text: "Eslint", link: "/Tools/eslint" },
       { text: "VScode等配置文件", link: "/Tools/vscode" },
-      { text: "工具收集", link: "/Tools/tools-collect" },
-    ],
+      { text: "工具收集", link: "/Tools/tools-collect" }
+    ]
   },
   {
     text: "其他",
@@ -72,8 +72,9 @@ const navbar = [
       { text: "浏览器和内核", link: "/Other/browserKernel" },
       { text: "URI & URL", link: "/Other/URIandURL" },
       { text: "Nginx 是什么", link: "/Other/nginx" },
-      { text: "Jira 项目总结", link: "/Other/getJira" },
-    ],
+      { text: "移动端适配方案", link: "/Other/mobile-h5-problem" },
+      { text: "Jira 项目总结", link: "/Other/getJira" }
+    ]
   },
   {
     text: "面试题",
@@ -94,13 +95,13 @@ const navbar = [
       { text: "Git", link: "/Interview/Git" },
       { text: "算法", link: "/Interview/Coding" },
       { text: "移动端开发问题", link: "/Interview/Mobile" },
-      { text: "前端其他问题", link: "/Interview/Other" },
-    ],
+      { text: "前端其他问题", link: "/Interview/Other" }
+    ]
   },
   {
     text: "Tags",
     link: "/tags/",
-    icon: "fa-tag",
+    icon: "fa-tag"
   },
   // {
   //   text: '留言',
@@ -110,13 +111,13 @@ const navbar = [
   {
     text: "关于",
     link: "/About/",
-    icon: "co-about-me",
+    icon: "co-about-me"
   },
   {
     text: "Github",
     link: "https://github.com/ihoneys",
-    icon: "co-github",
-  },
+    icon: "co-github"
+  }
 ];
 
 export default navbar;
