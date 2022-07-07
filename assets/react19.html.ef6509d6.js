@@ -1,0 +1,66 @@
+import{_ as n,o as s,c as a,d as e}from"./app.51922910.js";const t={},p=e(`<div class="language-javascript ext-js line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">let</span> instance<span class="token punctuation">;</span> <span class="token comment">// \u7C7B\u7EC4\u4EF6\u5BF9\u5E94\u5B9E\u4F8B</span>
+
+<span class="token keyword">let</span> workInProgress<span class="token punctuation">;</span> <span class="token comment">// \u5F53\u524D\u6B63\u5728\u8C03\u548C\u7684 fiber \u6811</span>
+
+<span class="token keyword">let</span> current<span class="token punctuation">;</span> <span class="token comment">// current \u6811\uFF0C\u7B2C\u4E00\u6B21\u8C03\u548C\u4E4B\u540E\u4F1A\u5C06 workInprogress \u6811\u8D4B\u503C\u7ED9 current \u6811</span>
+
+<span class="token keyword">let</span> Component<span class="token punctuation">;</span> <span class="token comment">// \u9879\u76EE\u4E2D\u7684 class \u7EC4\u4EF6</span>
+
+<span class="token keyword">let</span> nextProps<span class="token punctuation">;</span> <span class="token comment">// \u7EC4\u4EF6\u5728\u4E00\u6B21\u66F4\u65B0\u4E2D\u65B0\u7684 props</span>
+
+<span class="token keyword">let</span> renderExpirationTime<span class="token punctuation">;</span> <span class="token comment">// \u4F5C\u4E3A\u4E0B\u4E00\u6B21\u6E32\u67D3\u7684\u8FC7\u671F\u65F6\u95F4</span>
+
+<span class="token comment">// \u7EC4\u4EF6\u5B9E\u4F8B</span>
+<span class="token keyword">let</span> _reactInternals<span class="token punctuation">;</span> <span class="token comment">// \u8FD9\u4E2A\u5C5E\u6027\u7528\u6765\u8BBF\u95EE\u7EC4\u4EF6\u5BF9\u5E94\u7684 fiber \u5BF9\u8C61</span>
+
+<span class="token comment">// fiber \u5BF9\u8C61\u4E0A\u53EF\u4EE5\u901A\u8FC7 stateNode \u6765\u8BBF\u95EE\u5F53\u524D\u7684 fiber \u5BF9\u5E94\u7684\u7EC4\u4EF6\u5B9E\u4F8B</span>
+
+<span class="token comment">// \u7EC4\u4EF6\u5B9E\u4F8B\u5316\u4E4B\u540E\u4F1A\u8C03\u7528 mountClassInstance \u7EC4\u4EF6\u521D\u59CB\u5316</span>
+
+<span class="token comment">// \u7EC4\u4EF6 commit \u9636\u6BB5\u624D\u4F1A\u8C03\u7528 componentDiMount</span>
+
+<span class="token comment">// \u66F4\u65B0\u7EC4\u4EF6\u51FD\u6570\u5F0F ,\u8D70\u8FD9\u4E2A\u51FD\u6570\u5F0F\u6839\u636E current \u662F\u5426\u4E3Anull \u662F\u5426\u8D70\u66F4\u65B0\u903B\u8F91</span>
+<span class="token keyword">function</span> <span class="token function">updateClassComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">...</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// \u8C03\u7528 updateClassInstance</span>
+<span class="token keyword">function</span> <span class="token function">updateClassInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// \u62FF\u5230\u7C7B\u7EC4\u4EF6\u5B9E\u4F8B</span>
+  <span class="token keyword">const</span> instance <span class="token operator">=</span> workInProgress<span class="token punctuation">.</span>stateNode<span class="token punctuation">;</span> <span class="token comment">// \u7C7B\u7EC4\u4EF6\u5B9E\u4F8B</span>
+  <span class="token keyword">const</span> hasNewLifecycles <span class="token operator">=</span> <span class="token keyword">typeof</span> ctor<span class="token punctuation">.</span>getDerivedStateFromProps <span class="token operator">===</span> <span class="token string">&quot;function&quot;</span><span class="token punctuation">;</span> <span class="token comment">// \u5224\u65AD\u662F\u5426\u5177\u6709 getDerivedStateFromProps \u751F\u547D\u5468\u671F</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>
+    <span class="token operator">!</span>hasNewLifecycles <span class="token operator">&amp;&amp;</span>
+    <span class="token keyword">typeof</span> instance<span class="token punctuation">.</span>componentWillReceiveProps <span class="token operator">===</span> <span class="token string">&quot;function&quot;</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldProps <span class="token operator">!==</span> newProps <span class="token operator">||</span> oldContext <span class="token operator">!==</span> nextContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// \u6D45\u6BD4\u8F83 props \u4E0D\u76F8\u7B49</span>
+      instance<span class="token punctuation">.</span><span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>newProps<span class="token punctuation">,</span> nextContext<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// \u6267\u884C\u751F\u547D\u5468\u671F componentWillReceiveProps</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> newState <span class="token operator">=</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>state <span class="token operator">=</span> oldState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> getDerivedStateFromProps <span class="token operator">===</span> <span class="token string">&quot;function&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ctor<span class="token punctuation">.</span><span class="token function">getDerivedStateFromProps</span><span class="token punctuation">(</span>
+      nextProps<span class="token punctuation">,</span>
+      prevState
+    <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* \u6267\u884C\u751F\u547D\u5468\u671FgetDerivedStateFromProps  \uFF0C\u903B\u8F91\u548Cmounted\u7C7B\u4F3C \uFF0C\u5408\u5E76state  */</span>
+    newState <span class="token operator">=</span> workInProgress<span class="token punctuation">.</span>memoizedState<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> shouldUpdate <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> instance<span class="token punctuation">.</span>shouldComponentUpdate <span class="token operator">===</span> <span class="token string">&quot;function&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* \u6267\u884C\u751F\u547D\u5468\u671F shouldComponentUpdate \u8FD4\u56DE\u503C\u51B3\u5B9A\u662F\u5426\u6267\u884Crender \uFF0C\u8C03\u548C\u5B50\u8282\u70B9 */</span>
+    shouldUpdate <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span>
+      newProps<span class="token punctuation">,</span>
+      newState<span class="token punctuation">,</span>
+      nextContext
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>shouldUpdate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> instance<span class="token punctuation">.</span>componentWillUpdate <span class="token operator">===</span> <span class="token string">&quot;function&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      instance<span class="token punctuation">.</span><span class="token function">componentWillUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* \u6267\u884C\u751F\u547D\u5468\u671F componentWillUpdate  */</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> shouldUpdate<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>render \u9636\u6BB5 \uFF08\u7EC4\u4EF6\u521D\u59CB\u5316\uFF09</p><ul><li>contructor</li><li>getDerivedStateFromProps</li><li>componentWillMount</li><li>render \u6700\u540E\u9636\u6BB5</li></ul><p>commit \u9636\u6BB5</p><ul><li>\u66F4\u65B0 dom</li><li>componentDidMount</li></ul><p>\u5982\u679C\u6709 getDerivedStateFromProps \u6267\u884C\uFF0C\u8FD4\u56DE\u7684\u503C\u5408\u5E76 state\uFF0C\u751F\u6210\u65B0\u7684 state</p><p>\u5728\u6267\u884C \u751F\u547D\u5468\u671F shouldComponentUpdate \u4F20\u5165\u65B0\u7684 props\uFF0C\u65B0\u7684 state\uFF0C\u548C\u65B0\u7684 context\uFF0C\u8FD4\u56DE\u503C\u51B3\u5B9A\u662F\u5426\u7EE7\u7EED\u6267\u884C render \u51FD\u6570\uFF0C\u8C03\u548C\u5B50\u8282\u70B9\u3002 <code>getDerivedStateFromProps</code> \u7684\u8FD4\u56DE\u503C\u53EF\u4EE5\u4F5C\u4E3A\u65B0\u7684 state\uFF0C\u4F20\u9012\u7ED9 shouldComponentUpdate\u3002</p><p><code>getSnapshotBeforeUpdate</code>\u662F\u5728 updateClassInstance \u4E4B\u540E\u5B8C\u6BD5\u4E4B\u540E\u6267\u884C\uFF0C\u4E5F\u5C31\u662F render \u9636\u6BB5\u4E4B\u540E\uFF0C\u5B83\u662F\u6267\u884C\u5728 commit \u9636\u6BB5\uFF0C\uFF08commit \u9636\u6BB5\u53C8\u5206\u4E3A befor Mutation\uFF08DOM \u4FEE\u6539\u524D\uFF09\uFF0Cmutaion\uFF08DOM \u4FEE\u6539\uFF09\uFF0CLayout\uFF08DOM \u4FEE\u6539\u540E\uFF09\u4E09\u4E2A\u9636\u6BB5\uFF09\u3002</p><p><code>getSnapshotBeforeUpdate</code>\u53D1\u5728\u5728 <code>before Mutation \u9636\u6BB5</code>\u3002</p><p><code>getDerivedStateFromProps</code>\u7EC4\u4EF6\u521D\u59CB\u5316\u6216\u8005\u66F4\u65B0\u65F6\uFF0C\u5C06 props \u6620\u5C04\u5230 state \u4E2D\u5E76\u8FD4\u56DE</p><p><code>componentWillReceiveProps</code>\u7EC4\u4EF6\u66F4\u65B0\u5E26\u6765\u7684 props \u4FEE\u6539\u5C31\u4F1A\u6267\u884C\uFF0C\u4E0E<code>getDerivedStateFromProps</code>\u4E0D\u540C\u7684\u662F <code>componentWillReceiveProps</code>\u5185\u53EF\u4EE5\u8BBF\u95EE\u5230 this\uFF0C\u6240\u4EE5\u4E5F\u53EF\u4EE5\u6839\u636E props \u4E00\u4E9B\u6761\u4EF6\u6765\u66F4\u65B0 state\u3002<strong>\u4F46\u662F\u4E0D\u5EFA\u8BAE\u8FD9\u4E48\u64CD\u4F5C\u3002</strong></p><p><code>getSnapshotBeforeUpdate</code> \u7EC4\u4EF6\u66F4\u65B0\u8C03\u7528 \u4E14\u9700\u8981 return { }</p>`,12),o=[p];function c(i,l){return s(),a("div",null,o)}var r=n(t,[["render",c],["__file","react19.html.vue"]]);export{r as default};

@@ -1,0 +1,1 @@
+import{_ as a,o as t,c as r,a as e,b as c}from"./app.51922910.js";const o={},s=e("h1",{id:"vim",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#vim","aria-hidden":"true"},"#"),c(" vim")],-1),i=[s];function _(n,d){return t(),r("div",null,i)}var h=a(o,[["render",_],["__file","vim.html.vue"]]);export{h as default};

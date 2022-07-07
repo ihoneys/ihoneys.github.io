@@ -1,0 +1,30 @@
+import{_ as n,o as s,c as a,d as p}from"./app.51922910.js";const t={},e=p(`<h3 id="\u9002\u914D\u5668\u6A21\u5F0F" tabindex="-1"><a class="header-anchor" href="#\u9002\u914D\u5668\u6A21\u5F0F" aria-hidden="true">#</a> \u9002\u914D\u5668\u6A21\u5F0F</h3><blockquote><p>\u4E3A\u4E86\u89E3\u51B3\u4E0D\u517C\u5BB9\u7684\u95EE\u9898\uFF0C\u628A\u4E00\u4E2A\u7C7B\u7684\u63A5\u53E3\u6362\u6210\u60F3\u8981\u7684\u63A5\u53E3\uFF0C\u4E5F\u662F\u89E3\u51B3\u4E24\u4E2A\u63A5\u53E3\u4E4B\u95F4\u4E0D\u5339\u914D\u7684\u95EE\u9898\u3002\u4E3E\u4E2A</p></blockquote><p>\u4E3E\u4E2A\u{1F330}\u6211\u7684 mac \u7535\u8111\u9700\u8981\u6295\u5C4F\uFF0C\u76F4\u63A5\u63D2\u7EBF\u662F\u63D2\u4E0D\u4E86\u7684\uFF0C\u8FD9\u65F6\u5019\u9700\u8981\u8F6C\u63A5\u5934\uFF0C\u8FD9\u6837\u624D\u80FD\u63D2\u4E0A\u9002\u914D\u6295\u5C4F\u3002</p><p>\u770B\u770B\u4E0B\u9762\u7684\u4EE3\u7801\u6BB5</p><div class="language-javascript ext-js line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">const</span> oldInterface <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">&quot;adapter&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">&quot;newAdapter&quot;</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// \u65B0\u63A5\u53E3\u8981\u6C42\u7684\u683C\u5F0F\u662F</span>
+
+<span class="token keyword">const</span> newInterface <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">adapter</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">newAdapter</span><span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// \u8FD9\u65F6\u5019\u9700\u8981\u91C7\u7528\u9002\u914D\u5668\u6A21\u5F0F \u4E5F\u76F8\u5F53\u4E8E\u8BF4\u7684\u8F6C\u63A5\u5934</span>
+
+<span class="token keyword">const</span> adapterMethod <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> item <span class="token keyword">of</span> oldInterface<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    obj<span class="token punctuation">[</span>item<span class="token punctuation">.</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,5),o=[e];function c(l,i){return s(),a("div",null,o)}var r=n(t,[["render",c],["__file","design06.html.vue"]]);export{r as default};
