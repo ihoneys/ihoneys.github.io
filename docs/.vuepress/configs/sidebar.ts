@@ -43,6 +43,8 @@ const sidebar: SidebarConfig = {
         "/Frontend/JS/js8",
         "/Frontend/JS/js9",
         "/Frontend/JS/js10",
+        "/Frontend/JS/js11",
+        "/Frontend/JS/js12",
         "/Frontend/JS/Array",
         "/Frontend/JS/Ajax"
       ]
@@ -103,7 +105,15 @@ const sidebar: SidebarConfig = {
         "/Frontend/TS/ts1",
         "/Frontend/TS/ts2",
         "/Frontend/TS/ts3",
-        "/Frontend/TS/ts4"
+        "/Frontend/TS/ts4",
+        "/Frontend/TS/ts5",
+        "/Frontend/TS/ts6",
+        "/Frontend/TS/ts7",
+        "/Frontend/TS/ts8",
+        "/Frontend/TS/ts9",
+        "/Frontend/TS/ts10",
+        "/Frontend/TS/ts11",
+        "/Frontend/TS/ts12"
       ]
     },
     {

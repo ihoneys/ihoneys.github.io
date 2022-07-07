@@ -1,290 +1,245 @@
 ---
-title: TypeScript webpack打包ts
-date: 2020-12-31
+title: TypeScript 类
+date: 2021-02-08
  
 categories:
  - 前端基础
 tags:
  - TypeScript
-
 ---
+## 类
 
-## webpack 打包 ts
+类在 TypeScript 中即可以当做**对象**，也可以当去**类型**去使用。
 
-- 初始化`package.json`
+### 类的属性和方法
 
-```s
-npm init -y
-```
+使用 `class`定义生成一个类，`constructor`定义构造函数。
 
-- 在项目里安装`webpack`和`ts`
+```typescript
+class Person {
+    // 静态属性
+    static ssn: string;
 
-```s
-npm i -D webpack webpack-cli typescript ts-loader
-```
+    // 成员属性
+    firstName: string;
+    lastName: string;
 
-- 项目根目录下创建 `webpack.config.js` 文件,指定打包`ts`文件的`loader`
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    // 成员方法
+    getFullName(): string {
+        return `${this.firstName} ${this.lastName}`;
+    }
 
-```js
-// 引入一个 path 包
-const path = require('path')
-// webpack中的配置信息，都应该写在module中
-module.exports = {
-    mode: 'production',
-    // 入口文件
-    entry: "./src/index.ts",
-    // 出口
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
-    },
-    // 指定webpack 打包要使用的模块
-    module: {
-        // 指定要加载的规则
-        rules: [
-            {
-                // test 指定的时规则生效的文件
-                test: /\.ts$/,
-                use: "ts-loader",
-                // 要排除的文件
-                exclude: /node_modules/,
-            }
-        ]
+    // 静态方法
+    static getClassName(): string {
+        return 'Person';
     }
 }
 ```
 
-- 配置`ts`编译`js`的配置文件`tsconfig.json`，配置`ts`编译规则
+为属性、构造函数和方法注释类型时，TypeScript 编译器会进行相应的类型检查。
 
-```js
-{
-    "compilerOptions": {
-        "target": "es2015",
-        "module": "es6",
-        "strict": false
-    }
-}
+例如，你初始化 `firstName`的值为 `number`，下面代码将会导致错误：
 
+```typescript
+let person = new Person(171280926, 'Doe');
 ```
 
-- `package.json`添加脚本`"build":"webpack"`
+**简化定义成员属性**
 
-```js
-  "scripts": {
-    "build":"webpack"
-  },
-```
-
-- 使用 `html-webpack-plugin` 自动创建`html`文件
-
-安装`html-webpack-plugin`并在`webpack.config.js`文件配置
-
-```js
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-module.exports = {
-    ···
-    module: {
-       ···
-    },
-    // 插件
-    plugins: [
-        new HtmlWebpackPlugin(
-            {
-                title: "自定义title"
-            }
-        )
-    ]
-}
-```
-
-- 使用 `webpack-dev-server` 启动并实时编译项目
-
-安装`webpack-dev-server`
-
-```js
-npm i -D webpack-dev-server
-```
-
-修改 `package.json` 中的 `scripts`
-
-```js
-"scripts":{
-    "start":"webpack serve --open chrome.exe"
-    }
-```
-
-`mac`中是：
-
-```js
-"scripts":{
-    "start":"webpack serve --open 'google chrome'"
-    }
-```
-
-- 使用 `babel`
-
-使用`babel`将`js`代码高版本转为低版本，来适用低版本或不兼容的浏览器。(例如兼容ie11)
-
-安装
-
-```js
-npm i -D @babel/core @babel/preset-env babel-loader core-js
-```
-
-配置`webpack.config.js`
-
-```js
-// 引入一个 path 包
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { resolve } = require('path')
-// webpack中的配置信息，都应该写在module中
-module.exports = {
-    mode: 'production',
-    // 入口
-    entry: "./src/index.ts",
-    // 出口
-    output: {},
-    // 指定webpack 打包要使用的模块
-    module: {
-        // 指定要加载的规则
-        rules: [
-            {
-                // test 指定的时规则生效的文件
-                test: /\.ts$/,
-                use: [
-                    {
-                        // 指定加载器
-                        loader: "babel-loader",
-                        // 设置babel
-                        options: {
-                            // 设置预定义的环境
-                            presets: [
-                                [
-                                    //指定环境的插件
-                                    "@babel/preset-env",
-                                    // 配置信息
-                                    {
-                                        // 要兼容的目标浏览器
-                                        targets: {
-                                            "chrome": "88"
-                                        },
-                                        //指定corejs的版本
-                                        "corejs": "3",
-                                        //使用corejs的方式 "usage" 是按需加载。
-                                        "useBuiltIns": "usage"
-                                    }
-                                ]
-                            ]
-
-                        }
-                    },
-                    // 从下往上执行，先将ts代码转为js
-                    "ts-loader",
-                ],
-                // 要排除的文件
-                exclude: /node_modules/,
-            }
-        ]
-    },
-    // 插件
-    plugins: [
-      ···
-    ],
-    //用来设置引用模块
-    resolve: {}
-}
-```
-
-到这里`ie11`还是不能兼容，因为`ie11`不支持箭头函数，`webpack`默认会打包成立即执行的箭头函数的代码，所以`webapck.config.js`还用添加:
-
-```js
-   output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
-        // 告诉webpack不适用箭头函数
-        environment: {
-            arrowFunction: false
-        }
-    },
-```
-
-### `webpack.config.js` 文件模板
-
-```js
-// 引入一个 path 包
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { resolve } = require('path')
-// webpack中的配置信息，都应该写在module中
-module.exports = {
-    mode: 'production',
-    // 入口文件
-    entry: "./src/index.ts",
-    // 出口
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
-        // 告诉webpack不适用箭头函数
-        environment: {
-            arrowFunction: false
-        }
-    },
-    // 指定webpack 打包要使用的模块
-    module: {
-        // 指定要加载的规则
-        rules: [
-            {
-                // test 指定的时规则生效的文件
-                test: /\.ts$/,
-                use: [
-                    {
-                        // 指定加载器
-                        loader: "babel-loader",
-                        // 设置babel
-                        options: {
-                            // 设置预定义的环境
-                            presets: [
-                                [
-                                    //指定环境的插件
-                                    "@babel/preset-env",
-                                    // 配置信息
-                                    {
-                                        // 要兼容的目标浏览器
-                                        targets: {
-                                            "chrome": "88",
-                                            "ie": "11"
-                                        },
-                                        //指定corejs的版本
-                                        "corejs": "3",
-                                        //使用corejs的方式 "usage" 是按需加载。
-                                        "useBuiltIns": "usage"
-                                    }
-                                ]
-                            ]
-
-                        }
-                    },
-                    // 从下往上执行，先将ts代码转为js
-                    "ts-loader",
-                ],
-                // 要排除的文件
-                exclude: /node_modules/,
-            }
-        ]
-    },
-    // 插件
-    plugins: [
-        new HtmlWebpackPlugin(
-            {
-                title: "自定义title",
-            }
-        )
-    ],
-    //用来设置引用模块
-    resolve: {
-        extensions: [".ts", ".js"] // 告诉 webpack 凡是ts、js文件结尾的文件都可以作为模块使用
+```typescript
+class Person {
+    constructor(public firstName: string, public lastName: stirng) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }
 ```
+
+等同于：
+
+```typescript
+class Person {
+    firstName: string;
+    lastName: string;
+    constructor(firstName: string, lastName: stirng) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+```
+
+**可选属性**
+
+与函数的可选参数一样，在类中也可以定义类的可选属性。
+
+```typescript
+class Person {
+    constructor(firstName?: string, lastName?: stirng) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+```
+
+### 访问修饰符
+
+在 TypeScript 中定义属性或者方法的时候为我们提供了四种修饰符（`public`，`private`，`protected`和`readonly`）。
+
+```typescript
+class Widget {
+  class: string; // 没有使用修饰符 默认 为 public，也就是 public class: string
+  private _id: string;
+  readonly id: string;
+
+  protected foo() {
+    // ...
+  }
+}
+```
+
+如果没有属性和方法没有修饰符，默认是 `public`修饰。
+
+`public`： 意思是改属性和方法可以在内部或者外部访问；
+
+`private`： 标记为`private`的 `_id`属性，那么该属性只能在类的内部访问；
+
+`protected`：被标记 `protected`属性和方法只能在类或者扩展它的任何类内部方法，但不能在类的外部访问。
+
+`readonly`：只读类型，如果标记为 `readonly` 属性的值在类构造函数中初始赋值后发生更改，则 TypeScript 编译器抛出错误。
+
+### 访问器
+
+TypeScript 中也可以对一个属性时用 get 和 set 方法对一个属性内部的获取和赋值进行拦截。
+
+```typescript
+class Widget {
+    get id(): string {
+        // 取 id 值的时候就会运行这里
+        return this.id;
+    }
+    set id(newId) {
+        console.log(newId); // 222
+        // 设置 id 的时候这里就会执行，可以做一些其他操作
+    }
+}
+
+const widget = new Widget();
+widget.id = '222';
+```
+
+### 类的继承
+
+利用继承，子类不需要额外的代码，就可以拥有父类的特性和能力，并且在父类的基础上进行扩展，从而增强代码的可复用性，继承是类与类或者接口与接口之间最常见的关系。
+
+在 TypeScript，我们可以使用 `extends`关键字来实现继承：
+
+```typescript
+class A {
+  constructor(public name: string) {
+    this.name = name;
+  }
+  foo() {
+    console.log('parent:', this.name);
+  }
+}
+
+class B extends A {
+  constructor(public child: string) {
+    super(child); // 调用父类的构造函数
+    this.child = child;
+  }
+  bar() {
+    console.log(this.child);
+  }
+}
+
+let b = new B('ssn');
+b.foo(); //parent: ssn
+```
+
+> 注意：如果子类里的方法和父类的方法名一直，那么在使用的时候会使用子类的方法，不会使用父类的方法。
+
+
+```typescript
+
+class A {
+  constructor(public name: string) {
+    this.name = name;
+  }
+  foo() {
+    console.log(this.name);
+  }
+}
+
+class B extends A {
+  constructor(public child: string) {
+    super(child);
+    this.child = child;
+  }
+  foo() {
+    console.log('child:',this.child);
+  }
+}
+
+let b = new B('ssn');
+b.foo(); // child: ssn
+```
+
+### 抽象类
+
+使用 `abstract` 关键字声明的类，我们称之为抽象类。TypeScript 中的抽象类是提供其他类继承的基类，不能被直接实例化，只能被其他类所继承。
+
+```typescript
+abstract class A {
+    constructor(public name: string) {}
+    abstract foo(): void;
+}
+
+const a = new A('1'); // Error：无法创建抽象类的实例。
+```
+
+抽象类不能被直接实例化，只能对实现了所有抽象方法的子类实例化。
+
+```typescript
+abstract class Person {
+    constructor(public name: string) {}
+    abstract foo(): void;
+}
+
+class PersonInstance extends Person {
+    constructor(name: string) {
+        super(name);
+        this.name = name;
+    }
+    foo(): void {
+        console.log(this.name);
+    }
+}
+
+const intance = new PersonInstance('ssn');
+```
+
+**注意:** 用`abstract`声明的抽象方法只能放在抽象类中，不然会报错。
+
+### 类方法重载
+
+重载支持函数重载。类的方法也支持重载，下面的例子重载了 `Overload`类的 `foo`成员方法：
+
+```typescript
+class Overload {
+    foo(arg1: number, arg2: number): number;
+    foo(arg1: string, arg2: string): string;
+    foo(arg1: string | number, arg2: string | number) {
+        return arg1 || arg2;
+    }
+}
+
+const o = new Overload();
+o.foo(1, 2);
+o.foo('1', '2');
+```
+

@@ -19,7 +19,7 @@ const navbar = [
       },
       {
         text: "JavaScript",
-        link: "/Frontend/JS/js2"
+        link: "/Frontend/JS/js1"
       },
       { text: "设计模式", link: "/Frontend/Design/design01" },
       { text: "ES6", link: "/Frontend/ES6/ES01" },
