@@ -257,6 +257,7 @@ const sidebar: SidebarConfig = {
   "/Tools/": ["git", "yarn", "markdown", "vite", "eslint", "vscode"],
   // 其他
   "/Other/": [
+    // "blog-collect",
     "knowledgePoint",
     "URIandURL",
     "browserKernel",

@@ -68,6 +68,7 @@ const navbar = [
     text: "其他",
     icon: "io-partly-sunny-sharp",
     children: [
+      // { text: "优质博客", link: "/Other/blog-collect" },
       { text: "知识点", link: "/Other/knowledgePoint" },
       { text: "浏览器和内核", link: "/Other/browserKernel" },
       { text: "URI & URL", link: "/Other/URIandURL" },

@@ -1,17 +1,10 @@
 ---
 title: HTML Emmet
 date: 2020-02-16
- 
-categories:
- - 前端基础
 tags:
  - 前端基础
  - HTML
  - HTML5
-sticky: 1
-# 打赏
-showSponsor: true
-publish: true
 ---
 
 ## Emmet简述
