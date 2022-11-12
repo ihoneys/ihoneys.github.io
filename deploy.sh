@@ -4,19 +4,19 @@
 set -e
 
 # 1、生成静态文件
-# yarn build
+yarn build
 
 # 2、进入生成的文件夹
-# cd build
+cd build
 
 # 3、提交
 # 如果是发布到自定义域名
 # echo 'www.yourwebsite.com' > CNAME
 
-# git init
-# git remote add origin https://github.com/ihoneys/ihoneys.github.io.git
-# git add -A
-# git commit -m 'docs: some'
+git init
+git remote add origin https://github.com/ihoneys/ihoneys.github.io.git
+git add -A
+git commit -m 'docs: some'
 
 # 3-1. 提交到github和gitee仓库仓库中
 
@@ -27,7 +27,7 @@ set -e
 # B 如果发布到 https://USERNAME.github.io/<REPO>  REPO=github上的项目
 
 # 提交到github
-# git push origin master:gh-pages -f 
+git push origin master:gh-pages -f 
 # 提交到gitee
 # git push -f git@gitee.com:{name}/{name}.git master
 
