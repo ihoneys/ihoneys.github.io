@@ -1,0 +1,10 @@
+{
+  "Hello! 我是": {
+    "message": "Hello! 我是",
+    "description": "hero greet"
+  },
+  "Lucas": {
+    "message": "Lucas",
+    "description": "my name"
+  }
+}

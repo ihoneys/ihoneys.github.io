@@ -1,0 +1,68 @@
+﻿---
+title: CSS Flex
+date: 2018-09-23
+sidebar: 'auto'
+categories:
+ - 前端基础
+tags:
+ - 前端基础
+ - CSS
+ - CSS3
+---
+
+## flex
+
+[阮一峰CSS--flex](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+任何一个容器都可以指定为 `Flex` 布局,包括行内元素
+
+### 使用flex 步骤
+
+```html
+<div class="parent">
+  <div class="child-1">child-1</div>
+  <div class="child-1">child-2</div>
+</div>
+```
+
+1. 在父容器中定义`display:flex;`
+
+```css
+.parent {
+  display: flex;
+}
+```
+
+2. (默认方式可省略本步骤)在父容器中，设置主轴方向
+    - `flex-direction`
+      - `row`（默认值）：主轴为水平方向，起点在左端。
+      - `row-reverse`：主轴为水平方向，起点在右端。
+      - `column`：主轴为垂直方向，起点在上沿。
+      - `column-reverse`：主轴为垂直方向，起点在下沿。
+
+```css
+.parent {
+  display: flex;
+  flex-direction: row | row-reverse | column | column-reverse;
+}
+/* 默认 row */
+```
+
+
+3、容器
+
+`align-items` 属性定义项目在交叉轴上如何对齐。
+
+```css
+.child1 {
+  align-items: flex-start | flex-end | center | baseline | stretch;
+}
+```
+
+它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。
+
+- flex-start：交叉轴的起点对齐。
+- flex-end：交叉轴的终点对齐。
+- center：交叉轴的中点对齐。
+- baseline: 项目的第一行文字的基线对齐。
+- stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。

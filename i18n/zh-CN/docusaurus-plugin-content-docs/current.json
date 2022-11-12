@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.css_tutorials.category.基础": {
+    "message": "基础",
+    "description": "The label for category 基础 in sidebar css_tutorials"
+  },
+  "sidebar.videos.category.简介": {
+    "message": "简介",
+    "description": "The label for category 简介 in sidebar videos"
+  },
+  "sidebar.videos.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category JavaScript in sidebar videos"
+  },
+  "sidebar.videos.category.CSS": {
+    "message": "CSS",
+    "description": "The label for category CSS in sidebar videos"
+  }
+}
