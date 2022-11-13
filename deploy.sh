@@ -4,7 +4,7 @@
 set -e
 
 # 1、生成静态文件
-yarn build
+yarn build-cn
 
 # 2、进入生成的文件夹
 cd build

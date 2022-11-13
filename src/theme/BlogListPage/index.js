@@ -12,8 +12,6 @@ import Layout from "@theme/Layout";
 import BlogPostItem from "@theme/BlogPostItem";
 import BlogListPaginator from "@theme/BlogListPaginator";
 
-import useViews from "./useViews";
-
 // import Fade from "react-reveal/Fade";
 
 import Translate from "@docusaurus/Translate";
@@ -26,7 +24,6 @@ import Link from "@docusaurus/Link";
 import { useViewType } from "./useViewType";
 
 import Hero from "@site/src/components/Hero";
-import Adsense from "@site/src/components/Adsense";
 
 function BlogListPage(props) {
   const { metadata, items } = props;
@@ -40,9 +37,6 @@ function BlogListPage(props) {
   let title = siteTitle + "";
   let suffix = "";
   let description = ``;
-
-  // Get all post views
-  const views = useViews(items);
 
   // list or card view
   const { viewType, toggleViewType } = useViewType();
@@ -119,11 +113,6 @@ function BlogListPage(props) {
                           frontMatter={BlogPostContent.frontMatter}
                           metadata={BlogPostContent.metadata}
                           truncated={BlogPostContent.metadata.truncated}
-                          views={
-                            views.find(
-                              (v) => v.slug == BlogPostContent.frontMatter.slug
-                            )?.views
-                          }
                         >
                           <BlogPostContent />
                         </BlogPostItem>

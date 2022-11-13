@@ -61,11 +61,11 @@ module.exports = {
       defaultLanguage: "javascript",
     },
     // googleAnalytics: {
-    //   trackingID: "UA-118572241-1",
+    //   trackingID: "xxx",
     //   anonymizeIP: true, // Should IPs be anonymized?
     // },
     // gtag: {
-    //   trackingID: "G-6PSESJX0BM",
+    //   trackingID: "xxx",
     //   // Optional fields.
     //   anonymizeIP: true, // Should IPs be anonymized?
     // },
@@ -76,7 +76,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // editUrl: "https://github.com/zxuqian/zxuqian.cn/tree/master",
+          // editUrl: "https://github.com/ihoneys",
           remarkPlugins: [math, adsense],
           rehypePlugins: [katex],
           // showLastUpdateTime: true,
@@ -105,11 +105,7 @@ module.exports = {
   ],
   // themes: ["@docusaurus/theme-live-codeblock"],
   plugins: [
-    path.resolve(__dirname, "./src/plugin/plugin-baidu-analytics"),
-    path.resolve(__dirname, "./src/plugin/plugin-baidu-push"),
     // "@docusaurus/plugin-ideal-image",
-    path.resolve(__dirname, "./src/plugin/plugin-google-adsense"),
-    path.resolve(__dirname, "./src/plugin/plugin-onesignal-push"),
     path.resolve(__dirname, "./src/plugin/plugin-latest-docs"),
     "docusaurus2-dotenv",
     [
