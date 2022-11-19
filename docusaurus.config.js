@@ -46,11 +46,11 @@ module.exports = {
         },
       ],
     },
-    // algolia: {
-    //   apiKey: "",
-    //   indexName: "",
-    //   appId: "",
-    // },
+    algolia: {
+      apiKey: "b8a6e97687c942d5512e9d643ac59481",
+      indexName: "blog_data",
+      appId: "QEASEITM3D",
+    },
     footer: {
       style: "dark",
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,

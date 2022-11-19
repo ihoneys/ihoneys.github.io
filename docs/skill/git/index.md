@@ -127,9 +127,7 @@ git rebase -i 6ad457782
 :2,$s/pick/f/g
 ```
 
-![Untitled](./img/Untitled.png)
-
-比如说合并 commit ，如果说我想合并 fix 小数点上面的所有 commit 节点，
+比如说合并 commit ，如果说我想合并某个节点上面的所有 commit 节点，
 
 我们就可以操作
 
@@ -202,8 +200,6 @@ git checkout {commitId} {本地新分支名}
 ```
 
 ### 退出合并
-
-![Untitled](./img/Untitled2.png)
 
 ```bash
 git merge --abort
@@ -289,9 +285,9 @@ git push origin feature/1025848-eshop -f
 git ls-remote --heads  
 # abc150b184007a4248a0e993b547194494964e17        refs/heads/master
 
-仓库地址
+# 仓库地址
 git ls-remote --get-url
-# git@code.guanmai.cn:fe-x/gm_api_script.git
+# git@xxxx:fe-x/xxx.git
 ```
 
 git log 查看远程分支 log 信息
