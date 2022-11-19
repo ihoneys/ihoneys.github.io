@@ -47,9 +47,9 @@ module.exports = {
       ],
     },
     algolia: {
-      apiKey: "b8a6e97687c942d5512e9d643ac59481",
-      indexName: "blog_data",
-      appId: "QEASEITM3D",
+      apiKey: "95adf1dbdb4104bb96e5772e1bd0937e",
+      indexName: "blog",
+      appId: "CQX57MQN2P",
     },
     footer: {
       style: "dark",
