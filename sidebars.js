@@ -67,6 +67,7 @@ module.exports = {
       "skill/react/react13",
       "skill/react/react14",
       "skill/react/react15",
+      "skill/react/react16",
       "skill/react/reactandvue",
       "skill/react/router_doc",
       "skill/react/router",
