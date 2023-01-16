@@ -1,5 +1,5 @@
 {
-  "index_name": "docusaurus-blog",
+  "index_name": "lucas-blog",
   "start_urls": ["https://ihoneys.github.io/"],
   "sitemap_urls": ["https://ihoneys.github.io/sitemap.xml"],
   "selectors": {
