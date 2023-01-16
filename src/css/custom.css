@@ -23,7 +23,8 @@
   --ifm-color-primary-lighter: #c6ebfc;
   --ifm-color-primary-lightest: #f2fbff;
   --ifm-code-font-size: 95%;
-  --ifm-font-family-base: "Raleway", "PingFang SC", "Microsoft Yahei",
+  --ifm-font-family-base: "nt-dapper", -apple-system, system-ui,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial,
     sans-serif;
   /* --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", monospace; */

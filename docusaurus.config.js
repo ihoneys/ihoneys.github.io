@@ -25,17 +25,12 @@ module.exports = {
       },
       items: [
         {
-          label: "学习",
+          label: "随记",
           position: "right",
-          items: [
-            {
-              label: "随记",
-              to: "docs/skill/",
-            },
-          ],
+          to: "docs/skill/",
         },
         {
-          label: "前端面试之道",
+          label: "面经",
           position: "right",
           to: "docs/interview/",
         },
@@ -46,11 +41,11 @@ module.exports = {
         },
       ],
     },
-    // algolia: {
-    //   apiKey: "95adf1dbdb4104bb96e5772e1bd0937e",
-    //   indexName: "blog",
-    //   appId: "CQX57MQN2P",
-    // },
+    algolia: {
+      apiKey: "28928b88d121c0cff858bc122f43bff7",
+      indexName: "docusaurus-blog",
+      appId: "W5C57B27UD",
+    },
     footer: {
       style: "dark",
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,

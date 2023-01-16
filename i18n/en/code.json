@@ -3,18 +3,6 @@
     "message": "Hello! I'm ",
     "description": "hero greet"
   },
-  "峰华": {
-    "message": "Xuqian",
-    "description": "my name"
-  },
-  "去B站关注": {
-    "message": "Follow Me on Twitter",
-    "description": "follow me btn text"
-  },
-  "homepage.followers": {
-    "message": "",
-    "description": "followers"
-  },
   "最新博客": {
     "message": "Latest Blogs",
     "description": "latest blogs heading"
@@ -102,10 +90,6 @@
   "theme.blog.post.paginator.newerPost": {
     "message": "Newer Post",
     "description": "The blog post button label to navigate to the newer/previous post"
-  },
-  "theme.blog.post.paginator.olderPost": {
-    "message": "Older Post",
-    "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
