@@ -19,8 +19,6 @@ cloudbaserc.json
 .env.production.local
 .env
 
-docsearch.json
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
