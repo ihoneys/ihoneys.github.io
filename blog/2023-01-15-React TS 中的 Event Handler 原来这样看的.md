@@ -1,7 +1,7 @@
 ---
 layout: Post
 title: React TS 中的 Event Handler 原来这样看的 # 博客标题（必须）
-date: 2021-01-15 # 博客日期，会显示在文章头部（可选）
+date: 2023-01-15 # 博客日期，会显示在文章头部（可选）
 author: Lucas
 author_title: 一枚小前端
 author_url: https://github.com/ihoneys
