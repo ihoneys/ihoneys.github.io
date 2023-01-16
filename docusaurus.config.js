@@ -43,7 +43,7 @@ module.exports = {
     },
     algolia: {
       apiKey: "28928b88d121c0cff858bc122f43bff7",
-      indexName: "docusaurus-blog",
+      indexName: "lucas-blog",
       appId: "W5C57B27UD",
     },
     footer: {
