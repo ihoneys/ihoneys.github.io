@@ -45,6 +45,10 @@ module.exports = {
       apiKey: "28928b88d121c0cff858bc122f43bff7",
       indexName: "lucas-blog",
       appId: "W5C57B27UD",
+      // 可选：搜索页面的路径，默认启用（可以用 `false` 禁用）
+      searchPagePath: "false",
+      // 可选：见下文
+      contextualSearch: true,
     },
     footer: {
       style: "dark",

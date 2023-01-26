@@ -39,10 +39,6 @@
     "message": "See All Tags",
     "description": "blog page see all label"
   },
-  "homepage.follow.link.href": {
-    "message": "https://twitter.com/zxuqian",
-    "description": "social link bilibili or twitter"
-  },
   "theme.NotFound.title": {
     "message": "Page Not Found",
     "description": "The title of the 404 page"
@@ -70,6 +66,10 @@
   "theme.blog.paginator.olderEntries": {
     "message": "Older Entries",
     "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Older Post",
+    "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.blog.post.readingTime.plurals": {
     "message": "One min read|{readingTime} min read",
@@ -194,14 +194,6 @@
   "theme.common.skipToMainContent": {
     "message": "Skip to main content",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
-  },
-  "homepage.qqgroup1": {
-    "message": "",
-    "description": "qq group1"
-  },
-  "homepage.qqgroup2": {
-    "message": "",
-    "description": "qq group2"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "One document found|{count} documents found",
