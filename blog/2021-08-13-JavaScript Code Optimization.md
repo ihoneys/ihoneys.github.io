@@ -1,4 +1,5 @@
 ---
+slug: "/js-code"
 layout: Post
 title: JavaScript Code Optimization # 博客标题（必须）
 subtitle: 一些基础优化代码风格的习惯 # 博客副标题（可选）

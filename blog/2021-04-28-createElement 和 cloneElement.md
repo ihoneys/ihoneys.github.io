@@ -1,4 +1,5 @@
 ---
+slug: "/react-api"
 layout: Post
 title: React 中 createElement 和 cloneElement 两个 API 的用法和区别 # 博客标题（必须）
 subtitle: 学习 TS 知识之后做题巩固 # 博客副标题（可选）
@@ -10,7 +11,9 @@ author_image_url: img/ihoneys.png
 catalog: true # 是否启用右侧目录：false / true（可选，默认为 false）
 tags: [React]
 ---
+
 首先我们来看看这两个 api 的语法
+
 <!--truncate-->
 
 ### createElement

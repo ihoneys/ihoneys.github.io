@@ -1,4 +1,5 @@
 ---
+slug: "/js-func"
 layout: Post
 title: 十个实用的 JavaScript 函数 # 博客标题（必须）
 # subtitle: Vite + Vue3 搭建项目之后我们常用的操作 # 博客副标题（可选）

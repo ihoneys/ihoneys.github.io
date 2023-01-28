@@ -68,6 +68,14 @@ module.exports = {
     //   // Optional fields.
     //   anonymizeIP: true, // Should IPs be anonymized?
     // },
+    giscus: {
+      repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
+      repoId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
+      category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
+      categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+      theme: "light_high_contrast",
+      darkTheme: "dark_tritanopia",
+    },
   },
   presets: [
     [

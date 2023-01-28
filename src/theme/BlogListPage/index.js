@@ -24,6 +24,7 @@ import Link from "@docusaurus/Link";
 import { useViewType } from "./useViewType";
 
 import Hero from "@site/src/components/Hero";
+import Comment from "../../components/Comments";
 
 function BlogListPage(props) {
   const { metadata, items } = props;
@@ -186,6 +187,7 @@ function BlogListPage(props) {
           </div>
         </div>
       </div>
+      {/* <Comment /> */}
     </Layout>
   );
 }

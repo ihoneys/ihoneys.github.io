@@ -28,6 +28,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@giscus/react": "^2.2.6",
     "@zxuqian/react-examples": "^0.1.4",
     "classnames": "^2.2.6",
     "docusaurus2-dotenv": "^1.4.0",

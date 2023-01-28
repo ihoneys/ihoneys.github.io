@@ -1,4 +1,5 @@
 ---
+slug: "/react-ts-type"
 layout: Post
 title: React TS 中的 Event Handler 原来这样看的 # 博客标题（必须）
 date: 2023-01-15 # 博客日期，会显示在文章头部（可选）
@@ -10,10 +11,6 @@ catalog: true # 是否启用右侧目录：false / true（可选，默认为 fal
 tags: [TypeScript, React]
 ---
 
-Event Handler 类型提示查看
-
-<!--truncate-->
-
 ## 开头
 
 现在 TypeScript 的发展也越来越成熟，已逐渐应用到我们开发的前端项目之中，它能够带来类型提示，提前规避类型上的错误，来提高项目代码的健壮性，以及更高效的编码效率，前提就是我们需要定义好相应的类型，才能更好的拥有代码上的类型提示。
@@ -23,6 +20,8 @@ Event Handler 类型提示查看
 就比如下面没有给它定义类型，TS 编译器就会提示错误：
 
 ![Untitled](../blog/img/01-15/img1.png)
+
+<!--truncate-->
 
 开始 开始 ！！
 

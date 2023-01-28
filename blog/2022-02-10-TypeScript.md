@@ -1,6 +1,7 @@
 ---
+slug: "/ts-types"
 layout: Post
-title: TypeScript 练习题 # 博客标题（必须）
+title: TypeScript 一些高级类型工具实现 # 博客标题（必须）
 subtitle: 学习 TS 知识之后做题巩固 # 博客副标题（可选）
 date: 2022-02-10 # 博客日期，会显示在文章头部（可选）
 author: Lucas
@@ -11,10 +12,6 @@ catalog: true # 是否启用右侧目录：false / true（可选，默认为 fal
 tags: # 博客标签
   - TypeScript
 ---
-
-实现一些工具类型，加强对 TypeScript 的使用。
-
-<!--truncate-->
 
 ## 🍔 前言
 
@@ -60,6 +57,8 @@ tags: # 博客标签
 ---
 
 **下面工具类型实现以及该题实现的逻辑分析觉得错误，或书写有误，希望大佬帮忙指正 😀，有更好的实现方式和不明白的地方欢迎评论区留言。**
+
+<!--truncate-->
 
 ## 第一题
 
@@ -1234,9 +1233,8 @@ type ElementType3 = Split<"abcdef", "">; // ["a", "b", "c", "d", "e", "f"]
 
 ```typescript
 type ToPath<S extends string> = // 你的实现代码
-
-ToPath<'foo.bar.baz'> //=> ['foo', 'bar', 'baz']
-ToPath<'foo[0].bar.baz'> //=> ['foo', '0', 'bar', 'baz']
+  ToPath<"foo.bar.baz">; //=> ['foo', 'bar', 'baz']
+ToPath<"foo[0].bar.baz">; //=> ['foo', '0', 'bar', 'baz']
 ```
 
 `ToPath`工具类型实现：
