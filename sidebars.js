@@ -28,19 +28,25 @@ module.exports = {
         "skill/css/css12",
       ],
       JavaScript: [
-        "skill/js/js7",
+        "skill/js/js1",
         "skill/js/js2",
         "skill/js/js3",
+        "skill/js/js4",
         "skill/js/js5",
         "skill/js/js6",
-        "skill/js/js9",
-        "skill/js/js10",
+        "skill/js/js7",
         "skill/js/js8",
-        "skill/es6/es01",
-        "skill/es6/es02",
-        "skill/es6/es03",
-        "skill/es6/es04",
-        "skill/es6/es05",
+        "skill/js/js9",
+        {
+          ES6: [
+            "skill/es6/es01",
+            "skill/es6/es02",
+            "skill/es6/es03",
+            "skill/es6/es04",
+            "skill/es6/es05",
+          ],
+        },
+
         {
           Promise: [
             "skill/es6/promise/promise1",

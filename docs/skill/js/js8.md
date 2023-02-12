@@ -1,5 +1,5 @@
 ---
-title: JS 设计模式
+title: JS Event
 date: 2019-12-21
 sidebar: 'auto'
 categories:
@@ -11,1169 +11,431 @@ publish: true
 showSponsor: true
 ---
 
-- 创建型
-  - 工厂模式
-  - 单例模式
-  - 原型模式
+| 事件         |                    | 浏览器支持 | 解说                                                                                       |
+| :----------- | :----------------- | :--------- | :----------------------------------------------------------------------------------------- |
+| 一般事件     | onclick            | IE3、N2    | 鼠标点击时触发此事件                                                                       |
+|              | ondblclick         | IE4、N4    | 鼠标双击时触发此事件                                                                       |
+|              | onmousedown        | IE4、N4    | 按下鼠标时触发此事件                                                                       |
+|              | onmouseup          | IE4、N4    | 鼠标按下后松开鼠标时触发此事件                                                             |
+|              | onmouseover        | IE3、N2    | 当鼠标移动到某对象范围的上方时触发此事件                                                   |
+|              | onmousemove        | IE4、N4    | 鼠标移动时触发此事件                                                                       |
+|              | onmouseout         | IE4、N3    | 当鼠标离开某对象范围时触发此事件                                                           |
+|              | onkeypress         | IE4、N4    | 当键盘上的某个键被按下并且释放时触发此事件.                                                |
+|              | onkeydown          | IE4、N4    | 当键盘上某个按键被按下时触发此事件                                                         |
+|              | onkeyup            | IE4、N4    | 当键盘上某个按键被放开时触发此事件                                                         |
+| 页面相关事件 | onabort            | IE4、N3    | 图片在下载时被用户中断                                                                     |
+|              | onbeforeunload     | IE4、N     | 当前页面的内容将要被改变时触发此事件                                                       |
+|              | onerror            | IE4、N3    | 出现错误时触发此事件                                                                       |
+|              | onload             | IE3、N2    | 页面内容完成时触发此事件                                                                   |
+|              | onmove             | IE、N4     | 浏览器的窗口被移动时触发此事件                                                             |
+|              | onresize           | IE4、N4    | 当浏览器的窗口大小被改变时触发此事件                                                       |
+|              | onscroll           | IE4、N     | 浏览器的滚动条位置发生变化时触发此事件                                                     |
+|              | onstop             | IE5、N     | 浏览器的停止按钮被按下时触发此事件或者正在下载的文件被中断                                 |
+|              | onunload           | IE3、N2    | 当前页面将被改变时触发此事件(页面关闭)                                                     |
+|              | onreadystatechange | IE3、N2    | 当前页面状态改变时触发                                                                     |
+| 表单相关事件 | onblur             | IE3、N2    | 当前元素失去焦点时触发此事件                                                               |
+|              | onchange           | IE3、N2    | 当前元素失去焦点并且元素的内容发生改变而触发此事件                                         |
+|              | onfocus            | IE3 、N2   | 当某个元素获得焦点时触发此事件                                                             |
+|              | onreset            | IE4 、N3   | 当表单中RESET的属性被激发时触发此事件                                                      |
+|              | onsubmit           | IE3 、N2   | 一个表单被递交时触发此事件                                                                 |
+| 滚动字幕事件 | onbounce           | IE4、N     | 在Marquee内的内容移动至Marquee显示范围之外时触发此事件                                     |
+|              | onfinish           | IE4、N     | 当Marquee元素完成需要显示的内容后触发此事件                                                |
+|              | onstart            | IE4、 N    | 当Marquee元素开始显示内容时触发此事件                                                      |
+| 编辑事件     | onbeforecopy       | IE5、N     | 当页面当前的被选择内容将要复制到浏览者系统的剪贴板前触发此事件                             |
+|              | onbeforecut        | IE5、 N    | 当页面中的一部分或者全部的内容将被移离当前页面[剪贴]并移动到浏览者的系统剪贴板时触发此事件 |
+|              | onbeforeeditfocus  | IE5、N     | 当前元素将要进入编辑状态                                                                   |
+|              | onbeforepaste      | IE5、 N    | 内容将要从浏览者的系统剪贴板传送[粘贴]到页面中时触发此事件                                 |
+|              | onbeforeupdate     | IE5、 N    | 当浏览者粘贴系统剪贴板中的内容时通知目标对象                                               |
+|              | oncontextmenu      | IE5、N     | 当浏览者按下鼠标右键出现菜单时或者通过键盘的按键触发页面菜单时触发的事件                   |
+|              | oncopy             | IE5、N     | 当页面当前的被选择内容被复制后触发此事件                                                   |
+|              | oncut              | IE5、N     | 当页面当前的被选择内容被剪切时触发此事件                                                   |
+|              | ondrag             | IE5、N     | 当某个对象被拖动时触发此事件 [活动事件]                                                    |
+|              | ondragdrop         | IE、N4     | 一个外部对象被鼠标拖进当前窗口或者帧                                                       |
+|              | ondragend          | IE5、N     | 当鼠标拖动结束时触发此事件，即鼠标的按钮被释放了                                           |
+|              | ondragenter        | IE5、N     | 当对象被鼠标拖动的对象进入其容器范围内时触发此事件                                         |
+|              | ondragleave        | IE5、N     | 当对象被鼠标拖动的对象离开其容器范围内时触发此事件                                         |
+|              | ondragover         | IE5、N     | 当某被拖动的对象在另一对象容器范围内拖动时触发此事件                                       |
+|              | ondragstart        | IE4、N     | 当某对象将被拖动时触发此事件                                                               |
+|              | ondrop             | IE5、N     | 在一个拖动过程中，释放鼠标键时触发此事件                                                   |
+|              | onlosecapture      | IE5、N     | 当元素失去鼠标移动所形成的选择焦点时触发此事件                                             |
+|              | onpaste            | IE5、N     | 当内容被粘贴时触发此事件                                                                   |
+|              | onselect           | IE4、N     | 当文本内容被选择时的事件                                                                   |
+|              | onselectstart      | IE4、N     | 当文本内容选择将开始发生时触发的事件                                                       |
+| 数据绑定     | onafterupdate      | IE4、N     | 当数据完成由数据源到对象的传送时触发此事件                                                 |
+|              | oncellchange       | IE5、N     | 当数据来源发生变化时                                                                       |
+|              | ondataavailable    | IE4、N     | 当数据接收完成时触发事件                                                                   |
+|              | ondatasetchanged   | IE4、N     | 数据在数据源发生变化时触发的事件                                                           |
+|              | ondatasetcomplete  | IE4、N     | 当来子数据源的全部有效数据读取完毕时触发此事件                                             |
+|              | onerrorupdate      | IE4、N     | 当使用onBeforeUpdate事件触发取消了数据传送时，代替onAfterUpdate事件                        |
+|              | onrowenter         | IE5、N     | 当前数据源的数据发生变化并且有新的有效数据时触发的事件                                     |
+|              | onrowexit          | IE5、N     | 当前数据源的数据将要发生变化时触发的事件                                                   |
+|              | onrowsdelete       | IE5、N     | 当前数据记录将被删除时触发此事件                                                           |
+|              | onrowsinserted     | IE5、N     | 当前数据源将要插入新数据记录时触发此事件                                                   |
+| 外部事件     | onafterprint       | IE5、N     | 当文档被打印后触发此事件                                                                   |
+|              | onbeforeprint      | IE5、N     | 当文档即将打印时触发此事件                                                                 |
+|              | onfilterchange     | IE4、N     | 当某个对象的滤镜效果发生变化时触发的事件                                                   |
+|              | onhelp             | IE4、N     | 当浏览者按下F1或者浏览器的帮助选择时触发此事件                                             |
+|              | onpropertychange   | IE5、N     | 当对象的属性之一发生变化时触发此事件                                                       |
+|              | onreadystatechange | IE4、N     | 当对象的初始化属性值发生变化时触发此事件                                                   |
 
-- 结构型
-  - 适配器模式
-  - 代理模式
-  - 装饰器模式
-  - 组合模式
+## js绑定事件的方式有三种
 
-- 行为型
-  - 策略模式
-  - 迭代器模式
-  - 发布订阅模式
-  - 观察者模式
-  - 命令模式
-  - 状态模式
+- 直接在 `dom` 元素上进行绑定。
+- 用 `on` 绑定。
+- 用 `addEventListener`、`attachEvent` 绑定。
 
-## 创建型模式
-
-### 工厂模式
-
-工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象，用工厂方法代替new操作的一种模式。
-
-```js
-class Creator {
-    create(name) {
-        return new Animal(name)
-    }
-}
-
-class Animal {
-    constructor(name) {
-        this.name = name
-    }
-}
-
-var creator = new Creator()
-
-var duck = creator.create('Duck')
-console.log(duck.name) // Duck
-
-var chicken = creator.create('Chicken')
-console.log(chicken.name) // Chicken
-```
-
-#### 小结
-
-1. 构造函数和创建者分离，对new操作进行封装
-2. 符合开放封闭原则
-
-### 单例模式
-
-单例模式适用于全局只能有一个实例对象的场景，结构如下：
-
-```javascript
-function Single() {}
-
-Single.getIntance = function () {
-  if (this.instance) {
-    return this.instance;
-  }
-
-  this.instance = new Single();
-  return this.instance;
-};
-```
-
-上述代码中 `Singleton`类挂载了一个静态方法`getInstance`，如果要获取实例对象只能通过这个方法拿，这个方法会检测是不是有现存的实例对象，如果有就返回，没有就新建一个
-
-#### 单例模式两个条件
-
-- 确保只有一个实例
-- 可以全局访问
-
-#### 适用
-
-> 适用于弹窗的实现，全局缓存
-
-#### 弹窗实现
-
-```javascript
-/**单例闭包弹窗 */
-const createLoginLayer = function () {
-    const div = document.createElement('div')
-    div.innerHTML = '登入窗口'
-    // div.style.display = 'none'
-    document.body.appendChild(div)
-    return div
-}
-
-const getSingle = function (fn) {
-    const result
-    return function () {
-        return result || fn.apply(this, arguments)
-    }
-}
-
-const createSingleLoginLayer = getSingle(createLoginLayer)
-
-
-document.getElementById('loginBtn').onclick = function () {
-    createSingleLoginLayer()
-}
-```
-
-#### 全局数据对象
-
-假如有一个需求
-
-> 需要对一个全局的数据对象进行管理，这个对象只能有一个，如果有多个会导致数据不同步。
-
-如果还想支持`store()`直接调用，可以用前面工厂模式用过的方法，检测`this`是不是当前类的实例，如果不是就帮他用`new`调用就行了：
-
-```javascript
-function store() {
-  // 加一个instanceof检测
-  if (!(this instanceof store)) {
-    return new store();
-  }
-
-  // 下面跟前面一样的
-  if (store.instance) {
-    return store.instance;
-  }
-
-  store.instance = this;
-}
-```
-
-![image-20210407173404778](./img/singleton_1.png)
-
-#### 实例：vue-router
-
-`vue-router`其实也用到了单例模式，因为如果一个页面有多个路由对象，可能造成状态的冲突，`vue-router`的单例实现方式又有点不一样，[下列代码来自`vue-router`源码](https://github.com/vuejs/vue-router/blob/dev/src/install.js)：
-
-```javascript
-let _Vue;
-
-function install(Vue) {
-  if (install.installed && _Vue === Vue) return;
-  install.installed = true;
-
-  _Vue = Vue;
-}
-```
-
-每次调用`vue.use(vueRouter)`的时候其实都会去执行`vue-router`模块的`install`方法，如果用户不小心多次调用了`vue.use(vueRouter)`就会造成`install`的多次执行，从而产生不对的结果。`vue-router`的`install`在第一次执行时，将`installed`属性写成了`true`，并且记录了当前的`Vue`，这样后面在同一个`Vue`里面再次执行`install`就会直接`return`了，这也是一种单例模式。
-
-
-#### 小结
-
-1. 单例模式的主要思想就是，实例如果已经创建，则直接返回
+1. 直接在 `dom` 元素上进行绑定
 
 ```js
-function creatSingleton() {
-    var obj = null
-    // 实例如已经创建过，直接返回
-    if (!obj) {
-        obj = xxx
-    }
-    return obj
-}
+<input id="btn1" type="button" onclick="test();" />
 ```
 
-2. 符合开放封闭原则
+2. 用 `on` 绑定
 
-### 原型模式
-
-> 用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。--百度百科
-
-在JavaScript中，实现原型模式是在ECMAScript5中，提出的Object.create方法，使用现有的对象来提供新创建的对象的__proto__。
+兼容性：在`IE，FF，Chrome，Safari，Mozilla，Opera`下都适用。
 
 ```js
-var prototype = {
-    name: 'Jack',
-    getName: function() {
-        return this.name
-    }
+// onclick绑定
+document.body.onclick = () => {
+  console.log(111)
 }
-
-var obj = Object.create(prototype, {
-    job: {
-        value: 'IT'
-    }
-})
-
-console.log(obj.getName())  // Jack
-console.log(obj.job)  // IT
-console.log(obj.__proto__ === prototype)  //true
+// 解绑
+document.body.onclick = null;
 ```
 
-1. 方法继承
+但是，同一个 `dom` 元素上，`on` 只能绑定一个同类型事件，后者会覆盖前者，不同类型的事件可以绑定多个。
+
+3. 事件监听 用 `addEventListener`、`attachEvent` 绑定
+
+同一个 `dom` 元素上，用 `addEventListener`、`attachEvent` 可以绑定多个同类型事件。
+
+但是，`addEventListener` 事件执行顺序按照事件绑定的先后顺序执行；`attachEvent` 事件执行顺序则是随机的。
 
 ```js
-var Parent = function() {}
-Parent.prototype.show = function() {}
-var Child = function() {}
-
-// Child继承Parent的所有原型方法
-Child.prototype = new Parent()
+// 绑定
+document.body.addEventListener('click', bodyClick, false);
+// 解绑
+document.body.removeEventListener('click', bodyClick, false);
 ```
 
-2. 所有函数默认继承`Object`
+\* 注意：`removeEventListener` 第二个参数要和 `addEventListener` 指向同一个函数才能解绑成功
+
+`addEventListener` 的第三个参数若为 `false`，函数在冒泡阶段执行；若为 `true`，函数在捕获阶段执行。默认为 `false`
 
 ```js
-var Foo = function() {}
-console.log(Foo.prototype.__proto__ === Object.prototype) // true
+<div id="box">
+   <div id="child"></div>
+</div>
 ```
-
-3. `Object.create`
 
 ```js
-var proto = {a: 1}
-var propertiesObject = {
-    b: {
-        value: 2
-    }
-}
-var obj = Object.create(proto, propertiesObject)
-console.log(obj.__proto__ === proto)  // true
-```
-
-4. `isPrototypeOf`
-
-`prototypeObj`是否在obj的原型链上
-
-```js
-prototypeObj.isPrototypeOf(obj)
-```
-
-5. `instanceof`
-
-`contructor.prototype`是否出现在`obj`的原型链上
-
-```js
-obj instanceof contructor
-```
-
-6. `getPrototypeOf`
-
-`Object.getPrototypeOf(obj)` 方法返回指定对象`obj`的原型（内部`[Prototype]`属性的值）
-
-```js
-Object.getPrototypeOf(obj)
-```
-
-7. `setPrototypeOf`
-
-设置一个指定的对象的原型 ( 即, 内部`[Prototype]`属性）到另一个对象或 null
-
-```JS
-var obj = {}
-var prototypeObj = {}
-Object.setPrototypeOf(obj, prototypeObj)
-console.log(obj.__proto__ === prototypeObj)   // true
-```
-
-## 结构型模式
-
-### 适配器模式
-
-> 为了解决不兼容的问题，把一个类的接口换成想要的接口，也是解决两个接口之间不匹配的问题。举个
-
-举个:chestnut:我的 mac 电脑需要投屏，直接插线是插不了的，这时候需要转接头，这样才能插上适配投屏。
-
-看看下面的代码段
-
-```javascript
-const oldInterface = (function () {
-  return [
-    {
-      name: "adapter",
-      id: 21,
-    },
-    {
-      name: "newAdapter",
-      id: 22,
-    },
-  ];
-})();
-
-// 新接口要求的格式是
-
-const newInterface = {
-  adapter: 21,
-  newAdapter: 22,
-};
-
-// 这时候需要采用适配器模式 也相当于说的转接头
-
-const adapterMethod = (function () {
-  const obj = Object.create(null);
-  for (const item of oldInterface) {
-    obj[item.name] = item.id;
-  }
-  return obj;
-})();
-```
-
-#### 小结
-
-1. 适配器模式主要解决两个接口之间不匹配的问题，不会改变原有的接口，而是由一个对象对另一个对象的包装。
-2. 适配器模式符合开放封闭原则
-
-### 代理模式
-
-> 为其他对象提供一种代理，以便控制对这个对象的访问，不能直接访问目标对象。
-
-情景：小明追女生 A
-
-- 非代理模式：小明 买花 => 女生 A
-- 代理模式：小明买花 => 让女生 A 的好友 B 帮忙 送花 => 女生 A
-
-再举一个简单的例子
-
-快递大家都知道
-
-![image-20210409104516307](./img/proxy_1.png)
-
-通过菜鸟驿站代收快递。
-
-直接看看下面的代码：
-
-```javascript
-class getDelivery {
-  constructor() {}
-  gets(name) {
-    console.log(`领取的快递名是---${name}`);
-  }
-}
-
-class proxy extends getDelivery {
-  constructor() {
-    super();
-  }
-  // 中间过程
-  proxyGets(name) {
-    const fn1 = () => {
-      super.gets("顺丰快递");
-    };
-    const fn2 = () => {
-      super.gets("中通快递");
-    };
-    const fn3 = () => {
-      super.gets("圆通快递");
-    };
-
-    const deliver = { 顺丰: fn1, 中通: fn2, 圆通: fn3 };
-
-    return deliver[name]();
-  }
-}
-
-const proxys = new proxy();
-proxys.proxyGets("中通"); // ’获取的快递名是---中通快递'
-```
-
-在上面代码中`getDelivery` 类中的 `gets`方法中不关心是什么快递，关心的是接到快递粗发的结果，至于中间的过程，交给`proxy`类中的`proxyGets`方法处理判别
-
-示例二：
-
-图片懒加载：运用代理模式实现图片预加载，通过一张 loading 图占位，再通过异步的方式加载图片，等图片加载好了，再把加载成功的图片放到 img 标签中。
-
-```js
-// 图片拉加载
-
-const myImage = function () {
-  const imgNode = document.createElement("img");
-  document.body.appendChild(imgNode);
-  return {
-    setSrc(src) {
-      imgNode.src = src;
-    },
-  };
-};
-
-const proxyImage = function () {
-  const img = new Image();
-  img.onload = function () {
-    // 网络图片加载完毕才会执行
-    myImage.setSrc(this.src);
-  };
-  return {
-    setSrc(src) {
-      // 本地 loading 动图
-      img.src = src;
-      myImage.setSrc("./loading.gif");
-    },
-  };
-};
-
-proxyImage.setSrc("https://img.yzcdn.cn/vant/cat.jpeg");
-```
-
-
-#### 小结
-
-1. 代理模式符合开放封闭原则
-2. 本体对象和代理对象拥有相同的方法，在用户看来并不知道请求的本体对象还是代理对象。
-
-### 装饰器模式
-
-> 在不改变对象自身的基础上，动态的给某个对象添加新的功能，同时又不改变其接口
-
-```javascript
-class Plane {
-  fire() {
-    console.log("发送普通子弹");
-  }
-}
-// 装饰过的对象
-class Missile {
-  constructor(plane) {
-    this.plane = plane;
-  }
-  fire() {
-    this.plane.fire();
-    console.log("发射导弹");
-  }
-}
-let plane = new Plane();
-plane = new Missile(plane);
-console.log(plane.fire()); // 依次打印 发送普通子弹 发射导弹
-```
-
-利用 AOP 给函数动态添加功能，即 Function 的 after 或者 before
-
-```javascript
-Function.prototype.before = function (beforeFn) {
-  const _self = this;
-  return function () {
-    beforeFn.apply(this, arguments);
-    return _self.apply(this, arguments);
-  };
-};
-
-Function.prototype.after = function (afterFn) {
-  const _self = this;
-  return function () {
-    const ret = _self.apply(this, arguments);
-    afterFn.apply(this, arguments);
-    return ret;
-  };
-};
-
-let func = function () {
-  console.log("2");
-};
-
-func = func
-  .before(function () {
-    console.log("1");
-  })
-  .after(function () {
-    console.log("3");
-  });
-
-func();
-console.log(func()); // 依次打印 1 2 3
-```
-
-应用场景：ES7 装饰器、Vuex 中混入 Vue 时，重写 init 方法、Vue 中数组变异方法实现等
-
-### 组合模式
-
-- 组合模式在对象间形成树形结构
-- 组合模式中基本对象和组合对一致对待
-- 无须关心对象有多少层，调用时只需在根部进行调用
-
-举个:chestnut:想象回到家中，手里有个全自动的遥控器，按一下开关，会有下面的事情执行：
-
-```js
-1.煮咖啡
-2.打开电视、打开音响
-3.打开控件、打开电脑
-```
-
-把任务分成三类：
-
-![image-20210409144642036](./img/command_1.png)
-
-看看编写的代码段：
-
-```js
-const MacroCommand = function () {
-  return {
-    lists: [] as any,
-    add(task) {
-      this.lists.push(task)
-    },
-    excute() {
-      this.lists.forEach(fn => {
-        fn.excute()
-      })
-    }
-  }
-}
-
-
-const command1 = MacroCommand()
-
-command1.add({
-  excute() {
-    console.log('煮咖啡了~')
-  }
-})
-
-const command2 = MacroCommand()
-
-command2.add({
-  excute() {
-    console.log('打开电视~')
-  }
-})
-command2.add({
-  excute() {
-    console.log('打开音响~')
-  }
-})
-
-
-const command3 = MacroCommand()
-
-command3.add({
-  excute() {
-    console.log('打开电脑~')
-  }
-})
-
-command3.add({
-  excute() {
-    console.log('打开空调~')
-  }
-})
-
-
-const macroCommand = MacroCommand()
-macroCommand.add(command1)
-macroCommand.add(command2)
-macroCommand.add(command3)
-
-console.log(macroCommand,'macroCommand')
-
-macroCommand.excute()
-
-// output
-煮咖啡了~
-打开电视~
-打开音响~
-打开电脑~
-打开空调~
-```
-
-## 行为型模式
-
-### 策略模式
-
-> 根据不同的参数命中不同的策略。
-
-先来做一个题目，很简单，根据不同的评级（S、A、B、C）对应不同的绩效
-
-相信大家都写过，那不简单直接`if-else` 梭哈，改改单单~，有了下面的代码
-
-```javascript
-function calculateBonus(level, salary) {
-  if (level === "S") {
-    return salary * 2;
-  }
-  if (level === "A") {
-    return salary * 1.2;
-  }
-  if (level === "B") {
-    return salary * 1;
-  }
-  if (level === "C") {
-    return salary * 0;
-  }
-}
-```
-
-有的朋友就说了，这不是挺好的吗？简单明了，又不是不能用。哈哈哈
-
-但是这样写会有什么问题？
-
-- calculateBonus 函数会塞得满满的
-- 策略项无法复用
-- 大量的 if 语句
-- 违反开闭原则
-
-下面就到了用到的策略模式来改造一下上面这段逻辑：
-
-```javascript
-const stratgy = {
-  S: function (salary) {
-    return salary * 2;
-  },
-  A: function (salary) {
-    return salary * 1.2;
-  },
-  B: function (salary) {
-    return salary * 1;
-  },
-  C: function (salary) {
-    return salary * 0;
-  },
-};
-
-const calculateBonus = function (level, salary) {
-  return stratgy[level](salary);
-};
-
-calculateBonus("C", 3000);
-```
-
-相对于疯狂的写 `if-else` 不是好太多？还有些什么例子可以使用呢？表单验证，根据不同下拉框对应选择不同的内容，等等等都可以使用策略模式去设计优化它。
-
-下面有一个两个对象合并，相当于`axios` 接收的对象参数相互互补，有的则覆盖，没有的取有的，下面看看代码，如何使用策略模式进行合并：
-
-```javascript
-const config1 = {
-  url: "11",
-  data: {
-    id: 123,
-  },
-  params: {
-    name: "config1",
-  },
-};
-
-const config2 = {
-  url: "11",
-  headers: "xxx",
-  data: {
-    id: 123444,
-  },
-  params: {
-    name: "config1",
-  },
-};
-
-const strats = Object.create(null);
-
-function defaultStrat(val1: any, val2: any): any {
-  // config2中有的就直接取config2的属性，否则取config1的属性
-  return typeof val2 !== "undefined" ? val2 : val1;
-}
-
-function formVal2Strat(val1: any, val2: any): any {
-  // 优先取val2
-  if (typeof val2 !== "undefined") {
-    return val2;
-  }
-}
-
-const stratKeysFormVal2 = ["url", "params", "data"];
-
-stratKeysFormVal2.forEach((key) => {
-  strats[key] = formVal2Strat;
+box.addEventListener("click", function(){
+  console.log("box");
+}, false);
+child.addEventListener("click", function(){
+  console.log("child");
 });
-
-function mergeConfig(config1?: any, config2?: any): any {
-  const config = Object.create(null);
-
-  for (const key in config2) {
-    // 循环config2 如果config2有优先取2
-    mergeFiled(key);
-  }
-
-  for (const key in config1) {
-    // 循环config1 如果config2没拿到就去config1
-    if (!config2[key]) {
-      mergeFiled(key);
-    }
-  }
-
-  function mergeFiled(key: string): void {
-    const strat = strats[key] || defaultStrat;
-    config[key] = strat(config1[key], config2[key]);
-  }
-  return config;
-}
-
-console.log(mergeConfig(config1, config2), "合并策略模式");
+// 执行顺序为 child => box
 ```
-
-#### 什么时候用的策略模式呢？
-
-- 各判断条件下的策略相互独立且可服用
-- 内部逻辑相对复杂
-- 策略需要灵活组合
-
-策略模式在的日常工作中还是用得挺多的，赶快思考下自己的项目，那些可以使用，用起来吧!~
-
-### 迭代器模式
-
-![迭代器模式](https://z3.ax1x.com/2021/07/13/Wk6ODs.png)
-直接上代码, 实现一个简单的迭代器
 
 ```js
-class Creater {
-    constructor(list) {
-        this.list = list
-    }
-
-    // 创建一个迭代器，也叫遍历器
-    createIterator() {
-        return new Iterator(this)
-    }
-}
-
-class Iterator {
-    constructor(creater) {
-        this.list = creater.list
-        this.index = 0
-    }
-
-    // 判断是否遍历完数据
-    isDone() {
-        if (this.index >= this.list.length) {
-            return true
-        }
-        return false
-    }
-
-    next() {
-        return this.list[this.index++]
-    }
-
-}
-
-var arr = [1, 2, 3, 4]
-
-var creater = new Creater(arr)
-var iterator = creater.createIterator()
-console.log(iterator.list)  // [1, 2, 3, 4]
-while (!iterator.isDone()) {
-    console.log(iterator.next())
-    // 1
-    // 2
-    // 3
-    // 4
-}
-```
-
-ES6中的迭代器:
-
-- JavaScript中的有序数据集合包括：
-  - Array
-  - Map
-  - Set
-  - String
-  - typeArray
-  - arguments
-  - NodeList
-
-\* 注意: Object不是有序数据集合
-
-以上有序数据集合都部署了Symbol.iterator属性，属性值为一个函数，执行这个函数，返回一个迭代器，迭代器部署了next方法，调用迭代器的next方法可以按顺序访问子元素
-
-以数组为例测试一下，在浏览器控制台中打印测试如下：
-![ES6中的迭代器](https://z3.ax1x.com/2021/07/13/WkcNPf.png)
-
-```js
-var arr = [1, 2, 3, 4]
-
-var iterator = arr[Symbol.iterator]()
-
-console.log(iterator.next())  // {value: 1, done: false}
-console.log(iterator.next())  // {value: 2, done: false}
-console.log(iterator.next())  // {value: 3, done: false}
-console.log(iterator.next())  // {value: 4, done: false}
-console.log(iterator.next())  // {value: undefined, done: true}
-```
-
-#### 小结
-
-JavaScript中的有序数据集合有Array，Map，Set，String，typeArray，arguments，NodeList，不包括Object
-
-任何部署了`[Symbol.iterator]`接口的数据都可以使用for...of循环遍历
-
-迭代器模式使目标对象和迭代器对象分离，符合开放封闭原则
-
-### 发布订阅模式
-
-先看下面的需求
-
-> 申请成功后，需要出发对应的订单、消息、审核模块对应逻辑。
-
-<!-- ![image-20210408142132173](/img/design/eventEmit_1.png) -->
-
-看完，机智的我，这不还简单，我会如何做呢？
-
-```js
-function applySuccess() {
-  // 通知消息中心获取最新内容
-  MessageCenter.fetch();
-
-  // 更新订单信息
-  Order.update();
-
-  // 通知相关审核
-  Checker.alert();
-}
-```
-
-这样写似乎看不出什么毛病。但是思考一下
-
-比如` MessageCenter.fetch()` 是小明写的，他来大姨夫了，心情不爽，把模块的方法名改了 现在叫` MessageCenter.request()` ，最后这块逻辑也只来对应使用的地方修改。
-
-再比如，这个功能由你和小明开发的，小明负责订单模块，你一气合成 呼呼呼呼的直接给写完了，一运行发现，依赖的订单模块小明今天没空去约妹妹了，本来今天能完成的，推迟一天，那你也就只能注释代码，等依赖的模块开发完，再回来添加这段订单模块逻辑。
-
-还有一点，万一可能涉及不止三个模块，还有很多个模块，申请成功之后还需要再通知其他人，想到的是继续在`applySuccess` 函数中添加咯。
-
-```js
-function applySuccess() {
-  // 通知消息中心获取最新内容
-  MessageCenter.fetch();
-  // 更新订单信息
-  Order.update();
-  // 通知相关方审核
-  Checker.alert();
-
-  // maybe 更多
-  Ntoice.others();
-  ...
-}
-```
-
-到这里发布订阅模式要出场了
-
-发布-订阅模式是一种消息范式，消息的发布者不会将消息直接发送给特定的`订阅者`，而是通过消息通道广播出去，订阅者通过订阅获取到想要的消息。
-
-优点：在异步变成中更深的解耦
-
-缺点： 如果过多的使用发布订阅模式，会增加维护的难度
-
-接下来使用发布-订阅模式 修改一下上边的代码：
-
-```javascript
-const EventEmit = function () {
-  this.events = {};
-  this.on = function (name, cb) {
-    if (this.events[name]) {
-      this.events[name].push(cb);
-    } else {
-      this.events[name] = [cb];
-    }
-  };
-
-  this.trigger = function (name, ...args) {
-    if (this.events[name]) {
-      this.events[name].forEach((eventListener) => {
-        eventListener(...args);
-      });
-    }
-  };
-};
-```
-
-上班写好一个 `EventEmit` ,然后的业务代码可以改成这样 ~
-
-```javascript
-let event = new EventEmit();
-event.trigger('success');
-
-MessageCenter.fetch() {
-  event.on('success', () => {
-    console.log('更新消息中心');
-  });
-}
-Order.update() {
-  event.on('success', () => {
-    console.log('更新订单信息');
-  });
-}
-Checker.alert() {
-  event.on('success', () => {
-    console.log('通知管理员');
-  });
-}
-
-```
-
-#### 什么情况下适合用发布订阅模式呢？
-
-- 各模块相互独立
-- 存在一对多的依赖关系
-- 依赖模块不稳定、依赖关系
-- 各模块由不同的人员、团队开发
-
-#### 小结
-
-1. 发布订阅模式可以使代码解耦，满足开放封闭原则
-2. 当过多的使用发布订阅模式，如果订阅消息始终都没有触发，则订阅者一直保存在内存中。
-
-### 观察者模式（**Observer**）
-
-生活中的观察者模式：
-
-小米新款手机，每次都是热销，于是打算去店里购买，店员销售告诉已经卖完没有了，现在没货但是还想购买，不可能每天都跑来店里问，于是留下了我的`电话号码`给店员销售，有货了立马通知我，也不需要自己天天跑去问了，如果你购买到了手机，店员销售也不会通知了你了。
-
-应用场景：
-
-场景 1： 当观察的数据对象发生变化时，自动调用相应的函数。比如 vue 的双向数据绑定。
-
-**数据双向绑定**
-
-利用`Object.definedProperty()`对数据进行劫持，设置一个`Observer`监听器，用来监听属性的变化，如果属性发生变化了，就需要告诉订阅者`Watcher`去更新数据（当然这是根据你是否订阅了某个双向绑定数据属性才回去执行），最后指令解析器`complie`解析对应的指令，进行会执行对应的更新函数，从而更新视图，实现双向绑定。
-
-下面来看一个`Object.definePropety()`简单的例子：
-
-```js
-const obj = {
-  data: { list: [] },
-};
-
-Object.defineProperty(obj, "list", {
-  get() {
-    return this.data["list"];
-  },
-  set(val) {
-    console.log("值被更改了");
-    this.data["list"] = val;
-  },
+box.addEventListener("click", function(){
+  console.log("box");
+}, true);
+child.addEventListener("click", function(){
+  console.log("child");
 });
-obj.data.list = ["66"];
+// 执行顺序为 box => child
 ```
 
-熟悉的同学都知道 `obj.data.list`被重新复制会粗发 `set()`方法并执行
+- 兼容性
+`Chrome` 和 `FireFox` 只支持 `addEventListener`；`IE` 只支持 `attachEvent`（`IE11`开始不支持了）。
 
-**Proxy**
+所以必须对`2`种方法做兼容处理。原理是先判断 `attachEvent` 是否为真，如果为真则用 `attachEvent` 绑定事件，否则用 `addEventListener` 绑定事件。
 
-Proxy/Reflect 是 ES6 引入的新特性，也可以使用其完成观察者模式，示例如下（效果如上）：
+可以封装一个函数做兼容性处理：
 
 ```js
-var obj = {
-  value: 0,
-};
-
-var proxy = new Proxy(obj, {
-  set: function (target, key, value, receiver) {
-    // {value: 0}  "value"  1  Proxy {value: 0}
-    console.log("调用相应函数");
-    Reflect.set(target, key, value, receiver);
-  },
+//dom绑定事件的元素，ev事件名，fn执行函数
+function myAddEvent(dom, ev, fn){
+  if(dom.attachEvent){
+    dom.attachEvent("on"+ev, fn);
+  }else {
+    dom.addEventListener(ev, fn, false);
+  }
+}
+myAddEvent(d1, "click", ()=>{
+  console.log(1111)
 });
-
-proxy.value = 1; // 调用相应函数
 ```
 
-### 命令模式
+- 另外
 
-> ![命令模式](https://z3.ax1x.com/2021/07/13/WkglWT.png)
-> [--百度百科](https://baike.baidu.com/item/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/7277118)
+以上三种方式绑定的点击事件都可以用下面这条语句触发
 
-在命令的发布者和接收者之间，定义一个命令对象，命令对象暴露出一个统一的接口给命令的发布者，而命令的发布者不用去管接收者是如何执行命令的，做到命令发布者和接收者的解耦。
+```js
+document.getElementById("btn").click();
+```
 
-举一个如果页面中有3个按钮，给不同按钮添加不同功能的例子，代码如下：
+## 事件委托
+
+对“事件处理程序过多”问题的解决方案就是事件委托。事件委托利用了事件冒泡，只制定一个事件处理程序，就可以管理某一类型的所有事件。例如`click`事件一直会冒泡到`document`层。也就是我们可以只指定`onclick`事件处理程序，而不必给每个事件分别添加处理程序。
+下面我们来看一个阿里巴巴笔试题的例子。
+
+通过原生js实现删除功能
+
+| 序号 | 性别 | 姓名 | 电话号码    | 省份 | 操作 |
+| :--- | :--- | :--- | :---------- | :--- | :--- |
+| 1    | 张三 | 男   | 13788888888 | 浙江 | 删除 |
+| 2    | 李四 | 女   | 13788887777 | 四川 | 删除 |
+| 3    | 王二 | 男   | 13788889999 | 广东 | 删除 |
+
+- 样式以及`DOM`结构
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>cmd-demo</title>
+ <style>
+   * {
+     padding: 0;
+     margin: 0;
+   }
+   .head, li div {
+     display: inline-block;
+     width: 70px;
+     text-align: center;
+   }
+   li .id, li .sex, .id, .sex {
+     width: 15px;
+   }
+   li .name, .name {
+     width: 40px;
+   }
+   li .tel, .tel {
+     width: 90px;
+   }
+   li .del, .del {
+     width: 15px;
+   }
+   ul {
+     list-style: none;
+   }
+   .user-delete {
+     cursor: pointer;
+   }
+ </style>
 </head>
 <body>
-    <div>
-        <button id="btn1">按钮1</button>
-        <button id="btn2">按钮2</button>
-        <button id="btn3">按钮3</button>
-    </div>
-    <script>
-        var btn1 = document.getElementById('btn1')
-        var btn2 = document.getElementById('btn2')
-        var btn3 = document.getElementById('btn3')
-
-        // 定义一个命令发布者(执行者)的类
-        class Executor {
-            setCommand(btn, command) {
-                btn.onclick = function() {
-                    command.execute()
-                }
-            }
-        }
-
-        // 定义一个命令接收者
-        class Menu {
-            refresh() {
-                console.log('刷新菜单')
-            }
-
-            addSubMenu() {
-                console.log('增加子菜单')
-            }
-        }
-
-        // 定义一个刷新菜单的命令对象的类
-        class RefreshMenu {
-            constructor(receiver) {
-                // 命令对象与接收者关联
-                this.receiver = receiver
-            }
-
-            // 暴露出统一的接口给命令发布者Executor
-            execute() {
-                this.receiver.refresh()
-            }
-        }
-
-        // 定义一个增加子菜单的命令对象的类
-        class AddSubMenu {
-            constructor(receiver) {
-                // 命令对象与接收者关联
-                this.receiver = receiver
-            }
-            // 暴露出统一的接口给命令发布者Executor
-            execute() {
-                this.receiver.addSubMenu()
-            }
-        }
-
-        var menu = new Menu()
-        var executor = new Executor()
-
-        var refreshMenu = new RefreshMenu(menu)
-        // 给按钮1添加刷新功能
-        executor.setCommand(btn1, refreshMenu)
-
-        var addSubMenu = new AddSubMenu(menu)
-        // 给按钮2添加增加子菜单功能
-        executor.setCommand(btn2, addSubMenu)
-
-        // 如果想给按钮3增加删除菜单的功能，就继续增加删除菜单的命令对象和接收者的具体删除方法，而不必修改命令对象
-    </script>
-</body>
-</html>
+<div id="J_container">
+ <div class="record-head">
+   <div class="head id">序号</div><div class="head name">姓名</div><div class="head sex">性别</div><div class="head tel">电话号码</div><div class="head province">省份</div><div class="head">操作</div>
+ </div>
+   <ul id="J_List">
+     <li><div class="id">1</div><div class="name">张三</div><div class="sex">男</div><div class="tel">13788888888</div><div class="province">浙江</div><div class="user-delete">删除</div></li>
+     <li><div class="id">2</div><div class="name">李四</div><div class="sex">女</div><div class="tel">13788887777</div><div class="province">四川</div><div class="user-delete">删除</div></li>
+     <li><div class="id">3</div><div class="name">王二</div><div class="sex">男</div><div class="tel">13788889999</div><div class="province">广东</div><div class="user-delete">删除</div></li>
+   </ul>
+ </div>
+ </body>
 ```
 
-### 状态模式
-
-> ![状态模式](https://z3.ax1x.com/2021/07/13/WkgI1S.png)
-
-举一个关于开关控制电灯的例子，电灯只有一个开关，第一次按下打开弱光，第二次按下打开强光，第三次按下关闭。
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>state-demo</title>
-</head>
-
-<body>
-    <button id="btn">开关</button>
-    <script>
-        // 定义一个关闭状态的类
-        class OffLightState {
-            constructor(light) {
-                this.light = light
-            }
-            // 每个类都需要这个方法，在不同状态下按都需要触发这个方法
-            pressBtn() {
-                this.light.setState(this.light.weekLightState)
-                console.log('开启弱光')
-            }
-        }
-
-        // 定义一个弱光状态的类
-        class WeekLightState {
-            constructor(light) {
-                this.light = light
-            }
-            pressBtn() {
-                this.light.setState(this.light.strongLightState)
-                console.log('开启强光')
-            }
-        }
-
-        // 定义一个强光状态的类
-        class StrongLightState {
-            constructor(light) {
-                this.light = light
-            }
-            pressBtn() {
-                this.light.setState(this.light.offLightState)
-                console.log('关闭电灯')
-            }
-        }
-
-        class Light {
-            constructor() {
-                this.offLightState = new OffLightState(this)
-                this.weekLightState = new WeekLightState(this)
-                this.strongLightState = new StrongLightState(this)
-                this.currentState = null
-            }
-            setState(newState) {
-                this.currentState = newState
-            }
-            init() {
-                this.currentState = this.offLightState
-            }
-        }
-
-        let light = new Light()
-        light.init()
-        var btn = document.getElementById('btn')
-        btn.onclick = function() {
-            light.currentState.pressBtn()
-        }
-    </script>
-</body>
-
-</html>
-```
-
-如果这时候需要增加一个超强光，则只需增加一个超强光的类，并添加pressBtn方法，改变强光状态下，点击开关需要把状态更改为超强光，超强光状态下，点击开关把状态改为关闭即可，其他代码都不需要改动。
+**不用事件委托**。而这种方法造成的代价是，性能的大量浪费。如果是成千上万条数据，页面将会严重卡顿，甚至崩溃。
 
 ```js
-class StrongLightState {
-    constructor(light) {
-        this.light = light
-    }
-    pressBtn() {
-        this.light.setState(this.light.superLightState)
-        console.log('开启超强光')
-    }
+function Contact(){
+    this.init();
 }
-
-class SuperLightState {
-    constructor(light) {
-        this.light = light
-    }
-    pressBtn() {
-        this.light.setState(this.light.offLightState)
-        console.log('关闭电灯')
-    }
+Contact.prototype.init = function(){
+ var userdel = document.querySelectorAll('.user-delete');
+ for(var i=0;i<lis.length;i++){
+  (function(j){
+   userdel[j].onclick = function(){
+ userdel[j].parentNode.parentNode.removeChild(userdel[j].parentNode);
+   }
+  })(i);
+ }
 }
-
-class Light {
-    constructor() {
-        this.offLightState = new OffLightState(this)
-        this.weekLightState = new WeekLightState(this)
-        this.strongLightState = new StrongLightState(this)
-        this.superLightState = new SuperLightState(this)
-        this.currentState = null
-    }
-    setState(newState) {
-        this.currentState = newState
-    }
-    init() {
-        this.currentState = this.offLightState
-    }
-}
+new Contact();
 ```
 
-#### 小结
+**使用事件委托**，只绑定一次事件，大大减少了性能的损耗。也是在需要大量事件处理程序中一种非常好的解决方式。
 
-1. 通过定义不同的状态类，根据状态的改变而改变对象的行为，二不必把大量的逻辑都写在被操作对象的类中，而且容易增加新的状态
-2. 符合开放封闭原则
+```js
+function Contact(){
+    this.init();
+}
+Contact.prototype.init = function(){
+ var lis = document.querySelector('#J_List');
+ lis.addEventListener('click', function(e){
+  var target = e.target || e.srcElement;
+  if (!!target && target.className.toLowerCase()==='user-delete') {    target.parentNode.parentNode.removeChild(target.parentNode);
+  }
+ })
+}
+new Contact();
+```
 
-[参考文章](https://github.com/sunzhaoye/blog/issues/16)
+## 事件级别
+
+### HTML0
+
+在标签中添加事件，没有兼容问题
+
+### DOM0
+
+`DOM0`级事件，是在`html0`的基础上扩展的新的试验性质的新功能，没有制定标准。具有极好的跨浏览器优势，会以最快的速度绑定。
+
+### DOM1
+
+`DOM1`是一种标准，只是设计规范没有具体的体现，所以一般跳过。
+
+### DOM2
+
+- 非IE 中`addEventListener`,`removeEventListener`
+
+- IE `attachEvent`,`detachEvent`
+
+### DOM3
+
+`DOM3`进一步扩展了`DOM`，在`DOM3`中引入了以下模块：
+
+- `DOM`加载和保存模块（`DOM Load and Save`）：引入了以统一方式加载和保存文档的方法
+- `DOM`验证模块（`DOM Validation`）：定义了验证文档的方法
+- `DOM`核心的扩展（`DOM Style`）：支持`XML 1.0`规范，涉及`XML Infoset`、`XPath`和`XML Base`.
+
+`DOM3` 级还定义了自定义事件，自定义事件不是由`DOM`原生触发的，它的目的是让开发人员创建自己的事件。
+
+## 自定义事件
+
+### 方法创建
+
+1. 事件的创建
+
+`JS`中，最简单的创建事件方法，是使用`Event`构造器：
+
+```js
+var myEvent = new Event('event_name');
+```
+
+但是为了能够传递数据，就需要使用 `CustomEvent` 构造器：
+
+```js
+var myEvent = new CustomEvent('event_name', {
+    detail:{
+        // 将需要传递的数据写在detail中，以便在EventListener中获取
+        // 数据将会在event.detail中得到
+    },
+});
+```
+
+2. 事件的监听
+
+`JS`的`EventListener`是根据事件的名称来进行监听的，比如我们在上文中已经创建了一个名称为`‘event_name’` 的事件，那么当某个元素需要监听它的时候，就需要创建相应的监听器：
+
+```js
+//假设listener注册在window对象上
+window.addEventListener('event_name', function(event){
+    // 如果是CustomEvent，传入的数据在event.detail中
+    console.log('得到数据为：', event.detail);
+
+    // ...后续相关操作
+});
+```
+
+至此，`window`对象上就有了对`‘event_name’` 这个事件的监听器，当`window`上触发这个事件的时候，相关的`callback`就会执行。
+
+3. 事件的触发
+
+对于一些内置（`built-in`）的事件，通常都是有一些操作去做触发，比如鼠标单击对应`MouseEvent`的`click`事件，利用鼠标（`ctrl` + 滚轮上下）去放大缩小页面对应`WheelEvent`的`resize`事件。
+然而，自定义的事件由于不是`JS`内置的事件，所以我们需要在`JS`代码中去显式地触发它。方法是使用 `dispatchEvent` 去触发（`IE8`低版本兼容，使用`fireEvent`）：
+
+```js
+// 首先需要提前定义好事件，并且注册相关的EventListener
+var myEvent = new CustomEvent('event_name', {
+    detail: { title: 'This is title!'},
+    bubbles: true,    //是否冒泡
+    cancelable: false //是否取消默认事件
+});
+window.addEventListener('event_name', function(event){
+    console.log('得到标题为：', event.detail.title);
+});
+// 随后在对应的元素上触发该事件
+if(window.dispatchEvent) {
+    window.dispatchEvent(myEvent);
+} else {
+    window.fireEvent(myEvent);
+}
+// 根据listener中的callback函数定义，应当会在console中输出 "得到标题为： This is title!"
+```
+
+\* 需要特别注意的是，当一个事件触发的时候，如果相应的`element`及其上级元素没有对应的`EventListener`，就不会有任何回调操作。
+对于子元素的监听，可以对父元素添加事件托管，让事件在事件冒泡阶段被监听器捕获并执行。这时候，使用`event.target`就可以获取到具体触发事件的元素。
+
+- 移出事件
+
+```js
+dom.detachEvent("onpropertychange", evt);
+
+var fireEvent = function(element,event){
+   if (document.createEventObject){
+       // IE浏览器支持fireEvent方法
+       var evt = document.createEventObject();
+       return element.fireEvent('on'+event,evt)
+   }
+   else{
+       // 其他标准浏览器使用dispatchEvent方法
+       var evt = document.createEvent( 'HTMLEvents' );
+       evt.initEvent(event, true, true);
+       return !element.dispatchEvent(evt);
+   }
+};
+```
+
+[应用场景](https://zhuanlan.zhihu.com/p/108447200)
+
+### document 方式
+
+`DOM3` 级还定义了自定义事件，自定义事件不是由DOM原生触发的，它的目的是让开发人员创建自己的事件。要创建的自定义事件可以由`createEvent("CustomEvent");` 返回的对象有一个`initCustomEvent（）`方法接收如下四个参数。
+
+- 1 `type`：字符串，触发的事件类型，自定义。例如`“keyDown”`，`“selectedChange”`;
+- 2 `bubble`（布尔值）：标示事件是否应该冒泡；
+- 3 `cancelable`(布尔值)：标示事件是否可以取消；
+- 4 `detail`（对象）：任意值，保存在`event`对象的`detail`属性中；
+
+可以像分配其他事件一样在`DOM`中分派创建的自定义事件对象。如：
+
+```js
+var  div = document.getElementById("myDiv");
+　　EventUtil.addEventHandler(div,"myEvent", function () {
+　　　　alert("div myEvent!");
+　　});
+　　EventUtil.addEventHandler(document,"myEvent",function(){
+　　　　alert("document myEvent!");
+　　});
+　　if(document.implementation.hasFeature("CustomEvents","3.0")){
+　　　　var e = document.createEvent("CustomEvent");
+　　　　e.initCustomEvent("myEvent",true,false,"hello world!");
+　　　　div.dispatchEvent(e);
+　　}
+```
+
+这个例子中创建了一个冒泡事件`“myEvent”`。而`event.detail`的值被设置成了一个简单的字符串，然后在`div`和`document`上侦听该事件，因为在`initCustomEvent`中设置了事件冒泡。所以当div激发该事件时，浏览器会将该事件冒泡到`document`。
+`IE`中的事件模拟(`IE8`及之前版本中)：
+与`DOM`中事件模拟的思路类似，先创建`event`对象，再为其指定相应信息，然后再使用该对象来触发事件。当然`IE`在实现以下每个步骤都不太一样。
+
+例如：
+
+```js
+var btn = document.getElementById("myBtn");
+//创建事件对象,不接受任何参数，结果会返回一个通用的event对象，你必须为该event对象指定所有必要的信息。
+var event  = document.createEventObject();
+//初始化事件对象
+event.screenX = 100；
+event.screenY = 0;
+event.clientX = 0;
+event.clientY =0;
+event.ctrlKey = false;
+event.altKey = false;
+event.shiftKey = false;
+event.button = 0;
+//触发事件
+btn.fireEvent("onclick",event);
+```
