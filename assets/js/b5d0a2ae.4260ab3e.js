@@ -1,0 +1,1 @@
+(self.webpackChunkzxuqian_cn=self.webpackChunkzxuqian_cn||[]).push([[2059],{6116:function(a){"use strict";a.exports=JSON.parse('{"allTagsPath":"/tags","slug":"vite","name":"vite","count":1,"permalink":"/tags/vite"}')}}]);

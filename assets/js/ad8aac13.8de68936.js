@@ -1,0 +1,1 @@
+(self.webpackChunkzxuqian_cn=self.webpackChunkzxuqian_cn||[]).push([[2491],{6424:function(e){"use strict";e.exports=JSON.parse('{"allTagsPath":"/tags","slug":"reg-exp","name":"regexp","count":1,"permalink":"/tags/reg-exp"}')}}]);
